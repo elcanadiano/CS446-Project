@@ -1,0 +1,28 @@
+NOTE: This might be better off as a .docx or something.
+
+Link to Deliverable 1 PDF: https://cs.uwaterloo.ca/~rtholmes/teaching/2014winter/cs446/slides/Deliverable1.pdf
+
+Deliverable 1 - Project Proposal
+
+Document Requirements:
+1) Metadata: Project title, team member names, team member quest IDs
+Project title: <unknown>
+Team member names and Quest IDs: Alexander Poon (a3poon), Carl Cabusas (cecabusa), Khalim Husain (khusain), Yi Yin (y22yin)
+
+2) What is your project? Why is it interesting? Describe and justify your project selection. Why does the project make sense in a mobile form factor? (1 page; 2 pages if any low fidelity prototypes are included)
+
+3) Provide at least two user scenarios to describe how a user would interact with your system and what the benefit to them would be (At most 2 paragraphs per scenario)
+
+4) A description of the functional and non-functional requirements of your system (2 pages at most, list form preferred). We will compare your final demo against this list (and will use the list to assess project difficulty)
+
+5) One team member needs to email this document to rth.se2@gmail.com by 0800 on January 28 with filename cs446-d1_<project_name>.pdf
+
+Presentation
+------------
+-Pitch project to the class
+-Lasts about 5 minutes.
+-Done in class.
+-Presentation should describe the main functionality of the system and clearly state why the project is useful/interesting.
+-Can use slides or blackboard (max 5 content slides + one title slide. No animation or transition)
+
+Deliverable counts for 5% of final grade.
