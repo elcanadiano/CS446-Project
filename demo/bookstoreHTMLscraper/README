@@ -1,0 +1,5 @@
+Currently, this code grabs lists of courses offered per term per subject.
+
+The goal is to have an HTML scraper using PHP that retrieves book information for UWaterloo courses and saves them in a .csv file.
+
+The reason for grabbing lists of courses is to minimize the amount of calls we make to the UWaterloo Bookstore.
