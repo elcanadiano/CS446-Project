@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostActivity" >
+	
+    <TextView
+        android:id="@+id/post_manual_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="false"
+        android:textSize="25sp"
+        android:text="@string/post_manual_header_text" />
+    
+    <EditText
+	    android:id="@+id/post_manual_booktitle"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/post_manual_booktitle_hint"
+	    android:inputType="textCapSentences"
+	    android:layout_width="fill_parent"
+	    android:layout_below="@id/post_manual_header"/>
+    
+    <EditText
+	    android:id="@+id/post_manual_bookauthor"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/post_manual_bookauthor_hint"
+	    android:inputType="textCapSentences"
+	    android:layout_width="fill_parent"
+	    android:layout_below="@id/post_manual_booktitle"/>
+    
+    <EditText
+	    android:id="@+id/post_manual_bookisbn"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/post_manual_bookisbn_hint"
+	    android:inputType="textCapSentences"
+	    android:layout_width="fill_parent"
+	    android:layout_below="@id/post_manual_bookauthor"/>
+    
+    <Spinner
+	    android:id="@+id/post_manual_deptspinner"
+	   	android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/post_manual_bookisbn"/>
+
+    <EditText
+	    android:id="@+id/post_manual_coursenum"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/post_manual_coursenum_hint"
+	    android:inputType="phone"
+	    android:layout_width="60dip"
+	    android:layout_below="@id/post_manual_deptspinner"/>
+    
+    <Button
+        android:id="@+id/post_manual_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/next"
+        android:layout_below="@id/post_manual_coursenum"  />
+    
+    
+</RelativeLayout>

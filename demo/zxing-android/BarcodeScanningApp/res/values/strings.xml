@@ -9,7 +9,22 @@
     <string name="search">Search</string>
     <string name="title_activity_post">PostActivity</string>
     
+    <!-- Strings for the Post Screen(s) -->
+    <string name="next">Next</string>
     <string name="post_manual">Post Manually</string>
     <string name="post_scan">Post Scan</string>
+    
+    	<!-- Strings for Posting - manual insert -->
+    <string name="post_manual_header_text">We\'ll find the best match</string>
+    <string name="post_manual_booktitle_hint">Book Title</string>
+    <string name="post_manual_bookauthor_hint">Author(s)</string>
+    <string name="post_manual_bookisbn_hint">ISBN</string>
+    <string name="post_manual_deptspinner_prompt">Dept</string>
+    <string-array name="post_manual_deptspinner_list">
+        <item>BUS</item>
+        <item>CS</item>
+        <item>MATH</item>
+    </string-array>
+    <string name="post_manual_coursenum_hint">###</string>
 
 </resources>

@@ -38,7 +38,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 
 	public void onClick(View v){
-		
+		Intent intent = new Intent(this, PostActivity.class);
 		
 
 		switch (v.getId()) {
@@ -49,7 +49,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			case R.id.post_button:
 				formatTxt.setText("FORMAT: "+"post");
 				contentTxt.setText("CONTENT: "+"button");
-				
+				startActivity(intent);
 				break;
 			case R.id.search_button:
 				formatTxt.setText("FORMAT: "+"search");
