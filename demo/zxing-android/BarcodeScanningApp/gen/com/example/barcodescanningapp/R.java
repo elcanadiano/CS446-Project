@@ -27,63 +27,85 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090011;
+        public static final int action_settings=0x7f090017;
         public static final int post_button=0x7f090003;
-        public static final int post_manual=0x7f090005;
-        public static final int post_manual_bookauthor=0x7f09000c;
-        public static final int post_manual_bookisbn=0x7f09000d;
-        public static final int post_manual_booktitle=0x7f09000b;
-        public static final int post_manual_coursenum=0x7f09000f;
-        public static final int post_manual_deptspinner=0x7f09000e;
-        public static final int post_manual_header=0x7f09000a;
-        public static final int post_manual_submit=0x7f090010;
-        public static final int post_scan=0x7f090006;
+        public static final int post_manual=0x7f09000a;
+        public static final int post_manual_bookauthor=0x7f090013;
+        public static final int post_manual_bookisbn=0x7f090014;
+        public static final int post_manual_booktitle=0x7f090012;
+        public static final int post_manual_coursenum=0x7f090016;
+        public static final int post_manual_deptspinner=0x7f090015;
+        public static final int post_manual_header=0x7f090011;
+        public static final int post_manual_submit=0x7f090009;
+        public static final int post_scan=0x7f09000b;
         public static final int scan_button=0x7f090000;
         public static final int scan_content=0x7f090002;
         public static final int scan_format=0x7f090001;
         public static final int search_button=0x7f090004;
-        public static final int search_manual=0x7f090007;
-        public static final int search_scan=0x7f090008;
-        public static final int search_text=0x7f090009;
+        public static final int search_manual=0x7f09000c;
+        public static final int search_manual_bookauthor=0x7f090007;
+        public static final int search_manual_bookisbn=0x7f090008;
+        public static final int search_manual_booktitle=0x7f090006;
+        public static final int search_manual_header=0x7f090005;
+        public static final int search_manual_spinner=0x7f090010;
+        public static final int search_manual_title=0x7f09000f;
+        public static final int search_scan=0x7f09000d;
+        public static final int search_text=0x7f09000e;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int activity_post=0x7f030001;
-        public static final int activity_search=0x7f030002;
-        public static final int post_manual=0x7f030003;
+        public static final int activity_manual_search=0x7f030001;
+        public static final int activity_post=0x7f030002;
+        public static final int activity_search=0x7f030003;
+        public static final int activity_search_manual=0x7f030004;
+        public static final int activity_search_scan=0x7f030005;
+        public static final int post_manual=0x7f030006;
     }
     public static final class menu {
         public static final int main=0x7f080000;
-        public static final int post=0x7f080001;
-        public static final int search=0x7f080002;
+        public static final int manual_search=0x7f080001;
+        public static final int post=0x7f080002;
+        public static final int search=0x7f080003;
+        public static final int search_manual=0x7f080004;
+        public static final int search_scan=0x7f080005;
     }
     public static final class string {
-        public static final int action_settings=0x7f050001;
-        public static final int app_name=0x7f050000;
-        public static final int default_search=0x7f050013;
-        public static final int hello_world=0x7f050002;
+        public static final int action_settings=0x7f050002;
+        /**   
+         */
+        public static final int app_name=0x7f050001;
+        public static final int default_search=0x7f050014;
+        public static final int hello_world=0x7f050003;
         /**  Strings for the Post Screen(s) 
          */
-        public static final int next=0x7f050007;
-        public static final int post=0x7f050004;
-        public static final int post_manual=0x7f050008;
-        public static final int post_manual_bookauthor_hint=0x7f05000c;
-        public static final int post_manual_bookisbn_hint=0x7f05000d;
-        public static final int post_manual_booktitle_hint=0x7f05000b;
-        public static final int post_manual_coursenum_hint=0x7f05000f;
-        public static final int post_manual_deptspinner_prompt=0x7f05000e;
+        public static final int next=0x7f050008;
+        public static final int post=0x7f050005;
+        public static final int post_manual=0x7f050009;
+        public static final int post_manual_bookauthor_hint=0x7f05000d;
+        public static final int post_manual_bookisbn_hint=0x7f05000e;
+        public static final int post_manual_booktitle_hint=0x7f05000c;
+        public static final int post_manual_coursenum_hint=0x7f050010;
+        public static final int post_manual_deptspinner_prompt=0x7f05000f;
         /**  Strings for Posting - manual insert 
          */
-        public static final int post_manual_header_text=0x7f05000a;
-        public static final int post_scan=0x7f050009;
-        public static final int scan=0x7f050003;
-        public static final int search=0x7f050005;
+        public static final int post_manual_header_text=0x7f05000b;
+        public static final int post_scan=0x7f05000a;
+        public static final int scan=0x7f050004;
+        public static final int search=0x7f050006;
         /**  Strings for Searching 
          */
-        public static final int search_manual=0x7f050011;
-        public static final int search_scan=0x7f050012;
-        public static final int title_activity_post=0x7f050006;
-        public static final int title_activity_search=0x7f050010;
+        public static final int search_manual=0x7f050012;
+        public static final int search_manual_title=0x7f050016;
+        public static final int search_scan=0x7f050013;
+        /**  Common 
+         */
+        public static final int submit=0x7f050000;
+        public static final int title_activity_manual_search=0x7f050018;
+        public static final int title_activity_post=0x7f050007;
+        public static final int title_activity_search=0x7f050011;
+        public static final int title_activity_search_manual=0x7f050015;
+        public static final int title_activity_search_scan=0x7f050017;
+        public static final int title_manual_search=0x7f050019;
     }
     public static final class style {
         /** 

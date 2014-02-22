@@ -1,28 +1,35 @@
 package com.example.barcodescanningapp;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 import android.view.View.OnClickListener;
 
 public class SearchActivity extends Activity implements OnClickListener{
 	
+	/*
+	 * This activity is for options for searching manually or searching by scanning
+	 */
 	private Button searchManualBtn,searchScanBtn;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		searchManualBtn = (Button)findViewById(R.id.search_manual);
 		searchScanBtn = (Button)findViewById(R.id.search_scan);
-		Intent intent = getIntent();
+	//	Intent intent = getIntent();
 		
 		
 		setContentView(R.layout.activity_search);
 		//listen for clicks
-		searchManualBtn.setOnClickListener(this);
-		searchScanBtn.setOnClickListener( this);
+		//searchManualBtn.setOnClickListener(this);
+		//searchScanBtn.setOnClickListener( this);
 		
 	}
 
@@ -42,5 +49,39 @@ public class SearchActivity extends Activity implements OnClickListener{
 			
 		}
 	}
+	/*
+	 * Goes to the Search Manual Activity Page
+	 * Uses android:onClick
+	 */
+	public void searchManual(View view){
+		Intent intent = new Intent(this,ManualSearchActivity.class);
+		startActivity(intent);
+	}//searchManual
+	public void searchScan(View view){
+		IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+		scanIntegrator.initiateScan();
+	}//searchScan
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		//retrieve result of scanning - instantiate ZXing object
+		IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+		if(scanningResult != null){
+			String scanContent = scanningResult.getContents();
+			//get format name of data scanned
+			String scanFormat = scanningResult.getFormatName();
+			//output to UI
+			//formatTxt.setText("FORMAT: "+scanFormat);
+			//contentTxt.setText("CONTENT: "+scanContent);
+			//go to results page
+			Intent resultsIntent = new Intent(this,ManualSearchActivity.class);
+			startActivity(intent);
+		}
+		else{
+			//invalid scan, scan cancelled
+			Toast toast = Toast.makeText(getApplicationContext(), 
+					"No scan data received!", Toast.LENGTH_SHORT);
+			toast.show();
+		}
+	}//onActivityResult
 
 }

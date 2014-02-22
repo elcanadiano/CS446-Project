@@ -54,6 +54,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			case R.id.search_button:
 				formatTxt.setText("FORMAT: "+"search");
 				contentTxt.setText("CONTENT: "+"button");
+				Intent intent2 = new Intent(this, SearchActivity.class);
+				startActivity(intent2);
 				break;
 		}
 	}

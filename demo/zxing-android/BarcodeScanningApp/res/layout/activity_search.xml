@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:onClick="searchManual"
         android:text="@string/search_manual" />
     
     <Button
@@ -20,7 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="@string/search_scan" 
+        android:text="@string/search_scan"
+        android:onClick="searchScan" 
         android:layout_below="@id/search_manual"/>
     <TextView
         android:id="@+id/search_text"

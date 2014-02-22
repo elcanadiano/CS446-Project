@@ -30,6 +30,18 @@
             android:name="com.example.barcodescanningapp.SearchActivity"
             android:label="@string/title_activity_search" >
         </activity>
+        <activity
+            android:name="com.example.barcodescanningapp.SearchManualActivity"
+            android:label="@string/title_activity_search_manual" >
+        </activity>
+        <activity
+            android:name="com.example.barcodescanningapp.SearchScan"
+            android:label="@string/title_activity_search_scan" >
+        </activity>
+        <activity
+            android:name="com.example.barcodescanningapp.ManualSearchActivity"
+            android:label="@string/title_activity_manual_search" >
+        </activity>
     </application>
 
 </manifest>
