@@ -26,6 +26,10 @@
             android:name="com.example.barcodescanningapp.PostActivity"
             android:label="@string/title_activity_post" >
         </activity>
+        <activity
+            android:name="com.example.barcodescanningapp.SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
     </application>
 
 </manifest>
