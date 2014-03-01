@@ -2,7 +2,7 @@
 
 $baseURL = "https://api.uwaterloo.ca/v2";	// Current version of Open Data API
 $format = ".json";							// .json OR .xml format can be returned
-$key = "dacd769dd10cb9e4b195989a2be137c8";	// EasyPeasy@gmail.com Open Data API key
+$key = "dacd769dd10cb9e4b195989a2be137c8";	// EasyPeasyAllTheWay@gmail.com Open Data API key
 
 // Returns the JSON result of the Open Data API query
 function getJSONdata($call) {
