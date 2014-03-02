@@ -47,7 +47,7 @@ public final class R {
         public static final int search_manual_bookisbn=0x7f090008;
         public static final int search_manual_booktitle=0x7f090006;
         public static final int search_manual_header=0x7f090005;
-        public static final int search_manual_spinner=0x7f090010;
+        public static final int search_manual_listview=0x7f090010;
         public static final int search_manual_title=0x7f09000f;
         public static final int search_scan=0x7f09000d;
         public static final int search_text=0x7f09000e;
