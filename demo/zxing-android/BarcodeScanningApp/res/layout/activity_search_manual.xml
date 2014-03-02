@@ -15,11 +15,16 @@
         android:text="@string/search_manual_title"
         android:layout_centerHorizontal="true"
     />
-    <Spinner
+    <ListView
 	    android:id="@+id/search_manual_spinner"
 	   	android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_below ="@id/search_manual_title"
+	    android:background="@android:color/transparent"
+	    android:cacheColorHint="@android:color/transparent"
+	    android:divider="#CCCCCC"
+	    android:dividerHeight="1dp"
+	    android:paddingLeft="2dp"
 	    />
 
 </RelativeLayout>

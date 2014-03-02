@@ -8,6 +8,7 @@ import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.http.HttpEntity;
@@ -20,6 +21,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,7 +51,23 @@ public class CommunicationClass{
         new DownloadJSON().execute(uri , null, null);
 	}
 	
-	
+	public void postData(String url){
+		
+		HttpClient httpclient = new DefaultHttpClient();
+		HttpPost httppost = new HttpPost(url);
+		try{
+			//add data
+			List<NameValuePair> nvp = new ArrayList<NameValuePair>();
+			nvp.add(new BasicNameValuePair("author","Tim Kenyon"));
+			httppost.setEntity(new UrlEncodedFormEntity(nvp));
+			//execute http post request
+			HttpResponse response = httpclient.execute(httppost);
+		}
+		
+		catch(Exception e){
+			Log.d(tag,"postData exception: "+e.toString());
+		}
+	}
 	
 	public void queryByISBN(String isbn){
 		
