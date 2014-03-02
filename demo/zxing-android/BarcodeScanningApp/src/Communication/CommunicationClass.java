@@ -68,13 +68,19 @@ public class CommunicationClass{
 		String json = gson.toJson(o);
 		return json;
 	}
-	//not done
-	   <T> Object objectFromJson(String json) throws JSONException{
-		Object o = new Object();
-		JSONObject jsonObject = new JSONObject(json);
-		Gson gson = new Gson();
-		gson.fromJson(json, (Class<T>) o);
-		return o;
+	/*
+	 * Function turns json string into an object, the object returned is mainly
+	 * to store the information in a convenient function
+	 * Input: json string
+	 * Output: A DataJSON object with the fields set
+	 */
+   public DataJSON objectFromJson(String json) throws JSONException{
+	   
+	   DataJSON o = new DataJSON();
+	   JSONObject jsonObject = new JSONObject(json);
+	   Gson gson = new Gson();
+	   o = gson.fromJson(json, DataJSON.class);
+	   return o;
 	}//objectFromJson
 	
 

@@ -1,12 +1,14 @@
 package com.example.barcodescanningapp;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import Communication.CommunicationClass;
+import Communication.DataJSON;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.app.Activity;
@@ -69,12 +71,37 @@ public class SearchActivity extends Activity implements OnClickListener{
 		Intent intent = new Intent(this,ManualSearchActivity.class);
 		startActivity(intent);
 	}//searchManual
-	public void searchScan(View view){
-		
-		
-		
-		
+	public void searchScan(View view) {
 		/*
+		DataJSON json = new DataJSON();
+		json.isbn = "9780176251949";
+		json.author = "Tim Kenyon";
+		json.title = "Clear Thinking In A Blurry World";
+		json.year = "2004";
+		CommunicationClass c = new CommunicationClass();
+		String result = c.buildJSONFromObject(json);
+		searchText.setText(result);
+		Log.d(TAG,"json resultfromobject: "+result);
+		*/
+		/*
+		try{
+		CommunicationClass d = new CommunicationClass();
+		//String json = "{\"users\":[{\"id\":\"2\",\"username\":\"admin\"},{\"id\":\"1\",\"username\":\"awpoon\"}],\"pet_name\":\"Cat\",\"name\":\"Whiskers\"}";
+		//String json = "{\"isbn\":\"9780176251949\",\"author\":\"Tim Kenyon\",\"title\":\"Clear Thinking in a blurry world\",\"year\":\"2004\"}";
+		//String json2 = "{\"isbn2345\":\"9780176251949\",\"author\":\"Tim Kenyon\",\"title\":\"Clear Thinking in a blurry world\",\"year\":\"2004\"}";
+		
+		DataJSON test = (DataJSON) d.objectFromJson(json2);
+		Log.d(TAG,"test1 title: "+test.title);
+		Log.d(TAG,"test2 author: "+test.author);
+		Log.d(TAG,"test3 year: "+test.year);
+		Log.d(TAG,"test4 isbn: "+test.isbn);
+		}
+		catch(JSONException e){
+			Log.d(TAG, "Exception searchScan: "+ e.toString());
+		}
+		*/
+		/*
+		 * 
 		IntentIntegrator scanIntegrator = new IntentIntegrator(this);
 		scanIntegrator.initiateScan();*/
 	}//searchScan
