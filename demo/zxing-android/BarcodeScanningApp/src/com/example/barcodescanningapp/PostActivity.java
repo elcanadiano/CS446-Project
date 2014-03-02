@@ -1,7 +1,6 @@
 package com.example.barcodescanningapp;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-
+import Communication.CommunicationClass;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -11,8 +10,12 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 public class PostActivity extends Activity implements OnClickListener{
 	
@@ -41,12 +44,40 @@ public class PostActivity extends Activity implements OnClickListener{
 			case R.id.post_manual:
 				setContentView(R.layout.post_manual);
 				break;
+			case R.id.post_scan:
+				IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+				scanIntegrator.initiateScan();
+				break;
 		}
 	}
 	
 	/*
 	 * Methods for manual posting
 	 */
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		//retrieve result of scanning - instantiate ZXing object
+		IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+		//check we have a valid result
+		if (scanningResult != null) {
+			//get content from Intent Result
+			String scanContent = scanningResult.getContents();
+			//get format name of data scanned
+			String scanFormat = scanningResult.getFormatName();
+			
+			//2. talk to isbndb:
+			
+			String url="http://isbndb.com/api/v2/json/SK4717CP/book/"+scanContent;
+			CommunicationClass c = new CommunicationClass(url);
+			
+			
+		}
+		else{
+			//invalid scan data or scan canceled
+			Toast toast = Toast.makeText(getApplicationContext(), 
+					"No scan data received!", Toast.LENGTH_SHORT);
+			toast.show();
+		}
+	}
 	private void manualPost(View view) {
 		/*
 		 * write this in js. Must:
@@ -57,6 +88,13 @@ public class PostActivity extends Activity implements OnClickListener{
 		 * 5. parse string (client side)
 		 */
 	}
+	
+	
+	/*
+	 * Method for scan posting
+	 */
+	
+	
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
 	 */

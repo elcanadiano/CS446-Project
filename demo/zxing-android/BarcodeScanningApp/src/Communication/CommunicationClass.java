@@ -39,8 +39,13 @@ public class CommunicationClass{
 	String result = ""; //result of JSON
 	HttpResponse httpResponse2;
 	private boolean done = false;
-	public CommunicationClass(){
+	public CommunicationClass(){ // should make the ctor a nop later - only run on demand
 		String uri = new String("http://buymybookapp.com/api/test/test2");
+        new DownloadJSON().execute(uri , null, null);
+	}
+	
+	public CommunicationClass(String url){
+		String uri = new String(url);
         new DownloadJSON().execute(uri , null, null);
 	}
 	
@@ -86,7 +91,8 @@ public class CommunicationClass{
 
 	
 	public class DownloadJSON extends AsyncTask<String, Void, String> {
-		 
+		JSONObject jsonObj;
+		
 		protected String doInBackground(String... urls) {
             HttpClient client = new DefaultHttpClient();
             String json = "";
@@ -113,6 +119,12 @@ public class CommunicationClass{
         protected void onPostExecute(String result) {
         	Log.d(tag, "ONPOSTEXECUTE");
         	Log.d(tag,"jsonON: "+ result);
+        	try {
+				jsonObj = new JSONObject(result);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
     }
 	
