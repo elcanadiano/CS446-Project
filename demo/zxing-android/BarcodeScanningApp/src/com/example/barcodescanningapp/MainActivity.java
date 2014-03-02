@@ -46,10 +46,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		//set up local db for user data
 		dbHelper = new DBHelper(this);
 		
-		/*
-		 * dummy code to test local data storage!!
-		 */
-		dbHelper.insert("cs446", "1234567890");
+		if(true) { // cleans record after each launch
+			dbHelper.clearAll();
+		}
 	}
 
 	public void onClick(View v){
