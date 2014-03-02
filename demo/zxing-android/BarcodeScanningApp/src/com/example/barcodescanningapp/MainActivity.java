@@ -1,8 +1,8 @@
 package com.example.barcodescanningapp;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -12,12 +12,17 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+//delete these imports later~
+import android.database.Cursor;
 
 public class MainActivity extends Activity implements OnClickListener {
 
 	//UI instance variables
 	private Button scanBtn, postBtn, searchBtn;
 	private TextView formatTxt, contentTxt;
+	
+	//Local userdata DB stuff
+	private DBHelper dbHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,15 @@ public class MainActivity extends Activity implements OnClickListener {
 		scanBtn.setOnClickListener(this);
 		postBtn.setOnClickListener(this);
 		searchBtn.setOnClickListener(this);
+		
+		
+		//set up local db for user data
+		dbHelper = new DBHelper(this);
+		
+		/*
+		 * dummy code to test local data storage!!
+		 */
+		dbHelper.insert("cs446", "1234567890");
 	}
 
 	public void onClick(View v){
@@ -47,6 +61,15 @@ public class MainActivity extends Activity implements OnClickListener {
 				scanIntegrator.initiateScan();
 				break;
 			case R.id.post_button:
+				/*
+				 * dummy code to test local data storage!!
+				 */
+				dbHelper.insert("cs446", "1234567890");
+				
+				Cursor c=dbHelper.cursorSelectAll();
+				
+				
+
 				formatTxt.setText("FORMAT: "+"post");
 				contentTxt.setText("CONTENT: "+"button");
 				startActivity(intent);
@@ -70,8 +93,11 @@ public class MainActivity extends Activity implements OnClickListener {
 			//get format name of data scanned
 			String scanFormat = scanningResult.getFormatName();
 			//output to UI
+			
+			
 			formatTxt.setText("FORMAT: "+scanFormat);
 			contentTxt.setText("CONTENT: "+scanContent);
+			
 		}
 		else{
 			//invalid scan data or scan canceled
