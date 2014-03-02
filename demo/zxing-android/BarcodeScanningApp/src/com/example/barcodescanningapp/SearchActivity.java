@@ -1,25 +1,18 @@
 package com.example.barcodescanningapp;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
-
-import Communication.CommunicationClass;
-import Communication.DataJSON;
-import android.os.Bundle;
-import android.os.StrictMode;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.View.OnClickListener;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 public class SearchActivity extends Activity implements OnClickListener{
 	

@@ -1,6 +1,5 @@
 package com.example.barcodescanningapp;
 
-import Communication.CommunicationClass;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -54,30 +53,6 @@ public class PostActivity extends Activity implements OnClickListener{
 	/*
 	 * Methods for manual posting
 	 */
-	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		//retrieve result of scanning - instantiate ZXing object
-		IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-		//check we have a valid result
-		if (scanningResult != null) {
-			//get content from Intent Result
-			String scanContent = scanningResult.getContents();
-			//get format name of data scanned
-			String scanFormat = scanningResult.getFormatName();
-			
-			//2. talk to isbndb:
-			
-			String url="http://isbndb.com/api/v2/json/SK4717CP/book/"+scanContent;
-			CommunicationClass c = new CommunicationClass(url);
-			
-			
-		}
-		else{
-			//invalid scan data or scan canceled
-			Toast toast = Toast.makeText(getApplicationContext(), 
-					"No scan data received!", Toast.LENGTH_SHORT);
-			toast.show();
-		}
-	}
 	private void manualPost(View view) {
 		/*
 		 * write this in js. Must:
@@ -93,7 +68,29 @@ public class PostActivity extends Activity implements OnClickListener{
 	/*
 	 * Method for scan posting
 	 */
-	
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		//retrieve result of scanning - instantiate ZXing object
+		IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+		//check we have a valid result
+		if (scanningResult != null) {
+			//get content from Intent Result
+			String scanContent = scanningResult.getContents();
+			//get format name of data scanned
+			String scanFormat = scanningResult.getFormatName();
+			
+			//2. talk to isbndb:
+			String url="http://isbndb.com/api/v2/json/2L1HKXO4/book/"+scanContent;
+			CommunicationClass c = new CommunicationClass(url);
+			
+			
+		}
+		else{
+			//invalid scan data or scan canceled
+			Toast toast = Toast.makeText(getApplicationContext(), 
+					"No scan data received!", Toast.LENGTH_SHORT);
+			toast.show();
+		}
+	}
 	
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.

@@ -1,4 +1,4 @@
-package Communication;
+package com.example.barcodescanningapp;
 //searching object
 public class DataJSON {
 	public String isbn;

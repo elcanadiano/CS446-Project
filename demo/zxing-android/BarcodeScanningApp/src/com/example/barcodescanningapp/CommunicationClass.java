@@ -1,4 +1,4 @@
-package Communication;
+package com.example.barcodescanningapp;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -139,6 +139,11 @@ public class CommunicationClass{
         	Log.d(tag,"jsonON: "+ result);
         	try {
 				jsonObj = new JSONObject(result);
+				if (jsonObj.getString("index_searched") == "isbn") { // show post confimration activity
+					//
+				} else {
+					
+				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
