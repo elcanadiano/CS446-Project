@@ -3,7 +3,7 @@
 
 $baseURL = "https://fortuna.uwaterloo.ca/cgi-bin/cgiwrap/rsic/book/search.html?mv_profile=search_course";
 //$subjects = array("CS");	// All subjects that we want books for
-$subjects=array("ACC","ACTSC","AFM","AHS","AMATH","ANTH","APPLS","ARBUS",
+/*$subjects=array("ACC","ACTSC","AFM","AHS","AMATH","ANTH","APPLS","ARBUS",
 "ARCH","ARTS","BE","BET","BIOL","BUS","CHE","CHEM","CHINA","CIVE","CLAS","CM",
 "CMW","CO","COGSCI","COMM","CROAT","CS","CT","DAC","DEI","DRAMA","DUTCH",
 "EARTH","EASIA","ECE","ECON","ENBUS","ENGL","ENVE","ENVS","ERS","ESL","FINE",
@@ -15,11 +15,57 @@ $subjects=array("ACC","ACTSC","AFM","AHS","AMATH","ANTH","APPLS","ARBUS",
 "REES","RS","RUSS","SCBUS","SCI","SDS","SE","SI","SMF","SOC","SOCWK","SPAN",
 "SPCOM","SPD","STAT","STV","SUSM","SWK","SWREN","SYDE","TOUR","TS","UNIV",
 "VCULT","WS");
+*/
+
+//$subjects = array("ACC", "ACTSC", "AFM");
+//$subjects = array("AHS", "AMATH", "ANTH");
+//$subjects = array("ANTH");
+//$subjects = array("APPLS", "ARBUS", "ARCH");
+//$subjects = array("ARTS", "BE", "BET");
+$subjects = array("BIOL", "BUS", "CHE");
+//$subjects = array("CHEM", "CHINA", "CIVE");
+//$subjects = array("CLAS", "CM", "CMW");
+//$subjects = array("CO", "COGSCI", "COMM");
+//$subjects = array("CROAT", "CS", "CT");
+//$subjects = array("DAC", "DEI", "DRAMA");
+//$subjects = array("DUTCH", "EARTH", "EASIA");
+//$subjects = array("ECE", "ECON", "ENBUS");
+//$subjects = array("ENGL", "ENVE", "ENVS");
+//$subjects = array("ERS", "ESL", "FINE");
+//$subjects = array("FR", "GBDA", "GEMCC");
+//$subjects = array("GENE", "GEOE", "GEOG");
+//$subjects = array("GER", "GERON", "GGOV");
+//$subjects = array("GRK", "HIST", "HLTH");
+//$subjects = array("HRM", "HSG", "HUMSC");
+//$subjects = array("IAIN", "INDEV", "INTEG");
+//$subjects = array("INTST", "ISS", "ITAL");
+//$subjects = array("ITALST", "JAPAN", "JS");
+//$subjects = array("KIN", "KOREA", "LAT");
+//$subjects = array("LED", "LS", "MATBUS");
+//$subjects = array("MATH", "MCT", "ME");
+//$subjects = array("MEDVL", "MNS", "MSCI");
+//$subjects = array("MTE", "MTHEL", "MUSIC");
+//$subjects = array("NANO", "NE", "OPTOM");
+//$subjects = array("PACS", "PHARM", "PHIL");
+//$subjects = array("PHS", "PHYS", "PLAN");
+//$subjects = array("PMATH", "PORT", "PS");
+//$subjects = array("PSCI", "PSYCH", "REC");
+//$subjects = array("REES", "RS", "RUSS");
+//$subjects = array("SCBUS", "SCI", "SDS");
+//$subjects = array("SE", "SI", "SMF");
+//$subjects = array("SOC", "SOCWK", "SPAN");
+//$subjects = array("SPCOM", "SPD", "STAT");
+//$subjects = array("STV", "SUSM", "SWK");
+//$subjects = array("SWREN", "SYDE", "TOUR");
+//$subjects = array("TS", "UNIV", "VCULT");
+//$subjects = array("WS");
+
+
 $terms = array("1141");		// All terms that we want books for
 $section = "";
 $instructor = "";
-$filteredResult = "";
-$filePath = "books.txt";
+//$filteredResult = "";
+//$filePath = "books.txt";
 
 // Book object for storing and accessing of Book information
 class Book {
@@ -114,7 +160,8 @@ function output($books, $filePath) {
 foreach ($terms as $term) {
 	foreach ($subjects as $subject) {
 		$courses = getCourseNumbers($term, $subject);
-		
+		$filteredResult = "";
+		$filePath = "books/".$subject."_books.txt";	
 		
 		foreach ($courses as $course) {
 			$param1 = "&mv_searchspec=".$term;	// Term that we are searching (e.g. 1141)
@@ -137,14 +184,12 @@ foreach ($terms as $term) {
 				$filteredResult .= $book->price.", ";
 				$filteredResult .= $book->isbn."\n";
 			}
-			echo "Sleep for 1 second\n";
-			sleep(1);
+			
 		}
-		echo "sleep for 5 seconds\n";
-		sleep(5);	
+		file_put_contents($filePath, $filteredResult);
 	}
 }	
 
-file_put_contents($filePath, $filteredResult);
+//file_put_contents($filePath, $filteredResult);
 
 ?>
