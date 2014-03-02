@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 //this file is for inputting stuff
 //xml file: activity_manual_Search.xml
 public class ManualSearchActivity extends Activity {
@@ -30,8 +31,9 @@ public class ManualSearchActivity extends Activity {
 	public void submitResults(View view){
 		String title = textTitle.getText().toString();
 		String author = textAuthor.getText().toString();
-		String isbn = textISBN.getText().toString();
-		
+		// Get rid of hyphens in ISBN
+		String isbn = textISBN.getText().toString().replace("-","");
+			
 		Intent intent = new Intent(this,SearchManualActivity.class);
 		intent.putExtra("SUBMITVAL_TITLE", title);
 		intent.putExtra("SUBMITVAL_AUTHOR", author);

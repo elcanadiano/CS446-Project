@@ -1,5 +1,7 @@
 package com.example.barcodescanningapp;
 
+import java.io.Console;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,7 +43,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		postBtn.setOnClickListener(this);
 		searchBtn.setOnClickListener(this);
 		
-		
 		//set up local db for user data
 		dbHelper = new DBHelper(this);
 		
@@ -52,7 +53,6 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	public void onClick(View v){
 		Intent intent = new Intent(this, PostActivity.class);
-		
 
 		switch (v.getId()) {
 			case R.id.scan_button:
@@ -65,9 +65,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				 */
 				dbHelper.insert("cs446", "1234567890");
 				
-				Cursor c=dbHelper.cursorSelectAll();
-				
-				
+				Cursor c = dbHelper.cursorSelectAll();
 
 				formatTxt.setText("FORMAT: "+"post");
 				contentTxt.setText("CONTENT: "+"button");
@@ -85,21 +83,29 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		//retrieve result of scanning - instantiate ZXing object
 		IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+		
 		//check we have a valid result
 		if (scanningResult != null) {
 			//get content from Intent Result
 			String scanContent = scanningResult.getContents();
 			//get format name of data scanned
 			String scanFormat = scanningResult.getFormatName();
-			//output to UI
 			
+			// Output contents to UI if it exists
+			if (scanContent != null) {
+				formatTxt.setText("FORMAT: "+scanFormat);
+			} else {
+				formatTxt.setText("FORMAT: No scan data received!");
+			}
 			
-			formatTxt.setText("FORMAT: "+scanFormat);
-			contentTxt.setText("CONTENT: "+scanContent);
-			
-		}
-		else{
-			//invalid scan data or scan canceled
+			// Output format name to UI if it exists
+			if (scanFormat != null) {
+				contentTxt.setText("CONTENT: "+scanContent);
+			} else {
+				contentTxt.setText("CONTENT: No scan data received!");
+			}
+		} else {
+			//invalid scan data or scan canceled <-- Doesn't get triggered on scan cancel (K)
 			Toast toast = Toast.makeText(getApplicationContext(), 
 					"No scan data received!", Toast.LENGTH_SHORT);
 			toast.show();
