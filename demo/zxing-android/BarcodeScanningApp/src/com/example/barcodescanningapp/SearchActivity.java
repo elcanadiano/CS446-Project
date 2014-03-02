@@ -71,24 +71,9 @@ public class SearchActivity extends Activity implements OnClickListener{
 	}//searchManual
 	public void searchScan(View view){
 		
-		searchText.setText("JSON:");
-		Log.d(TAG,"CommunicationClass 1");
-		CommunicationClass c = new CommunicationClass();
-		Log.d(TAG,"CommunicationClass 2");
-	    //String json = c.getJSONString();
-		//JSONObject json = new JSONObject();
-		//JSONArray a = c.get2();
-		//String res = c.get2();
-		//Log.d(TAG,"json: "+res);
-			//json = c.getJSONString();
-			//json = c.getJSONfromurl("http://buymybookapp.com/api/test/test2");
-		/*
-		String s = json.toString();
-		Log.d(TAG,"CommunicationClass 3");
-		Log.d(TAG,"JSON: "+s);
-		System.out.println("JSON: "+s);
-		*/
-		//searchText.setText("JSON:");
+		
+		
+		
 		/*
 		IntentIntegrator scanIntegrator = new IntentIntegrator(this);
 		scanIntegrator.initiateScan();*/
