@@ -8,6 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SearchManualActivity" >
 
+   
     <TextView
         android:id="@+id/search_manual_title"
         android:layout_width="wrap_content"
@@ -15,8 +16,9 @@
         android:text="@string/search_manual_title"
         android:layout_centerHorizontal="true"
     />
+    
     <ListView
-	    android:id="@+id/search_manual_spinner"
+	    android:id="@+id/search_manual_listview"
 	   	android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_below ="@id/search_manual_title"
