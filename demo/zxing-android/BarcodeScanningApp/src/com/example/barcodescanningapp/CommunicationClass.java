@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -134,17 +135,22 @@ public class CommunicationClass{
         }
 
         protected void onPostExecute(String result) {
-        	Log.d(tag, "ONPOSTEXECUTE");
-        	Log.d(tag,"jsonON: "+ result);
+        	//Log.d(tag, "ONPOSTEXECUTE");
+        	//Log.d(tag,"jsonON: "+ result);
         	try {
 				jsonObj = new JSONObject(result);
-				System.out.println("cheese: |"+ jsonObj.getString("index_searched")+"|");
+				
 				if (jsonObj.getString("index_searched").equals("isbn")) { // show post confimration activity
-					
+
 					Intent intent = new Intent(this.context, PostScanConfirmationActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					
+					intent.putExtra("json", result.toString());
+					
 					context.startActivity(intent);
 				} else {
+					
+					// carl, but your result code here!
 					
 				}
 			} catch (JSONException e) {

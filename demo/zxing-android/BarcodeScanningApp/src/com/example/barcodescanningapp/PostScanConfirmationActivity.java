@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class PostScanConfirmationActivity extends Activity implements OnClickListener {
+	String json;
 	int price;
 	private Button confirmBtn;
 	private EditText priceTag;
@@ -19,6 +20,10 @@ public class PostScanConfirmationActivity extends Activity implements OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_scan_confirmation);
+        
+        json =getIntent().getExtras().getString("json");
+        
+        System.out.println(getIntent().getExtras().getString("json")+"successful pass!");
         
         confirmBtn = (Button)findViewById(R.id.post_scan_confirm);	
         confirmBtn.setOnClickListener(this);
