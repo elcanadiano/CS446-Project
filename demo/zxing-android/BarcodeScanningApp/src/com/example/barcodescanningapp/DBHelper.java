@@ -23,7 +23,7 @@ public class DBHelper extends SQLiteOpenHelper{
 		
 		
 System.out.println(
-		"CREATE TABLE listing (_id integer primary key autoincrement, book_title text, book_isbn integer);"
+		"CREATE TABLE listing (_id integer primary key autoincrement, book_title text, book_isbn integer, book_author text, book_price text, book_condition text);"
 		);
 	}
 	
@@ -31,17 +31,16 @@ System.out.println(
 	public void onCreate(SQLiteDatabase db) { // the SQLite DB
 		
 		db.execSQL(
-				"CREATE TABLE listing (_id integer primary key autoincrement, book_title text, book_isbn integer);"
+				"CREATE TABLE listing (_id integer primary key autoincrement, book_title text, book_isbn integer, book_author text, book_price text, book_condition text);"
 				);
-		
-		
-		//delete this later!!!
-		db.execSQL("INSERT INTO "+TABLE_NAME+"('book_title', 'book_isbn') values ('always', '123')");
 	}
 	
-	public void insert(String title, String isbn) {
-		db.execSQL("INSERT INTO "+TABLE_NAME+"('book_title', 'book_isbn') values ('"+
+	public void insert(String title, String isbn, String author, String price, String condition) {
+		db.execSQL("INSERT INTO "+TABLE_NAME+"('book_title', 'book_isbn', 'book_author', 'book_price', 'book_condition') values ('"+
 				title + "', '"+
+				isbn + "', '"+
+				author + "', '"+
+				price + "', '"+
 				isbn + "')");
 	}
 	
@@ -52,7 +51,7 @@ System.out.println(
 	public Cursor cursorSelectAll() { // get all return results
 		Cursor cursor = this.db.query(
 				TABLE_NAME,
-				new String[] {"book_title", "book_isbn"},
+				new String[] {"book_title", "book_author", "book_price", "book_condition"},
 				null, // WHERE
 				null, //selection args
 				null, // GROUP BY

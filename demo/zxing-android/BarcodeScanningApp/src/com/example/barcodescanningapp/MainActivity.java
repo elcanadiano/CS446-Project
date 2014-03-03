@@ -60,13 +60,6 @@ public class MainActivity extends Activity implements OnClickListener {
 				scanIntegrator.initiateScan();
 				break;
 			case R.id.post_button:
-				/*
-				 * dummy code to test local data storage!!
-				 */
-				dbHelper.insert("cs446", "1234567890");
-				
-				Cursor c = dbHelper.cursorSelectAll();
-
 				formatTxt.setText("FORMAT: "+"post");
 				contentTxt.setText("CONTENT: "+"button");
 				startActivity(intent);

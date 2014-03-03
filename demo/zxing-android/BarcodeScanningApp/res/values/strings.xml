@@ -34,6 +34,14 @@
     <string name="post_manual_coursenum_hint">###</string>
     <string name="title_activity_search">SearchActivity</string>
 
+    <string-array name="condition_scroller">
+        <item>As New</item>
+        <item>Very Good</item>
+        <item>Good</item>
+        <item>Fair</item>
+        <item>Poor</item>
+        <item>Decomposed</item>
+    </string-array>
     <!-- Strings for Searching -->
     <string name="search_manual">Search Manually</string>
     <string name="search_scan">Search by Scanning</string>
