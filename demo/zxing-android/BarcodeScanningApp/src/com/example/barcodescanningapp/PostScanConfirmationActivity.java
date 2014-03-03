@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class PostScanConfirmationActivity extends Activity implements OnClickListener {
+	int price;
 	private Button confirmBtn;
 	private EditText priceTag;
 	
@@ -28,7 +29,8 @@ public class PostScanConfirmationActivity extends Activity implements OnClickLis
                 {
                     public void onClick(View view)
                     {
-                        Log.v("EditText", priceTag.getText().toString());
+                    	price=Integer.parseInt(priceTag.getText().toString());
+                        System.out.println("EditText" + price);
                     }
                 });
     }

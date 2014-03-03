@@ -81,8 +81,7 @@ public class PostActivity extends Activity implements OnClickListener{
 			//2. talk to isbndb:
 			String url="http://isbndb.com/api/v2/json/2L1HKXO4/book/"+scanContent;
 			CommunicationClass c = new CommunicationClass(url);
-			
-			
+			c.new DownloadJSON(this).execute(url);		
 		}
 		else{
 			//invalid scan data or scan canceled
