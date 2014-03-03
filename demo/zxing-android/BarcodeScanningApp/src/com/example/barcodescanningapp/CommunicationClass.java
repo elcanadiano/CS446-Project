@@ -3,35 +3,26 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 
 public class CommunicationClass{
@@ -43,13 +34,13 @@ public class CommunicationClass{
 	HttpResponse httpResponse2;
 	private boolean done = false;
 	public CommunicationClass(){ // should make the ctor a nop later - only run on demand
-		String uri = new String("http://buymybookapp.com/api/search/test2?message=hello");
+		String uri = new String("http://buymybookapp.com/api/test/test2");
         new DownloadJSON().execute(uri , null, null);
 	}
 	
 	public CommunicationClass(String url){
 		String uri = new String(url);
-        new DownloadJSON().execute(uri , null, null);
+        //new DownloadJSON().execute(uri , null, null);
 	}
 	
 	public void postData(String url){
@@ -111,7 +102,14 @@ public class CommunicationClass{
 	
 	public class DownloadJSON extends AsyncTask<String, Void, String> {
 		JSONObject jsonObj;
+		Context context;
 		
+		DownloadJSON() {
+		}
+		
+		DownloadJSON(Context context) {
+			this.context= context.getApplicationContext();
+		}
 		protected String doInBackground(String... urls) {
             HttpClient client = new DefaultHttpClient();
             String json = "";
@@ -140,8 +138,12 @@ public class CommunicationClass{
         	Log.d(tag,"jsonON: "+ result);
         	try {
 				jsonObj = new JSONObject(result);
-				if (jsonObj.getString("index_searched") == "isbn") { // show post confimration activity
-					Intent intent = new Intent(this, PostScanConfirmationActivity.class);
+				System.out.println("cheese: |"+ jsonObj.getString("index_searched")+"|");
+				if (jsonObj.getString("index_searched").equals("isbn")) { // show post confimration activity
+					
+					Intent intent = new Intent(this.context, PostScanConfirmationActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					context.startActivity(intent);
 				} else {
 					
 				}
