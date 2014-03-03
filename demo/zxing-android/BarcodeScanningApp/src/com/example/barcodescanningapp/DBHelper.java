@@ -39,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper{
 				isbn + "', '"+
 				author + "', '"+
 				price + "', '"+
-				isbn + "')");
+				condition + "')");
 	}
 	
 	public void clearAll() {
@@ -62,12 +62,9 @@ public class DBHelper extends SQLiteOpenHelper{
 			System.out.println(cursor.getString(0));
 			cursor.moveToNext();
 		}
-		
-		
 		cursor.moveToFirst();
 		return cursor;
 	}
-
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

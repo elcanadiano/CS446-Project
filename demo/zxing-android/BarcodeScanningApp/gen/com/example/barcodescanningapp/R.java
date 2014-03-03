@@ -64,14 +64,15 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int activity_manual_search=0x7f030001;
-        public static final int activity_post=0x7f030002;
-        public static final int activity_post_scan_confirmation=0x7f030003;
-        public static final int activity_search=0x7f030004;
-        public static final int activity_search_manual=0x7f030005;
-        public static final int activity_search_scan=0x7f030006;
-        public static final int post_manual=0x7f030007;
-        public static final int searchlistinglayout=0x7f030008;
+        public static final int activity_main_profilepopup=0x7f030001;
+        public static final int activity_manual_search=0x7f030002;
+        public static final int activity_post=0x7f030003;
+        public static final int activity_post_scan_confirmation=0x7f030004;
+        public static final int activity_search=0x7f030005;
+        public static final int activity_search_manual=0x7f030006;
+        public static final int activity_search_scan=0x7f030007;
+        public static final int post_manual=0x7f030008;
+        public static final int searchlistinglayout=0x7f030009;
     }
     public static final class menu {
         public static final int main=0x7f080000;

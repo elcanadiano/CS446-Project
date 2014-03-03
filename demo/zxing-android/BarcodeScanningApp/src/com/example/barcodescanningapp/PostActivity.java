@@ -76,10 +76,11 @@ public class PostActivity extends Activity implements OnClickListener{
 			//get content from Intent Result
 			String scanContent = scanningResult.getContents();
 			//get format name of data scanned
-			String scanFormat = scanningResult.getFormatName();
+			//String scanFormat = scanningResult.getFormatName();
 			
 			//2. talk to isbndb:
-			String url="http://isbndb.com/api/v2/json/2L1HKXO4/book/"+"9780201314526";//+scanContent;
+			//9780201314526 = algo in C (CS 246)
+			String url="http://isbndb.com/api/v2/json/2L1HKXO4/book/"+scanContent;
 			CommunicationClass c = new CommunicationClass(url);
 			c.new DownloadJSON(this,"post").execute(url);		
 		}
