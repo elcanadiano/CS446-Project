@@ -55,9 +55,9 @@ public class CustomSearchListAdaptor extends BaseAdapter{
 	        //output text
 	        SearchListItem item = (SearchListItem)listData.get(position);
 	        holder.titleView.setText(item.getTitle());
-	        holder.authorView.setText(item.getAuthor());
-	        holder.priceView.setText(item.getPrice());
-	        holder.condition.setText(item.getCondition());
+	        holder.authorView.setText("Author: "+item.getAuthor());
+	        holder.priceView.setText("Price: $"+item.getPrice());
+	        holder.condition.setText("Condition: "+ item.getCondition());
 	        /*
 	        holder.headlineView.setText(listData.get(position).getHeadline());
 	        holder.reporterNameView.setText("By, " + listData.get(position).getReporterName());
