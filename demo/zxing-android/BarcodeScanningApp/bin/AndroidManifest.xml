@@ -43,6 +43,10 @@
             android:name="com.example.barcodescanningapp.ManualSearchActivity"
             android:label="@string/title_activity_manual_search" >
         </activity>
+        <activity
+            android:name="com.example.barcodescanningapp.PostScanConfirmationActivity"
+            android:label="@string/title_activity_post_scan_confirmation" >
+        </activity>
     </application>
 
 </manifest>

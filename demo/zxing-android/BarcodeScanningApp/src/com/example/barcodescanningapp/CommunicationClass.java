@@ -26,6 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -140,7 +141,7 @@ public class CommunicationClass{
         	try {
 				jsonObj = new JSONObject(result);
 				if (jsonObj.getString("index_searched") == "isbn") { // show post confimration activity
-					//
+					Intent intent = new Intent(this, PostScanConfirmationActivity.class);
 				} else {
 					
 				}
