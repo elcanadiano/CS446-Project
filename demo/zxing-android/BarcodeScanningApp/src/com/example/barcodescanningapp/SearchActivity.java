@@ -76,6 +76,8 @@ public class SearchActivity extends Activity implements OnClickListener{
 		searchText.setText(result);
 		Log.d(TAG,"json resultfromobject: "+result);
 		*/
+		CommunicationClass c = new CommunicationClass();
+		
 		/*
 		try{
 		CommunicationClass d = new CommunicationClass();

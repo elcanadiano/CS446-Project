@@ -59,7 +59,22 @@ public class SearchManualActivity extends Activity {
 		listings.add(createListing("author","Tim Kenyon5"));
 		
 	}
-	
+	private ArrayList populateBooks(){
+		ArrayList results = new ArrayList();
+		String title="Clear Thinking In a Blurry World";
+		String author="Tim Kenyon";
+		String price="100";
+		String condition="Good";
+		SearchListItem item = new SearchListItem(title,author,price,condition);
+		results.add(item);
+		title = "Introduction to Algorithmns";
+		author = "Cormen";
+		price = "50";
+		condition = "Excellent";
+		item =new SearchListItem(title,author,price,condition);
+		results.add(item);
+		return results;
+	}
 	private HashMap<String,String> createListing(String key, String value){
 		HashMap<String,String> data = new HashMap<String,String>();
 		data.put(key,value);
@@ -71,9 +86,21 @@ public class SearchManualActivity extends Activity {
 	
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_manual);
-		populateList();
-		ListView lv;
-		lv = (ListView)findViewById(R.id.search_manual_listview);
+		populateBooks();
+
+		 ArrayList image_details = populateBooks();
+	        final ListView lv1 = (ListView) findViewById(R.id.search_manual_listview);
+	        lv1.setAdapter(new CustomSearchListAdaptor(this, image_details));
+	        lv1.setOnItemClickListener(new OnItemClickListener() {
+	 
+	            @Override
+	            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+	                Object o = lv1.getItemAtPosition(position);
+	                SearchListItem newsData = (SearchListItem) o;
+	                Toast.makeText(SearchManualActivity.this, "Selected :" + " " + newsData, Toast.LENGTH_LONG).show();
+	            }
+	 
+	        });
 		//
 		/*
 		Bundle extras =getIntent().getExtras();
@@ -83,9 +110,9 @@ public class SearchManualActivity extends Activity {
 			Log.d(tag,"ResultsPageSearch: "+extras.getString("SUBMITVAL_ISBN"));
 		}//if
 		*/
-		adapter = new SimpleAdapter(this,listings,android.R.layout.simple_list_item_1,new String[] {"author"}, new int[] {android.R.id.text1});
+		/*adapter = new SimpleAdapter(this,listings,android.R.layout.simple_list_item_1,new String[] {"author"}, new int[] {android.R.id.text1});
 		lv.setAdapter(adapter);
-
+*/
 	}
 
 	@Override

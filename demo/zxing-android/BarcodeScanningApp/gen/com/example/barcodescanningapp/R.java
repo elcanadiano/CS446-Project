@@ -27,7 +27,7 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090017;
+        public static final int action_settings=0x7f09001b;
         public static final int post_button=0x7f090003;
         public static final int post_manual=0x7f09000a;
         public static final int post_manual_bookauthor=0x7f090013;
@@ -43,11 +43,15 @@ public final class R {
         public static final int scan_format=0x7f090001;
         public static final int search_button=0x7f090004;
         public static final int search_manual=0x7f09000c;
+        public static final int search_manual_author=0x7f090018;
         public static final int search_manual_bookauthor=0x7f090007;
         public static final int search_manual_bookisbn=0x7f090008;
         public static final int search_manual_booktitle=0x7f090006;
+        public static final int search_manual_btitle=0x7f090017;
+        public static final int search_manual_condition=0x7f09001a;
         public static final int search_manual_header=0x7f090005;
         public static final int search_manual_listview=0x7f090010;
+        public static final int search_manual_price=0x7f090019;
         public static final int search_manual_title=0x7f09000f;
         public static final int search_scan=0x7f09000d;
         public static final int search_text=0x7f09000e;
@@ -60,6 +64,7 @@ public final class R {
         public static final int activity_search_manual=0x7f030004;
         public static final int activity_search_scan=0x7f030005;
         public static final int post_manual=0x7f030006;
+        public static final int searchlistinglayout=0x7f030007;
     }
     public static final class menu {
         public static final int main=0x7f080000;

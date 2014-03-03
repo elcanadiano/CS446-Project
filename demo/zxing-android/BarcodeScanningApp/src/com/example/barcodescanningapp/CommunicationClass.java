@@ -42,7 +42,7 @@ public class CommunicationClass{
 	HttpResponse httpResponse2;
 	private boolean done = false;
 	public CommunicationClass(){ // should make the ctor a nop later - only run on demand
-		String uri = new String("http://buymybookapp.com/api/test/test2");
+		String uri = new String("http://buymybookapp.com/api/search/test2?message=hello");
         new DownloadJSON().execute(uri , null, null);
 	}
 	
