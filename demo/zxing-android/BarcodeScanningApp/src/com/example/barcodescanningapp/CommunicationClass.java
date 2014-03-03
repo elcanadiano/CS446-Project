@@ -33,6 +33,7 @@ public class CommunicationClass{
 	InputStream inputStream = null;
 	String result = ""; //result of JSON
 	HttpResponse httpResponse2;
+	int typeCall; //0 for post, 1 for scan
 	private boolean done = false;
 	public CommunicationClass(){ // should make the ctor a nop later - only run on demand
 		String uri = new String("http://buymybookapp.com/api/test/test2");
@@ -43,6 +44,7 @@ public class CommunicationClass{
 		String uri = new String(url);
         //new DownloadJSON().execute(uri , null, null);
 	}
+	
 	
 	public void postData(String url){
 		
@@ -104,12 +106,14 @@ public class CommunicationClass{
 	public class DownloadJSON extends AsyncTask<String, Void, String> {
 		JSONObject jsonObj;
 		Context context;
-		
+		String typeDownload;
 		DownloadJSON() {
 		}
 		
-		DownloadJSON(Context context) {
+		DownloadJSON(Context context,String type) {
 			this.context= context.getApplicationContext();
+			this.typeDownload = type.toString();
+			Log.d(tag,"Constructing, type: "+type);
 		}
 		protected String doInBackground(String... urls) {
             HttpClient client = new DefaultHttpClient();
@@ -135,13 +139,13 @@ public class CommunicationClass{
         }
 
         protected void onPostExecute(String result) {
-        	//Log.d(tag, "ONPOSTEXECUTE");
+        	Log.d(tag, "ONPOSTEXECUTE");
         	//Log.d(tag,"jsonON: "+ result);
         	try {
 				jsonObj = new JSONObject(result);
 				
-				if (jsonObj.getString("index_searched").equals("isbn")) { // show post confimration activity
-
+				if (typeDownload.equals("post")) { // show post confimration activity
+					Log.d(tag,"if case");
 					Intent intent = new Intent(this.context, PostScanConfirmationActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					
@@ -149,14 +153,25 @@ public class CommunicationClass{
 					
 					context.startActivity(intent);
 				} else {
-					
+					Log.d(tag,"else case");
 					// carl, but your result code here!
+					
+					Intent intent = new Intent(this.context, SearchManualActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					
+					intent.putExtra("json", result.toString());
+					
+					context.startActivity(intent);
 					
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        	
+        	catch(Exception e){
+        		Log.d(tag,"Exception: "+e.toString());
+        	}
         }
     }
 	

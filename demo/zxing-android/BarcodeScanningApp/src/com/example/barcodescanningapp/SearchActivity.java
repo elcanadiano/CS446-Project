@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.barcodescanningapp.CommunicationClass.DownloadJSON;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -76,8 +77,10 @@ public class SearchActivity extends Activity implements OnClickListener{
 		searchText.setText(result);
 		Log.d(TAG,"json resultfromobject: "+result);
 		*/
-		CommunicationClass c = new CommunicationClass();
-		
+		/*Log.d(TAG,"calling communication class");
+		CommunicationClass c = new CommunicationClass("http://buymybookapp.com/api/test/test2");
+		c.new DownloadJSON(this,"scan").execute("http://buymybookapp.com/api/test/test2");
+		*/
 		/*
 		try{
 		CommunicationClass d = new CommunicationClass();
@@ -95,10 +98,15 @@ public class SearchActivity extends Activity implements OnClickListener{
 			Log.d(TAG, "Exception searchScan: "+ e.toString());
 		}
 		*/
-		/*
-		 * 
+	/*
 		IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-		scanIntegrator.initiateScan();*/
+		scanIntegrator.initiateScan();
+	*/
+		Intent resultsIntent = new Intent(this,SearchManualActivity.class);
+		String scanContent = new String("9787887031990"); //fake it
+		String url="http://buymybookapp.com/api/search/search_book/"+scanContent;
+		CommunicationClass c = new CommunicationClass(url);
+		c.new DownloadJSON(this,"search").execute(url);	
 	}//searchScan
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -112,8 +120,13 @@ public class SearchActivity extends Activity implements OnClickListener{
 			//formatTxt.setText("FORMAT: "+scanFormat);
 			//contentTxt.setText("CONTENT: "+scanContent);
 			//go to results page
-			Intent resultsIntent = new Intent(this,ManualSearchActivity.class);
-			startActivity(intent);
+			Intent resultsIntent = new Intent(this,SearchManualActivity.class);
+			scanContent = new String("9787887031990"); //fake it
+			String url="http://buymybookapp.com/api/search/search_book/"+scanContent;
+			CommunicationClass c = new CommunicationClass(url);
+			c.new DownloadJSON(this,"search").execute(url);		
+			
+		//	startActivity(intent);
 		}
 		else{
 			//invalid scan, scan cancelled
