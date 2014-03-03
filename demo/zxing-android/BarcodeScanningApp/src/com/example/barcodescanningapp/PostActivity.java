@@ -79,7 +79,7 @@ public class PostActivity extends Activity implements OnClickListener{
 			String scanFormat = scanningResult.getFormatName();
 			
 			//2. talk to isbndb:
-			String url="http://isbndb.com/api/v2/json/2L1HKXO4/book/"+scanContent;
+			String url="http://isbndb.com/api/v2/json/2L1HKXO4/book/"+"9780201314526";//+scanContent;
 			CommunicationClass c = new CommunicationClass(url);
 			c.new DownloadJSON(this,"post").execute(url);		
 		}

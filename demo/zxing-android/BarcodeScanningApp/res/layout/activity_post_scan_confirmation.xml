@@ -8,14 +8,14 @@
         android:id="@+id/post_scan_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="32sp"
+        android:textSize="28sp"
         android:text="@string/hello_world" />
     <EditText
 	    android:id="@+id/post_scan_price"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:hint="enter your price"
-	    android:inputType="number" 
+	    android:inputType="numberDecimal" 
 	    android:layout_below="@id/post_scan_text"/>
     
     <Spinner

@@ -90,7 +90,7 @@ public class PostScanConfirmationActivity extends Activity implements OnClickLis
 			case R.id.post_scan_confirm:
 				//insert into database
 				dbHelper.insert(title, isbn, author, price, condition);
-				Cursor c = dbHelper.cursorSelectAll();
+				//Cursor c = dbHelper.cursorSelectAll();
 				info.setText("Your Book Has Been Posted!");
 				break;
 

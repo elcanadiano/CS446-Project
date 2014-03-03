@@ -22,9 +22,7 @@ public class DBHelper extends SQLiteOpenHelper{
 		db=getWritableDatabase();
 		
 		
-System.out.println(
-		"CREATE TABLE listing (_id integer primary key autoincrement, book_title text, book_isbn integer, book_author text, book_price text, book_condition text);"
-		);
+		System.out.println("loading db");
 	}
 	
 	@Override

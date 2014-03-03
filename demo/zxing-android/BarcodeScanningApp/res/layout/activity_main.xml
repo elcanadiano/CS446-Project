@@ -42,5 +42,13 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/post_button"
         android:text="@string/search" />
+    
+    <Button
+        android:id="@+id/profile_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/search_button"
+        android:text="My Profile" />
 
 </RelativeLayout>
