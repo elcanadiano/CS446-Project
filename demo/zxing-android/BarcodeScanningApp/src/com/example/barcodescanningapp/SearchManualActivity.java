@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
@@ -64,13 +68,13 @@ public class SearchManualActivity extends Activity {
 		String title="Clear Thinking In a Blurry World";
 		String author="Tim Kenyon";
 		String price="100";
-		String condition="Good";
+		String condition="1";
 		SearchListItem item = new SearchListItem(title,author,price,condition);
 		results.add(item);
 		title = "Introduction to Algorithmns";
 		author = "Cormen";
 		price = "50";
-		condition = "Excellent";
+		condition = "5";
 		item =new SearchListItem(title,author,price,condition);
 		results.add(item);
 		return results;
@@ -81,14 +85,64 @@ public class SearchManualActivity extends Activity {
 		return data;
 	}
 	
+	private ArrayList parseJSONResult(JSONArray jsonArray){
+		ArrayList results = new ArrayList();
+		try{
+			
+		
+			for(int i = 0 ; i < jsonArray.length();i++){
+				JSONObject childObject = jsonArray.getJSONObject(i);
+				String title = childObject.getString("title");
+				String author = childObject.getString("author");
+				String price = childObject.getString("listing_price");
+				String condition = childObject.getString("condition");
+				SearchListItem item =new SearchListItem(title,author,price,condition);
+				results.add(item);
+			}//for
+		}//try
+		catch(JSONException e){
+			Log.e(tag,"Exception in parseJSONResult: "+e.toString());
+		}
+		return results;
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_manual);
-		populateBooks();
-
-		 ArrayList image_details = populateBooks();
+		Log.d(tag,"onCreate SearchManualActivity");
+		//populateBooks(); // for default
+		/*
+		 * 
+		 * If we have json to parse, parse it
+		 * 
+		 */
+		Bundle extras = getIntent().getExtras();
+		String result = extras.getString("json");
+		Log.d(tag,"extras: "+result);
+		JSONArray endResult = new JSONArray();
+	if(result != null){
+		try{
+			JSONObject jsonString = new JSONObject(result);
+			endResult = jsonString.getJSONObject("data").getJSONArray("listings");
+		}
+		catch(JSONException e){
+			Log.d(tag,"Exception: "+e.toString());
+		}
+	}//if
+	
+	
+	
+			Log.d(tag,"endResult: "+endResult.toString());
+		 //ArrayList image_details = populateBooks();
+			ArrayList image_details;
+			if(result != null){
+				image_details = parseJSONResult(endResult);
+			}
+			else{
+				image_details = populateBooks();
+			}
 	        final ListView lv1 = (ListView) findViewById(R.id.search_manual_listview);
 	        lv1.setAdapter(new CustomSearchListAdaptor(this, image_details));
 	        lv1.setOnItemClickListener(new OnItemClickListener() {
@@ -101,18 +155,7 @@ public class SearchManualActivity extends Activity {
 	            }
 	 
 	        });
-		//
-		/*
-		Bundle extras =getIntent().getExtras();
-		if(extras != null){
-			Log.d(tag,"ResultsPageSearch: "+extras.getString("SUBMITVAL_TITLE"));
-			Log.d(tag,"ResultsPageSearch: "+extras.getString("SUBMITVAL_AUTHOR"));
-			Log.d(tag,"ResultsPageSearch: "+extras.getString("SUBMITVAL_ISBN"));
-		}//if
-		*/
-		/*adapter = new SimpleAdapter(this,listings,android.R.layout.simple_list_item_1,new String[] {"author"}, new int[] {android.R.id.text1});
-		lv.setAdapter(adapter);
-*/
+	
 	}
 
 	@Override
