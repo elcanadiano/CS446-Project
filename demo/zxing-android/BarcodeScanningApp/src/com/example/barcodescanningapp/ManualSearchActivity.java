@@ -1,5 +1,7 @@
 package com.example.barcodescanningapp;
 
+import com.example.barcodescanningapp.CommunicationClass.DownloadJSON;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -38,7 +40,12 @@ public class ManualSearchActivity extends Activity {
 		intent.putExtra("SUBMITVAL_TITLE", title);
 		intent.putExtra("SUBMITVAL_AUTHOR", author);
 		intent.putExtra("SUBMITVAL_ISBN", isbn);
-		startActivity(intent);
+		Intent resultsIntent = new Intent(this,SearchManualActivity.class);
+		String scanContent = new String("9787887031990"); //fake it
+		String url="http://buymybookapp.com/api/search/search_book/"+scanContent;
+		CommunicationClass c = new CommunicationClass(url);
+		c.new DownloadJSON(this,"search").execute(url);	
+		//startActivity(intent);
 	}
 
 }

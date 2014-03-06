@@ -98,15 +98,17 @@ public class SearchActivity extends Activity implements OnClickListener{
 			Log.d(TAG, "Exception searchScan: "+ e.toString());
 		}
 		*/
-	/*
+	
 		IntentIntegrator scanIntegrator = new IntentIntegrator(this);
 		scanIntegrator.initiateScan();
-	*/
+	
+		/*
 		Intent resultsIntent = new Intent(this,SearchManualActivity.class);
 		String scanContent = new String("9787887031990"); //fake it
 		String url="http://buymybookapp.com/api/search/search_book/"+scanContent;
 		CommunicationClass c = new CommunicationClass(url);
 		c.new DownloadJSON(this,"search").execute(url);	
+		*/
 	}//searchScan
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {

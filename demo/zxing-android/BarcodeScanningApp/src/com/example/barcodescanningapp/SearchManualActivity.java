@@ -137,12 +137,12 @@ public class SearchManualActivity extends Activity {
 			Log.d(tag,"endResult: "+endResult.toString());
 		 //ArrayList image_details = populateBooks();
 			ArrayList image_details;
-			if(result != null){
+		//	if(result != null){
 				image_details = parseJSONResult(endResult);
-			}
-			else{
-				image_details = populateBooks();
-			}
+		//	}
+		//	else{
+		//		image_details = populateBooks();
+		//	}
 	        final ListView lv1 = (ListView) findViewById(R.id.search_manual_listview);
 	        lv1.setAdapter(new CustomSearchListAdaptor(this, image_details));
 	        lv1.setOnItemClickListener(new OnItemClickListener() {
