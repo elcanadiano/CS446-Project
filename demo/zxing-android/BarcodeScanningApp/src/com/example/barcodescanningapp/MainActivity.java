@@ -109,29 +109,26 @@ public class MainActivity extends Activity implements OnClickListener {
 		IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 		
 		//check we have a valid result
-		if (scanningResult != null) {
+		if(scanningResult != null 
+				&& scanningResult.getContents() != null
+				&& scanningResult.getFormatName() != null
+		) {
 			//get content from Intent Result
 			String scanContent = scanningResult.getContents();
 			//get format name of data scanned
 			String scanFormat = scanningResult.getFormatName();
 			
-			// Output contents to UI if it exists
-			if (scanContent != null) {
-				formatTxt.setText("FORMAT: "+scanFormat);
-			} else {
-				formatTxt.setText("FORMAT: No scan data received!");
-			}
+			// Output contents to UI
+			formatTxt.setText("FORMAT: " + scanFormat);
 			
-			// Output format name to UI if it exists
-			if (scanFormat != null) {
-				contentTxt.setText("CONTENT: "+scanContent);
-			} else {
-				contentTxt.setText("CONTENT: No scan data received!");
-			}
+			// Output format name to UI
+			contentTxt.setText("CONTENT: "+ scanContent);
 		} else {
-			//invalid scan data or scan canceled <-- Doesn't get triggered on scan cancel (K)
-			Toast toast = Toast.makeText(getApplicationContext(), 
-					"No scan data received!", Toast.LENGTH_SHORT);
+			//invalid scan data or scan canceled
+			Toast toast = Toast.makeText(
+					getApplicationContext(), 
+					"No scan data received!",
+					Toast.LENGTH_SHORT);
 			toast.show();
 		}
 	}

@@ -113,26 +113,39 @@ public class SearchActivity extends Activity implements OnClickListener{
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		//retrieve result of scanning - instantiate ZXing object
 		IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-		if(scanningResult != null){
+		if(scanningResult != null 
+				&& scanningResult.getContents() != null
+				&& scanningResult.getFormatName() != null
+		){
 			String scanContent = scanningResult.getContents();
-			//get format name of data scanned
 			String scanFormat = scanningResult.getFormatName();
-			//output to UI
-			//formatTxt.setText("FORMAT: "+scanFormat);
-			//contentTxt.setText("CONTENT: "+scanContent);
+			
+			// Make sure an ISBN was scanned
+			if (! scanFormat.equals("EAN_13")) {
+				Toast toast = Toast.makeText(
+						getApplicationContext(), 
+						"Barcode scanned is not ISBN",
+						Toast.LENGTH_SHORT);
+				toast.show();
+				return;
+			}
+			
 			//go to results page
 			Intent resultsIntent = new Intent(this,SearchManualActivity.class);
-			scanContent = new String("9787887031990"); //fake it
-			String url="http://buymybookapp.com/api/search/search_book/"+scanContent;
+			
+			//scanContent = new String("9787887031990"); //fake it
+			String url="http://buymybookapp.com/api/search/search_book/" + scanContent;
+			
 			CommunicationClass c = new CommunicationClass(url);
 			c.new DownloadJSON(this,"search").execute(url);		
 			
-		//	startActivity(intent);
-		}
-		else{
+			// startActivity(intent);
+		} else {
 			//invalid scan, scan cancelled
-			Toast toast = Toast.makeText(getApplicationContext(), 
-					"No scan data received!", Toast.LENGTH_SHORT);
+			Toast toast = Toast.makeText(
+					getApplicationContext(), 
+					"No scan data received!",
+					Toast.LENGTH_SHORT);
 			toast.show();
 		}
 	}//onActivityResult

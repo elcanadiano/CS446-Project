@@ -71,20 +71,35 @@ public class PostActivity extends Activity implements OnClickListener{
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		//retrieve result of scanning - instantiate ZXing object
 		IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+		
 		//check we have a valid result
-		if (scanningResult != null) {
+		if(scanningResult != null 
+				&& scanningResult.getContents() != null
+				&& scanningResult.getFormatName() != null
+		) {
 			//get content from Intent Result
 			String scanContent = scanningResult.getContents();
+	
 			//get format name of data scanned
-			//String scanFormat = scanningResult.getFormatName();
+			String scanFormat = scanningResult.getFormatName();
+			
+			// Make sure an ISBN was scanned
+			if (! scanFormat.equals("EAN_13")) {
+				Toast toast = Toast.makeText(
+						getApplicationContext(),
+						"Barcode scanned is not ISBN",
+						Toast.LENGTH_SHORT);
+				toast.show();
+				return;
+			}
 			
 			//2. talk to isbndb:
 			//9780201314526 = algo in C (CS 246)
-			String url="http://isbndb.com/api/v2/json/2L1HKXO4/book/"+scanContent;
+			String url="http://isbndb.com/api/v2/json/2L1HKXO4/book/" + scanContent;
 			CommunicationClass c = new CommunicationClass(url);
 			c.new DownloadJSON(this,"post").execute(url);		
 		}
-		else{
+		else {
 			//invalid scan data or scan canceled
 			Toast toast = Toast.makeText(getApplicationContext(), 
 					"No scan data received!", Toast.LENGTH_SHORT);
