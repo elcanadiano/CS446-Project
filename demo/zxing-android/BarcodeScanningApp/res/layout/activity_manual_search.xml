@@ -36,7 +36,8 @@
 	    android:id="@+id/search_manual_bookisbn"
 	    android:layout_height="wrap_content"
 	    android:hint="@string/post_manual_bookisbn_hint"
-	    android:inputType="textCapSentences"
+	    android:inputType="number"
+	    android:digits="0123456789-"
 	    android:layout_width="fill_parent"
 	    android:layout_below="@id/search_manual_bookauthor"/>
        

@@ -30,7 +30,6 @@ public class SearchActivity extends Activity implements OnClickListener{
 	
 	//	Intent intent = getIntent();
 	
-		Log.d(TAG,"YOOOOO: ");
 		setContentView(R.layout.activity_search);
 		//listen for clicks
 		//searchManualBtn.setOnClickListener(this);

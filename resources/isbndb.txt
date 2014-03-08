@@ -1,0 +1,3 @@
+login: easyPeasyAllTheWay@gmail.com
+password: isbnalltheway24
+access key: 2L1HKXO4	(note that we are only allowed 500 accesses per day)
