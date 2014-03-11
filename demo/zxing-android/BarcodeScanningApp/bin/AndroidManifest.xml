@@ -13,10 +13,12 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+         >
         <activity
             android:name="com.example.barcodescanningapp.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,27 +27,33 @@
         </activity>
         <activity
             android:name="com.example.barcodescanningapp.PostActivity"
-            android:label="@string/title_activity_post" >
+            android:label="@string/title_activity_post"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.barcodescanningapp.SearchActivity"
-            android:label="@string/title_activity_search" >
+            android:label="@string/title_activity_search"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.barcodescanningapp.SearchManualActivity"
-            android:label="@string/title_activity_search_manual" >
+            android:label="@string/title_activity_search_manual"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.barcodescanningapp.SearchScan"
-            android:label="@string/title_activity_search_scan" >
+            android:label="@string/title_activity_search_scan"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.barcodescanningapp.ManualSearchActivity"
-            android:label="@string/title_activity_manual_search" >
+            android:label="@string/title_activity_manual_search"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.barcodescanningapp.PostScanConfirmationActivity"
-            android:label="@string/title_activity_post_scan_confirmation" >
+            android:label="@string/title_activity_post_scan_confirmation"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
