@@ -30,39 +30,16 @@ import android.widget.Toast;
  */
 public class SearchManualActivity extends Activity {
 	private String tag = "SearchManualActivity";
-	static final String[] FRUITS = new String[] { "Apple", "Avocado", "Banana",
-		"Blueberry", "Coconut", "Durian", "Guava", "Kiwifruit",
-		"Jackfruit", "Mango", "Olive", "Pear", "Sugar-apple" };
+	
+	//adapter for the listview
 	SimpleAdapter adapter;
+	
 	List<Map<String, String>> listings = new ArrayList<Map<String,String>>();
-	public void populateList(){
-		listings.add(createListing("author","Tim Kenyon"));
-		listings.add(createListing("author","Tim Kenyon2"));
-		listings.add(createListing("author","Tim Kenyon3"));
-		listings.add(createListing("author","Tim Kenyon4"));
-		listings.add(createListing("author","Tim Kenyon5"));
-		listings.add(createListing("author","Tim Kenyon"));
-		listings.add(createListing("author","Tim Kenyon2"));
-		listings.add(createListing("author","Tim Kenyon3"));
-		listings.add(createListing("author","Tim Kenyon4"));
-		listings.add(createListing("author","Tim Kenyon5"));
-		listings.add(createListing("author","Tim Kenyon"));
-		listings.add(createListing("author","Tim Kenyon2"));
-		listings.add(createListing("author","Tim Kenyon3"));
-		listings.add(createListing("author","Tim Kenyon4"));
-		listings.add(createListing("author","Tim Kenyon5"));
-		listings.add(createListing("author","Tim Kenyon"));
-		listings.add(createListing("author","Tim Kenyon2"));
-		listings.add(createListing("author","Tim Kenyon3"));
-		listings.add(createListing("author","Tim Kenyon4"));
-		listings.add(createListing("author","Tim Kenyon5"));
-		listings.add(createListing("author","Tim Kenyon"));
-		listings.add(createListing("author","Tim Kenyon2"));
-		listings.add(createListing("author","Tim Kenyon3"));
-		listings.add(createListing("author","Tim Kenyon4"));
-		listings.add(createListing("author","Tim Kenyon5"));
-		
-	}
+	
+
+	/*
+	 * Function to fake listings
+	 */
 	private ArrayList populateBooks(){
 		ArrayList results = new ArrayList();
 		String title="Clear Thinking In a Blurry World";
@@ -79,6 +56,9 @@ public class SearchManualActivity extends Activity {
 		results.add(item);
 		return results;
 	}
+	/*
+	 * Function that creates a listing for the with given Key and Value
+	 */
 	private HashMap<String,String> createListing(String key, String value){
 		HashMap<String,String> data = new HashMap<String,String>();
 		data.put(key,value);
@@ -86,16 +66,17 @@ public class SearchManualActivity extends Activity {
 	}
 	
 	private ArrayList parseJSONResult(JSONArray jsonArray){
-		ArrayList results = new ArrayList();
-		try{
-			
 		
+		ArrayList results = new ArrayList();
+		
+		try{
 			for(int i = 0 ; i < jsonArray.length();i++){
 				JSONObject childObject = jsonArray.getJSONObject(i);
 				String title = childObject.getString("title");
 				String author = childObject.getString("author");
 				String price = childObject.getString("listing_price");
 				String condition = childObject.getString("condition");
+			
 				SearchListItem item =new SearchListItem(title,author,price,condition);
 				results.add(item);
 			}//for
@@ -112,7 +93,6 @@ public class SearchManualActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_manual);
 		Log.d(tag,"onCreate SearchManualActivity");
-		//populateBooks(); // for default
 		/*
 		 * 
 		 * If we have json to parse, parse it
@@ -132,21 +112,18 @@ public class SearchManualActivity extends Activity {
 		}
 	}//if
 	
-	
-	
 			Log.d(tag,"endResult: "+endResult.toString());
-		 //ArrayList image_details = populateBooks();
+		
 			ArrayList image_details;
-		//	if(result != null){
-				image_details = parseJSONResult(endResult);
-		//	}
-		//	else{
-		//		image_details = populateBooks();
-		//	}
+			image_details = parseJSONResult(endResult);
+	
 	        final ListView lv1 = (ListView) findViewById(R.id.search_manual_listview);
 	        lv1.setAdapter(new CustomSearchListAdaptor(this, image_details));
 	        lv1.setOnItemClickListener(new OnItemClickListener() {
-	 
+	        	/*
+	        	 * Click listener for each item view
+	        	 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
+	        	 */
 	            @Override
 	            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
 	                Object o = lv1.getItemAtPosition(position);

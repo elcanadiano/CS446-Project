@@ -14,7 +14,9 @@ import android.widget.Toast;
 import com.example.barcodescanningapp.CommunicationClass.DownloadJSON;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
+/*
+ * activity_search.xml
+ */
 public class SearchActivity extends Activity implements OnClickListener{
 	
 	/*
@@ -31,13 +33,10 @@ public class SearchActivity extends Activity implements OnClickListener{
 	//	Intent intent = getIntent();
 	
 		setContentView(R.layout.activity_search);
-		//listen for clicks
-		//searchManualBtn.setOnClickListener(this);
-		//searchScanBtn.setOnClickListener( this);
+		
 		searchManualBtn = (Button)findViewById(R.id.search_manual);
 		searchScanBtn = (Button)findViewById(R.id.search_scan);
 		searchText = (TextView)findViewById(R.id.search_text);
-	
 	}
 
 	@Override
@@ -64,50 +63,14 @@ public class SearchActivity extends Activity implements OnClickListener{
 		Intent intent = new Intent(this,ManualSearchActivity.class);
 		startActivity(intent);
 	}//searchManual
+	/*
+	 * Function called to scan an ISBN in
+	 */
 	public void searchScan(View view) {
-		/*
-		DataJSON json = new DataJSON();
-		json.isbn = "9780176251949";
-		json.author = "Tim Kenyon";
-		json.title = "Clear Thinking In A Blurry World";
-		json.year = "2004";
-		CommunicationClass c = new CommunicationClass();
-		String result = c.buildJSONFromObject(json);
-		searchText.setText(result);
-		Log.d(TAG,"json resultfromobject: "+result);
-		*/
-		/*Log.d(TAG,"calling communication class");
-		CommunicationClass c = new CommunicationClass("http://buymybookapp.com/api/test/test2");
-		c.new DownloadJSON(this,"scan").execute("http://buymybookapp.com/api/test/test2");
-		*/
-		/*
-		try{
-		CommunicationClass d = new CommunicationClass();
-		//String json = "{\"users\":[{\"id\":\"2\",\"username\":\"admin\"},{\"id\":\"1\",\"username\":\"awpoon\"}],\"pet_name\":\"Cat\",\"name\":\"Whiskers\"}";
-		//String json = "{\"isbn\":\"9780176251949\",\"author\":\"Tim Kenyon\",\"title\":\"Clear Thinking in a blurry world\",\"year\":\"2004\"}";
-		//String json2 = "{\"isbn2345\":\"9780176251949\",\"author\":\"Tim Kenyon\",\"title\":\"Clear Thinking in a blurry world\",\"year\":\"2004\"}";
-		
-		DataJSON test = (DataJSON) d.objectFromJson(json2);
-		Log.d(TAG,"test1 title: "+test.title);
-		Log.d(TAG,"test2 author: "+test.author);
-		Log.d(TAG,"test3 year: "+test.year);
-		Log.d(TAG,"test4 isbn: "+test.isbn);
-		}
-		catch(JSONException e){
-			Log.d(TAG, "Exception searchScan: "+ e.toString());
-		}
-		*/
-	
+
 		IntentIntegrator scanIntegrator = new IntentIntegrator(this);
 		scanIntegrator.initiateScan();
 	
-		/*
-		Intent resultsIntent = new Intent(this,SearchManualActivity.class);
-		String scanContent = new String("9787887031990"); //fake it
-		String url="http://buymybookapp.com/api/search/search_book/"+scanContent;
-		CommunicationClass c = new CommunicationClass(url);
-		c.new DownloadJSON(this,"search").execute(url);	
-		*/
 	}//searchScan
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {

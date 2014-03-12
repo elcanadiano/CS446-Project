@@ -35,7 +35,8 @@ public class ManualSearchActivity extends Activity {
 		String author = textAuthor.getText().toString();
 		// Get rid of hyphens in ISBN
 		String isbn = textISBN.getText().toString().replace("-","");
-			
+		
+		
 		Intent intent = new Intent(this,SearchManualActivity.class);
 		intent.putExtra("SUBMITVAL_TITLE", title);
 		intent.putExtra("SUBMITVAL_AUTHOR", author);
@@ -43,6 +44,7 @@ public class ManualSearchActivity extends Activity {
 		Intent resultsIntent = new Intent(this,SearchManualActivity.class);
 		String scanContent = new String("9787887031990"); //fake it
 		String url="http://buymybookapp.com/api/search/search_book/"+scanContent;
+		//communication class does all the work in getting results
 		CommunicationClass c = new CommunicationClass(url);
 		c.new DownloadJSON(this,"search").execute(url);	
 		//startActivity(intent);

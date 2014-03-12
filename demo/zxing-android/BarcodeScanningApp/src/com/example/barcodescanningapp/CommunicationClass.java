@@ -35,11 +35,12 @@ public class CommunicationClass{
 	HttpResponse httpResponse2;
 	int typeCall; //0 for post, 1 for scan
 	private boolean done = false;
+	/*
 	public CommunicationClass(){ // should make the ctor a nop later - only run on demand
 		String uri = new String("http://buymybookapp.com/api/test/test2");
         new DownloadJSON().execute(uri , null, null);
 	}
-	
+	*/
 	public CommunicationClass(String url){
 		String uri = new String(url);
         //new DownloadJSON().execute(uri , null, null);

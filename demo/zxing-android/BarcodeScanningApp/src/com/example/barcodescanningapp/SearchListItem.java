@@ -1,5 +1,12 @@
 package com.example.barcodescanningapp;
 
+
+/*
+ * 
+ * This class is used to convert JSON to Java OBject for viewing
+ * 
+ */
+
 public class SearchListItem {
 	private String title;
 	private String author;
