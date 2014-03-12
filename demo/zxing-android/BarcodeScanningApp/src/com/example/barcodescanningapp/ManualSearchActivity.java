@@ -8,12 +8,19 @@ import android.content.Intent;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 //this file is for inputting stuff
 //xml file: activity_manual_Search.xml
 public class ManualSearchActivity extends Activity {
 	private EditText textTitle,textAuthor,textISBN;
+	/*
+	 * Spinner stuff
+	 */
+	Spinner courseCode,courseNum,term;
+	ArrayAdapter<String> spinnerCourseAdapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -21,6 +28,13 @@ public class ManualSearchActivity extends Activity {
 		textTitle = (EditText)findViewById(R.id.search_manual_booktitle);
 		textAuthor = (EditText)findViewById(R.id.search_manual_bookauthor);
 		textISBN = (EditText)findViewById(R.id.search_manual_bookisbn);
+		
+		courseCode = (Spinner)findViewById(R.id.spinnerCourse);
+		courseNum = (Spinner)findViewById(R.id.spinnerCourseNum);
+		term = (Spinner)findViewById(R.id.spinnerTerm);
+		String[] items = new String[]{"CS488,CS348,CS350"};
+		spinnerCourseAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,items);
+		courseCode.setAdapter(spinnerCourseAdapter);
 	}
 
 	@Override

@@ -6,26 +6,62 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/turqoise"
     tools:context=".ManualSearchActivity" >
 
+    
+    
+    
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/search_manual_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textIsSelectable="false"
         android:textSize="25sp"
-        android:text="@string/post_manual_header_text" />
+        android:text="@string/post_manual_header_text" 
+        
+        />  
+        
+    
+      <Spinner 
+        android:id="@+id/spinnerCourse"
+		android:textColorHint="@color/white"
+	    android:layout_height="wrap_content"
+	    android:layout_width="wrap_content"
+	    android:layout_below="@id/search_manual_header"
+        />
+      <Spinner 
+        android:id="@+id/spinnerCourseNum"
+		android:textColorHint="@color/white"
+	    android:layout_height="wrap_content"
+	    android:layout_width="wrap_content"
+	    android:layout_toRightOf="@id/spinnerCourse"
+        />
+      
+      
+      <Spinner 
+        android:id="@+id/spinnerTerm"
+		android:textColorHint="@color/white"
+	    android:layout_height="wrap_content"
+	    android:layout_width="fill_parent"
+	    android:layout_below="@id/spinnerCourse"
+	  	android:hint="@string/term"
+	  	
+        />
     
      <EditText
 	    android:id="@+id/search_manual_booktitle"
+	    android:textColorHint="@color/white"
 	    android:layout_height="wrap_content"
 	    android:hint="@string/post_manual_booktitle_hint"
 	    android:inputType="textCapSentences"
 	    android:layout_width="fill_parent"
-	    android:layout_below="@id/search_manual_header"/>
+	    android:layout_below="@id/spinnerTerm"/>
      
       <EditText
 	    android:id="@+id/search_manual_bookauthor"
+	    android:textColorHint="@color/white"
 	    android:layout_height="wrap_content"
 	    android:hint="@string/post_manual_bookauthor_hint"
 	    android:inputType="textCapSentences"
@@ -34,20 +70,31 @@
       
        <EditText
 	    android:id="@+id/search_manual_bookisbn"
+	    android:textColorHint="@color/white"
 	    android:layout_height="wrap_content"
 	    android:hint="@string/post_manual_bookisbn_hint"
 	    android:inputType="number"
 	    android:digits="0123456789-"
 	    android:layout_width="fill_parent"
 	    android:layout_below="@id/search_manual_bookauthor"/>
+       <Button
+        android:id="@+id/scanISBNButton"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/search_manual_bookisbn"
+       	android:text="@string/scanISBN"
+       	android:layout_alignRight="@id/search_manual_bookisbn"
+       />
        
        <Button
         android:id="@+id/post_manual_submit"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/submit"
         android:onClick="submitResults"
-        android:layout_below="@id/search_manual_bookisbn"  />
+        android:layout_below="@id/scanISBNButton"  />
 
 </RelativeLayout>

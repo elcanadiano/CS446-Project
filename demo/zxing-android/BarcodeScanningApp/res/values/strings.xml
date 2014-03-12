@@ -53,5 +53,12 @@
     <string name="title_manual_search">We will find best match</string>
     <string name="title_activity_post_confirmation">PostConfirmationActivity</string>
     <string name="title_activity_post_scan_confirmation">Post a book - confirm scan information</string>
+    <string name="courseText">Course</string>
+    <string name="term">Term</string>
+    <string name="scanISBN">Scan ISBN</string>
+    
+    <!-- Colour for Searching -->
+    <color name="turqoise">#1ABC9C</color>
+    <color name="white">#FFFFFF</color>
 
 </resources>
