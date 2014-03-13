@@ -57,8 +57,28 @@
     <string name="term">Term</string>
     <string name="scanISBN">Scan ISBN</string>
     
-    <!-- Colour for Searching -->
+    <!--FLATUI Colour palette -->
     <color name="turqoise">#1ABC9C</color>
     <color name="white">#FFFFFF</color>
-
+    <color name="clouds">#ECF0F1</color>
+   	<color name="greensea">#16A085</color>
+	<color name="emerald">#2ECC71</color>
+	<color name="nephritis">#27AE60</color>
+	<color name="peterriver">#3498DB</color>
+	<color name="belizehole">#2980B9</color>
+	<color name="amethyst">#9B59B6</color>
+	<color name="wisteria">#8E44AD</color>
+	<color name="wetasphalt">#34495E</color>
+	<color name="midnightblue">#2C3E50</color>
+	<color name="concrete">#95A5A6</color>
+	<color name="asbestos">#7F8C8D</color>
+	<color name="silver">#BDC3C7</color>
+	<color name="alizarin">#E74C3C</color>
+	<color name="pomegranate">#C0392B</color>
+	<color name="carrot">#E67E22</color>
+	<color name="pumpkin">#D35400</color>
+	<color name="sunflower">#F1C40F</color>
+	<color name="orange">#F39C12</color>
+	
+	
 </resources>

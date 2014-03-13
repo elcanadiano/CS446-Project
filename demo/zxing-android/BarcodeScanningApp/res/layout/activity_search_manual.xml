@@ -6,6 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/turqoise"
     tools:context=".SearchManualActivity" >
 
    
@@ -17,20 +18,16 @@
         android:layout_centerHorizontal="true"
     />
     
-    
       <ListView
-	   android:id="@+id/search_manual_listview"
-	   android:layout_width="fill_parent"
-	   android:layout_height="wrap_content"
-	   android:layout_below ="@id/search_manual_title"
-	   android:background="@android:color/transparent"
-	   android:cacheColorHint="@android:color/transparent"
-	   android:divider="#CCCCCC"
-	   android:dividerHeight="1dp"
-	   android:paddingLeft="2dp"
-	    />
-     
-    
- 
+          android:id="@+id/search_manual_listview"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/search_manual_title"
+          android:layout_marginTop="20dp"
+          android:background="@color/clouds"
+          android:cacheColorHint="@android:color/transparent"
+          android:divider="@color/turqoise"
+          android:dividerHeight="10dp"
+          android:paddingLeft="2dp" />
 
 </RelativeLayout>
