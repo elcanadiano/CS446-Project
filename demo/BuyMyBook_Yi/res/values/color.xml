@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- action bar colours -->
+    <color name="title_background">#1abc9c</color>
+    <color name="actionbar_grey">#d1f1eb</color>
+    
+    <!--  slide menu colours -->
+    
+    <!-- general colours for views -->
+    <color name="default_background_grey">#ecf0f1</color>
+    <color name="default_text_colour">#34495e</color>
+
+    <color name="testing_orange">#ffa200</color>
+
+</resources>
