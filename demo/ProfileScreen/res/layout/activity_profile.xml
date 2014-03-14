@@ -1,0 +1,76 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity"
+    android:background="#1ABC9C" >
+    	
+    <RelativeLayout
+        	android:id="@+id/profile"
+        	android:layout_width="fill_parent"
+        	android:layout_height="200dp"
+        	android:orientation="vertical">       
+        <TextView 
+            android:id="@+id/nameandsignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/name_and_signup"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="right"
+            android:textColor="#adadad"
+	        android:textColorLink="#adadad"
+            android:background="@drawable/square" />
+		<TextView
+	        android:id="@+id/phone"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@id/nameandsignup"
+	        android:layout_alignParentRight="true"
+	        android:layout_marginTop="20dp"
+	        android:text="@string/phone"
+	        android:textSize="16sp"
+	        android:textStyle="bold"
+	        android:autoLink="phone"
+			android:textColor="#adadad"
+	        android:textColorLink="#adadad"
+	        android:background="@drawable/square" />
+	    <TextView
+	        android:id="@+id/text"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@id/phone"
+		    android:layout_alignParentRight="true"
+		    android:layout_marginTop="20dp"
+	        android:text="@string/text"
+	        android:textSize="16sp"
+			android:textStyle="bold"
+			android:textColor="#adadad"
+	        android:textColorLink="#adadad"
+			android:background="@drawable/square" />
+	    <TextView
+	        android:id="@+id/email"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@id/text"
+	        android:layout_alignParentRight="true"
+	        android:layout_marginTop="20dp"
+	        android:text="@string/email"
+	        android:textSize="16sp"
+	        android:textStyle="bold"
+	        android:textColor="#adadad"
+	        android:textColorLink="#adadad"
+	        android:autoLink="email"
+	        android:background="@drawable/square" />
+	     <ImageView
+			android:id="@+id/profile_pic"
+		    android:contentDescription="This is the user's profile picture"
+		    android:layout_height="100dp"
+		    android:layout_width="125dp"
+		    android:scaleType="fitXY"
+		    android:layout_alignParentTop="true"
+		    android:layout_alignParentLeft="true" />
+    </RelativeLayout>
+</RelativeLayout>

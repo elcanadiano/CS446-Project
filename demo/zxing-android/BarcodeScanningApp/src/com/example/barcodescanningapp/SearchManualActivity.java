@@ -40,6 +40,7 @@ public class SearchManualActivity extends Activity {
 	/*
 	 * Function to fake listings
 	 */
+	/*
 	private ArrayList populateBooks(){
 		ArrayList results = new ArrayList();
 		String title="Clear Thinking In a Blurry World";
@@ -56,6 +57,7 @@ public class SearchManualActivity extends Activity {
 		results.add(item);
 		return results;
 	}
+	*/
 	/*
 	 * Function that creates a listing for the with given Key and Value
 	 */
