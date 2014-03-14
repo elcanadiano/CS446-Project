@@ -1,6 +1,6 @@
-package com.example.barcodescanningapp;
+package com.EasyPeasy.buymybook;
 
-import com.example.barcodescanningapp.CommunicationClass.DownloadJSON;
+import com.EasyPeasy.buymybook.CommunicationClass.DownloadJSON;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -59,7 +59,7 @@ public class ManualSearchActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.manual_search, menu);
+		//getMenuInflater().inflate(R.menu.manual_search, menu);
 		return true;
 	}
 	

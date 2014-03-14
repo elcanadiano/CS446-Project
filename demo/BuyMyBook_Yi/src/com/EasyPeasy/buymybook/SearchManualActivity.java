@@ -1,4 +1,4 @@
-package com.example.barcodescanningapp;
+package com.EasyPeasy.buymybook;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -160,7 +160,7 @@ public class SearchManualActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.search_manual, menu);
+		//getMenuInflater().inflate(R.menu.search_manual, menu);
 		return true;
 	}
 	

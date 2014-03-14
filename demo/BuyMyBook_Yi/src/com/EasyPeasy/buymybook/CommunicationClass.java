@@ -1,4 +1,4 @@
-package com.example.barcodescanningapp;
+package com.EasyPeasy.buymybook;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +23,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.gson.Gson;
 
 
 public class CommunicationClass{
@@ -46,63 +45,6 @@ public class CommunicationClass{
 		
         new DownloadJSON().execute(uri , null, null);
 	}
-	
-	
-	public void postData(String url){
-		
-		HttpClient httpclient = new DefaultHttpClient();
-		HttpPost httppost = new HttpPost(url);
-		try{
-			//add data
-			List<NameValuePair> nvp = new ArrayList<NameValuePair>();
-			nvp.add(new BasicNameValuePair("authors","Tim Kenyon"));
-			httppost.setEntity(new UrlEncodedFormEntity(nvp));
-			//execute http post request
-			HttpResponse response = httpclient.execute(httppost);
-		}
-		
-		catch(Exception e){
-			Log.d(tag,"postData exception: "+e.toString());
-		}
-	}
-	
-	public void queryByISBN(String isbn){
-		
-	}//query
-	/*
-	 * Input: might use DATAJSON.java
-	 * Output:
-	 */
-	public void queryByObject(Object o){
-		
-	}
-	/*
-	 * Input: Any Java Object
-	 * Output: A JSON String
-	 * Turns java object into JSON
-	 */
-	public String buildJSONFromObject(Object o){
-		//Gson gson = new GsonBuilder().create();
-		//Map<String, Object> data = new HashMap<String,Object>();
-		Gson gson = new Gson();
-		String json = gson.toJson(o);
-		return json;
-	}
-	/*
-	 * Function turns json string into an object, the object returned is mainly
-	 * to store the information in a convenient function
-	 * Input: json string
-	 * Output: A DataJSON object with the fields set
-	 */
-   public DataJSON objectFromJson(String json) throws JSONException{
-	   
-	   DataJSON o = new DataJSON();
-	   JSONObject jsonObject = new JSONObject(json);
-	   Gson gson = new Gson();
-	   o = gson.fromJson(json, DataJSON.class);
-	   return o;
-	}//objectFromJson
-	
 
 	
 	public class DownloadJSON extends AsyncTask<String, Void, String> {
@@ -147,13 +89,13 @@ public class CommunicationClass{
 				jsonObj = new JSONObject(result);
 				
 				if (typeDownload.equals("post")) { // show post confimration activity
-					Log.d(tag,"if case");
+					/*Log.d(tag,"if case");
 					Intent intent = new Intent(this.context, PostScanConfirmationActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					
 					intent.putExtra("json", result.toString());
 					
-					context.startActivity(intent);
+					context.startActivity(intent);*/
 				} else {
 					Log.d(tag,"else case");
 					// carl, but your result code here!

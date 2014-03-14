@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 
 import com.EasyPeasy.buymybook.adapter.NavDrawerListAdapter;
 import com.EasyPeasy.buymybook.model.NavDrawerItem;
+
 
 public class MainActivity extends Activity implements OnClickListener{
 	final Context contenxt = this;
@@ -142,6 +144,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		case R.id.scan_button:
 			System.out.println("i should scan something....");
 			scanBtn.setBackgroundResource(R.drawable.scan_button_contact);
+			Intent intent = new Intent(this,ManualSearchActivity.class);
+			startActivity(intent);
 			break;
 		}
 		
