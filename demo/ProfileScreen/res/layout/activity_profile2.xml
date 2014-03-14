@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity2"
+    android:background="@color/background_color" >
+    
+    <RelativeLayout
+        	android:id="@+id/profile"
+        	android:layout_width="fill_parent"
+        	android:layout_height="200dp"
+        	android:orientation="vertical">
+
+        <TextView
+            style="@style/profilePageHeader"
+            android:id="@+id/name"
+            android:text="@string/txt_profile2_name"
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@id/profile_pic" />
+        
+		<TextView
+		    style="@style/profilePageInfo"
+	        android:id="@+id/phone"
+	        android:layout_toRightOf="@id/profile_pic"
+	        android:layout_below="@id/name"
+	        android:text="@string/phone"
+	        android:autoLink="phone"
+	        android:drawableLeft="@drawable/phone" />
+	    
+	    <TextView
+	        style="@style/profilePageInfo"
+	        android:id="@+id/email"
+	        android:text="@string/email"
+	        android:autoLink="email"
+	        android:layout_below="@id/phone"
+	        android:layout_toRightOf="@id/profile_pic"
+	        android:drawableLeft="@drawable/email" />
+	    
+	    <ImageView
+			android:id="@+id/profile_pic"
+		    android:contentDescription="This is the user's profile picture"
+		    android:paddingLeft="5dp"
+		    android:paddingTop="20dp"
+		    android:paddingRight="0dp"
+		    android:layout_height="150dp"
+		    android:layout_width="125dp"
+		    android:scaleType="fitXY" />
+    </RelativeLayout>
+</RelativeLayout>
