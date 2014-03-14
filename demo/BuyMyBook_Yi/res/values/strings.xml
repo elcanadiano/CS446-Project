@@ -12,4 +12,9 @@
 	<string name="main_inst_sell"> to sell a book.\n Swipe </string>
 	<string name="main_inst_swipe"> to access your menu.\n </string>
 	<string name="main_inst_look"> to look for books.</string>
+	
+	<!-- drawer menu Strings - the arrays are in array[dot]xml-->
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="drawer_open">Menu Open</string>
+    <string name="drawer_close">Menu Close</string>
 </resources>
