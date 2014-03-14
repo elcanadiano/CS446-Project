@@ -79,7 +79,7 @@ public class SearchManualActivity extends Activity {
 				String price = childObject.getString("listing_price");
 				String condition = childObject.getString("condition");
 			
-				SearchListItem item =new SearchListItem(title,author,price,condition);
+				SearchListItem item = new SearchListItem(title,author,price,condition);
 				
 				results.add(item);
 			}//for
@@ -111,11 +111,17 @@ public class SearchManualActivity extends Activity {
 		 * 
 		 */
 		JSONObject book = new JSONObject();
+		JSONObject data = new JSONObject();
 		if(result != null){
 			try{
 				JSONObject jsonString = new JSONObject(result);
-				book = jsonString.getJSONObject("data").getJSONObject("book");
-				endResult = book.getJSONArray("listings");
+				data = jsonString.getJSONObject("data");
+				Log.d(tag,"got data");
+				endResult = data.getJSONArray("book");
+				//endResult.put(data);
+				Log.d(tag,"got book");
+				//endResult = book.getJSONArray("listings");
+				Log.d(tag,"got end result");
 				Log.d(tag,"endResult size: "+endResult.length());
 				
 			}
@@ -123,7 +129,7 @@ public class SearchManualActivity extends Activity {
 				Log.d(tag,"Exception: "+e.toString());
 			}
 		}//if
-		endResult.put(book);
+		//endResult.put(book);
 		Log.d(tag,"endResult size: "+endResult.length());
 		Log.d(tag,"endResult: "+endResult.toString());
 	

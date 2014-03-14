@@ -49,7 +49,7 @@ public class ManualSearchActivity extends Activity {
 		courseCode = (Spinner)findViewById(R.id.spinnerCourse);
 		textCourseNum = (EditText)findViewById(R.id.textCourseNum);
 		term = (Spinner)findViewById(R.id.spinnerTerm);
-		//String[] items = new String[]{"CS488,CS348,CS350"};
+		
 		spinnerCourseAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,subjects);
 		termAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,terms);
 		courseCode.setAdapter(spinnerCourseAdapter);
