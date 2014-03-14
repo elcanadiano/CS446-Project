@@ -43,6 +43,7 @@
 		    android:paddingTop="20dp"
 		    android:paddingRight="0dp"
 		    android:layout_height="150dp"
-		    android:layout_width="90dp"
-		    android:scaleType="fitXY"  />   </RelativeLayout>
+		    android:layout_width="125dp"
+		    android:scaleType="fitXY" />
+    </RelativeLayout>
 </RelativeLayout>

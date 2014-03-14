@@ -37,8 +37,6 @@ public final class R {
         public static final int message=0x7f020006;
         public static final int phone=0x7f020007;
         public static final int square=0x7f020008;
-        public static final int test=0x7f020009;
-        public static final int test2=0x7f02000a;
     }
     public static final class id {
         public static final int action_settings=0x7f090010;
