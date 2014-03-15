@@ -105,4 +105,5 @@ public class MainActivity extends Activity {
     	intent.putExtra("image", ((EditText)findViewById(R.id.txt_image)).getText().toString());
     	startActivity(intent);
     }
+    
 }

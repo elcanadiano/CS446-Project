@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
      <color name="background_color">#DBDCDE</color>
-     <color name="profile_text_color">#DEE6DD</color>
-     <color name="profile_link_color">#DEE6DD</color>
+     <color name="profile_text_color">#2C3E50</color>
+     <color name="profile_link_color">#2C3E50</color>
+     <color name="profile_text_highlight_color">#DBDCDE</color>
 </resources>

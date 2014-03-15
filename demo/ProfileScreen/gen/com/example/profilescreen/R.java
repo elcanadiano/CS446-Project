@@ -14,8 +14,9 @@ public final class R {
         public static final int background_color=0x7f040000;
         public static final int profile_link_color=0x7f040002;
         public static final int profile_text_color=0x7f040001;
-        public static final int titlebackgroundcolor=0x7f040003;
-        public static final int titletextcolor=0x7f040004;
+        public static final int profile_text_highlight_color=0x7f040003;
+        public static final int titlebackgroundcolor=0x7f040004;
+        public static final int titletextcolor=0x7f040005;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 

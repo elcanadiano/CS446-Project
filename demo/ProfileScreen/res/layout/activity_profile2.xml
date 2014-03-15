@@ -30,10 +30,10 @@
 	    <TextView
 	        style="@style/profilePageInfo"
 	        android:id="@+id/email"
+	        android:layout_toRightOf="@id/profile_pic"
 	        android:text="@string/email"
 	        android:autoLink="email"
 	        android:layout_below="@id/phone"
-	        android:layout_toRightOf="@id/profile_pic"
 	        android:drawableLeft="@drawable/email" />
 	    
 	    <ImageView
