@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/turqoise"
+    
     tools:context=".ManualSearchActivity" >
 
     
@@ -115,5 +115,39 @@
         android:text="@string/submit"
         android:onClick="submitResults"
         android:layout_below="@id/scanISBNButton"  />
+       
+       
+       
+       
+       
+       
+       
+       
+       
+        <fragment
+        android:id="@+id/listFragment"
+        android:layout_width="0dp"
+    
+        android:layout_height="match_parent"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        class="com.EasyPeasy.buymybook.SearchManualActivity" ></fragment>
+
+   		<fragment
+        android:id="@+id/detailFragment"
+        android:layout_width="0dp"
+   
+        android:layout_height="match_parent"
+        class="com.EasyPeasy.buymybook.DetailsFragment" >
+        </fragment>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
 
 </RelativeLayout>
