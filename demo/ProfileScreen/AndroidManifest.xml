@@ -27,16 +27,6 @@
         <activity
             android:name="com.example.profilescreen.ProfileActivity"
             android:label="@string/title_activity_profile"
-            android:screenOrientation="portrait"
-            android:theme="@style/customTheme" >
-        </activity>
-        <activity
-            android:name="com.example.profilescreen.MainerActivity"
-            android:label="@string/title_activity_mainer" >
-        </activity>
-        <activity
-            android:name="com.example.profilescreen.ProfileActivity2"
-            android:label="@string/title_activity_profile2"
             android:screenOrientation="portrait" >
         </activity>
     </application>

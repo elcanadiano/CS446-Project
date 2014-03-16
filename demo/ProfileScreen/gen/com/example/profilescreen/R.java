@@ -32,42 +32,30 @@ public final class R {
     }
     public static final class drawable {
         public static final int aj=0x7f020000;
-        public static final int ajwallpaper=0x7f020001;
-        public static final int bryan=0x7f020002;
-        public static final int bryanwallpaper=0x7f020003;
-        public static final int email=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int message=0x7f020006;
-        public static final int phone=0x7f020007;
-        public static final int square=0x7f020008;
+        public static final int bryan=0x7f020001;
+        public static final int email=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int message=0x7f020004;
+        public static final int phone=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f090012;
-        public static final int books_selling_text=0x7f09000f;
-        public static final int btn_profile=0x7f090006;
-        public static final int btn_profile2=0x7f090007;
-        public static final int email=0x7f09000c;
-        public static final int myTitle=0x7f090011;
-        public static final int my_books=0x7f090010;
-        public static final int name=0x7f09000e;
-        public static final int nameandsignup=0x7f090009;
-        public static final int phone=0x7f09000a;
-        public static final int profile=0x7f090008;
-        public static final int profile_pic=0x7f09000d;
-        public static final int text=0x7f09000b;
-        public static final int txt_color=0x7f090004;
-        public static final int txt_email=0x7f090003;
-        public static final int txt_image=0x7f090005;
+        public static final int action_settings=0x7f09000c;
+        public static final int books_selling_text=0x7f09000a;
+        public static final int btn_profile=0x7f090004;
+        public static final int email=0x7f090009;
+        public static final int my_books=0x7f09000b;
+        public static final int name=0x7f090007;
+        public static final int phone=0x7f090008;
+        public static final int profile=0x7f090005;
+        public static final int profile_pic=0x7f090006;
+        public static final int txt_email=0x7f090002;
+        public static final int txt_image=0x7f090003;
         public static final int txt_name=0x7f090000;
         public static final int txt_phone=0x7f090001;
-        public static final int txt_text=0x7f090002;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int activity_mainer=0x7f030001;
-        public static final int activity_profile=0x7f030002;
-        public static final int activity_profile2=0x7f030003;
-        public static final int new_title_bar=0x7f030004;
+        public static final int activity_profile=0x7f030001;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -78,7 +66,6 @@ public final class R {
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
         public static final int btn_profile=0x7f060009;
-        public static final int btn_profile2=0x7f06000a;
         public static final int color=0x7f060007;
         public static final int email=0x7f060006;
         public static final int hello_world=0x7f060002;
@@ -86,18 +73,17 @@ public final class R {
         /**  MainActivity 
          */
         public static final int name=0x7f060003;
-        public static final int name_and_signup=0x7f06000c;
-        public static final int phone=0x7f060004;
-        public static final int text=0x7f060005;
-        public static final int title_activity_mainer=0x7f060011;
         /**  ProfileActivity 
          */
+        public static final int name_and_signup=0x7f06000a;
+        public static final int phone=0x7f060004;
+        public static final int text=0x7f060005;
+        public static final int title_activity_mainer=0x7f06000f;
         public static final int title_activity_profile=0x7f06000b;
-        public static final int title_activity_profile2=0x7f06000d;
-        public static final int txt_profile2_info=0x7f060012;
-        public static final int txt_profile2_name=0x7f06000f;
-        public static final int txt_profile2_signup=0x7f060010;
-        public static final int welcome_to_profile=0x7f06000e;
+        public static final int txt_profile_info=0x7f060010;
+        public static final int txt_profile_name=0x7f06000d;
+        public static final int txt_profile_signup=0x7f06000e;
+        public static final int welcome_to_profile=0x7f06000c;
     }
     public static final class style {
         /** 
@@ -121,14 +107,12 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070006;
+        public static final int AppBaseTheme=0x7f070004;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070007;
-        public static final int MyTheme=0x7f070005;
-        public static final int WindowTitleBackground=0x7f070008;
-        public static final int customTheme=0x7f070004;
+        public static final int AppTheme=0x7f070005;
+        public static final int WindowTitleBackground=0x7f070006;
         public static final int profileBooksHeader=0x7f070000;
         public static final int profilePage=0x7f070003;
         public static final int profilePageHeader=0x7f070002;

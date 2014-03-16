@@ -18,9 +18,7 @@ public class MainActivity extends Activity {
         // Populate the fields - Debugging purposes
         ((EditText)findViewById(R.id.txt_name)).setText("Daniel Bryan");
         ((EditText)findViewById(R.id.txt_phone)).setText("(519)-888-8888");
-        ((EditText)findViewById(R.id.txt_text)).setText("(226)-888-8888");
         ((EditText)findViewById(R.id.txt_email)).setText("dbryan@uwaterloo.ca");
-        ((EditText)findViewById(R.id.txt_color)).setText("aa0000");
         ((EditText)findViewById(R.id.txt_image)).setText("bryan");
     }
 
@@ -49,18 +47,14 @@ public class MainActivity extends Activity {
     	int[] ids = {
         	R.id.txt_name,
         	R.id.txt_phone,
-        	R.id.txt_text,
         	R.id.txt_email,
-        	R.id.txt_color,
         	R.id.txt_image
         };
         
         String[] fields = {
         	"name",
         	"phone number",
-        	"text messaging number",
         	"email address",
-        	"color in hex",
         	"image link"
         };
         	
@@ -72,9 +66,9 @@ public class MainActivity extends Activity {
         return true;
     }
     
-    // Called when user touches the button
-    public void profile(View view) {    	
-    	// Start the Profile activity and pass it the info that it needs
+    // Called when user touches the other button
+    public void profile(View view) {
+    	// Start the profile activity and pass it the info that it needs
     	if (! validator()) {
     		return;
     	}
@@ -82,26 +76,7 @@ public class MainActivity extends Activity {
     	Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
     	intent.putExtra("name", ((EditText)findViewById(R.id.txt_name)).getText().toString());
     	intent.putExtra("phone", ((EditText)findViewById(R.id.txt_phone)).getText().toString());
-    	intent.putExtra("text", ((EditText)findViewById(R.id.txt_text)).getText().toString());
     	intent.putExtra("email", ((EditText)findViewById(R.id.txt_email)).getText().toString());
-    	intent.putExtra("color", ((EditText)findViewById(R.id.txt_color)).getText().toString());
-    	intent.putExtra("image", ((EditText)findViewById(R.id.txt_image)).getText().toString());
-    	startActivity(intent);
-    }
-    
-    // Called when user touches the other button
-    public void profile2(View view) {
-    	// Start the profile2 activity and pass it the info that it needs
-    	if (! validator()) {
-    		return;
-    	}
-    	
-    	Intent intent = new Intent(MainActivity.this, ProfileActivity2.class);
-    	intent.putExtra("name", ((EditText)findViewById(R.id.txt_name)).getText().toString());
-    	intent.putExtra("phone", ((EditText)findViewById(R.id.txt_phone)).getText().toString());
-    	intent.putExtra("text", ((EditText)findViewById(R.id.txt_text)).getText().toString());
-    	intent.putExtra("email", ((EditText)findViewById(R.id.txt_email)).getText().toString());
-    	intent.putExtra("color", ((EditText)findViewById(R.id.txt_color)).getText().toString());
     	intent.putExtra("image", ((EditText)findViewById(R.id.txt_image)).getText().toString());
     	startActivity(intent);
     }
