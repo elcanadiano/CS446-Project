@@ -46,4 +46,22 @@
 		    android:layout_width="125dp"
 		    android:scaleType="fitXY" />
     </RelativeLayout>
+    
+    <TextView
+        style="@style/profileBooksHeader"
+        android:id="@+id/books_selling_text"
+        android:layout_below="@id/profile"
+        android:text="@string/txt_profile2_name" />
+    
+    <ListView
+          android:id="@+id/my_books"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/books_selling_text"
+          android:layout_marginTop="20dp"
+          android:background="@color/list_bg_color"
+          android:cacheColorHint="@android:color/transparent"
+          android:divider="@color/list_divider"
+          android:dividerHeight="10dp"
+          android:paddingLeft="2dp" />
 </RelativeLayout>

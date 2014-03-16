@@ -1,17 +1,13 @@
 package com.example.profilescreen;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Rect;
-import android.text.TextPaint;
 import android.view.Menu;
-import android.view.View;
-import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +29,8 @@ public class ProfileActivity2 extends Activity {
 		//		getIntent().getExtras().getString("text"));
 		((TextView)findViewById(R.id.email)).setText(
 				getIntent().getExtras().getString("email"));
+		((TextView)findViewById(R.id.books_selling_text)).setText(
+				"Books that " + getIntent().getExtras().getString("name") + " is selling");
 		
 		// Find and display profile picture
 		String imageName = getIntent().getExtras().getString("image");
@@ -70,6 +68,26 @@ public class ProfileActivity2 extends Activity {
 			}
 		});
 		*/
+		
+		ListView lv = (ListView) findViewById(R.id.my_books);
+		
+		ArrayList<String> myArrayOfBooks = new ArrayList<String>();
+		myArrayOfBooks.add("Foo");
+		myArrayOfBooks.add("Bar");
+		myArrayOfBooks.add("Foobar");
+		myArrayOfBooks.add("Booker");
+		myArrayOfBooks.add("Samsung");
+		myArrayOfBooks.add("Buy My Book");
+		myArrayOfBooks.add("Test1");
+		myArrayOfBooks.add("Test2");
+		
+		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+				this,
+				android.R.layout.simple_list_item_1,
+				myArrayOfBooks );
+		
+		lv.setAdapter(arrayAdapter);
+		
 	}
 
 	@Override

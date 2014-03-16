@@ -3,6 +3,11 @@
     <color name="titlebackgroundcolor">#3232CD</color>
     <color name="titletextcolor">#FFFF00</color>
     
+    <style name="profileBooksHeader" parent="profilePage">
+        <item name="android:textSize">18sp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+    
     <style name="profilePageInfo" parent="profilePage">
         <item name="android:textSize">16sp</item>
         <item name="android:layout_marginTop">15dp</item>

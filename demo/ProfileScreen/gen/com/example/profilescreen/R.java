@@ -12,11 +12,13 @@ public final class R {
     }
     public static final class color {
         public static final int background_color=0x7f040000;
-        public static final int profile_link_color=0x7f040002;
-        public static final int profile_text_color=0x7f040001;
-        public static final int profile_text_highlight_color=0x7f040003;
-        public static final int titlebackgroundcolor=0x7f040004;
-        public static final int titletextcolor=0x7f040005;
+        public static final int list_bg_color=0x7f040001;
+        public static final int list_divider=0x7f040002;
+        public static final int profile_link_color=0x7f040004;
+        public static final int profile_text_color=0x7f040003;
+        public static final int profile_text_highlight_color=0x7f040005;
+        public static final int titlebackgroundcolor=0x7f040006;
+        public static final int titletextcolor=0x7f040007;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -40,11 +42,13 @@ public final class R {
         public static final int square=0x7f020008;
     }
     public static final class id {
-        public static final int action_settings=0x7f090010;
+        public static final int action_settings=0x7f090012;
+        public static final int books_selling_text=0x7f09000f;
         public static final int btn_profile=0x7f090006;
         public static final int btn_profile2=0x7f090007;
         public static final int email=0x7f09000c;
-        public static final int myTitle=0x7f09000f;
+        public static final int myTitle=0x7f090011;
+        public static final int my_books=0x7f090010;
         public static final int name=0x7f09000e;
         public static final int nameandsignup=0x7f090009;
         public static final int phone=0x7f09000a;
@@ -117,16 +121,17 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070005;
+        public static final int AppBaseTheme=0x7f070006;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070006;
-        public static final int MyTheme=0x7f070004;
-        public static final int WindowTitleBackground=0x7f070007;
-        public static final int customTheme=0x7f070003;
-        public static final int profilePage=0x7f070002;
-        public static final int profilePageHeader=0x7f070001;
-        public static final int profilePageInfo=0x7f070000;
+        public static final int AppTheme=0x7f070007;
+        public static final int MyTheme=0x7f070005;
+        public static final int WindowTitleBackground=0x7f070008;
+        public static final int customTheme=0x7f070004;
+        public static final int profileBooksHeader=0x7f070000;
+        public static final int profilePage=0x7f070003;
+        public static final int profilePageHeader=0x7f070002;
+        public static final int profilePageInfo=0x7f070001;
     }
 }
