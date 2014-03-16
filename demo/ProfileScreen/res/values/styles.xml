@@ -10,12 +10,11 @@
     
     <style name="profilePageInfo" parent="profilePage">
         <item name="android:textSize">16sp</item>
-        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginTop">3dp</item>
     </style>
     
-    <style name="profilePageHeader" parent="profilePage">
+    <style name="profilePageName" parent="profilePage">
         <item name="android:textSize">22sp</item>
-        <item name="android:layout_marginTop">20dp</item>
         <item name="android:maxLines">1</item>
     </style>
     
