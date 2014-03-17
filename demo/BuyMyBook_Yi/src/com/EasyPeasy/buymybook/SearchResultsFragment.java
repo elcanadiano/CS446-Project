@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,7 +93,7 @@ public class SearchResultsFragment extends Fragment{
 		else{
 			Log.d(tag,"imagedetails not null");
 		}
-		/*
+		
 		   final ListView lv1 = (ListView) view.findViewById(R.id.search_manual_listview);
 		   if(lv1 != null){
 			   lv1.setAdapter(new CustomSearchListAdaptor(getActivity(), image_details));
@@ -101,7 +102,7 @@ public class SearchResultsFragment extends Fragment{
 		        	 * Click listener for each item view
 		        	 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
 		        	 */
-		  /*          @Override
+		            @Override
 		            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
 		                Object o = lv1.getItemAtPosition(position);
 		                SearchListItem newsData = (SearchListItem) o;
@@ -115,28 +116,30 @@ public class SearchResultsFragment extends Fragment{
 		   else{
 			   Log.d(tag,"searchresultfragment, adapter null");
 		   }
-		   */
+		   
 		   
 	       
 		   //lv1.setAdapter(new CustomSearchListAdaptor(inflater, image_details));
 		return view;
 	}
 
-	/*
+
 public void detailsFragment(){
+	FragmentActivity f;
 	Fragment fragment = null;
 	fragment =  new DetailsFragment();
+	f = getActivity();
 		if (fragment != null) {
 			Bundle args = new Bundle();
 			args.putString("json", result);
 			fragment.setArguments(args);
-			getChildFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).commit();
+			f.getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null).commit();
 			
 		
 		}
 
 }
-	*/
+	
 private ArrayList parseJSONResult(JSONArray jsonArray){
 		
 		ArrayList results = new ArrayList();
@@ -162,6 +165,7 @@ private ArrayList parseJSONResult(JSONArray jsonArray){
 		}
 		return results;
 	}
+/*
 	private OnItemSelectedListener listener;
 	public void onAttach(Activity activity){
 		super.onAttach(activity);
@@ -172,5 +176,5 @@ private ArrayList parseJSONResult(JSONArray jsonArray){
 	            + " must implemenet MyListFragment.OnItemSelectedListener");
 	      }
 	}
-
+*/
 }

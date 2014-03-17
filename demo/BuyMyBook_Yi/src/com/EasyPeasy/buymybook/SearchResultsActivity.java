@@ -52,7 +52,7 @@ public class SearchResultsActivity extends FragmentActivity {
 				Bundle args = new Bundle();
 				args.putString("json", result);
 				fragment.setArguments(args);
-				getSupportFragmentManager().beginTransaction().add(R.id.frame_container, fragment).commit();
+				getSupportFragmentManager().beginTransaction().add(R.id.frame_container, fragment).addToBackStack(null).commit();
 				
 			
 			}
@@ -102,5 +102,26 @@ public class SearchResultsActivity extends FragmentActivity {
 		Log.d(tag,"submit");
 		
 	}//submit
+	
+	/*
+	 * Added support for fragment
+	 */
+	@Override
+	public void onBackPressed() {
+	   //getSupportFragmentManager();
+		Log.d(tag,"onbackpressed: "+this.getSupportFragmentManager().getBackStackEntryCount());
+		//if our backstack count is 1 then we only have the activity
+	   if( this.getSupportFragmentManager().getBackStackEntryCount() > 1 ){
+		   Log.d(tag,"popbackstack");
+           this.getSupportFragmentManager().popBackStack();
+	   }//if
+	   else{
+		   Log.d(tag,"super backpressed");
+		   //pop the activity
+		   this.getSupportFragmentManager().popBackStack();
+		   //call super method to go back an activity
+		   super.onBackPressed();
+	   }
+	}
 
 }
