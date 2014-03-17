@@ -16,7 +16,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         // Populate the fields - Debugging purposes
-        ((EditText)findViewById(R.id.txt_name)).setText("Daniel Bryan");
+        ((EditText)findViewById(R.id.txt_first_name)).setText("Daniel");
+        ((EditText)findViewById(R.id.txt_last_name)).setText("Bryan");
         ((EditText)findViewById(R.id.txt_phone)).setText("(519)-888-8888");
         ((EditText)findViewById(R.id.txt_email)).setText("dbryan@uwaterloo.ca");
         ((EditText)findViewById(R.id.txt_image)).setText("bryan");
@@ -45,14 +46,16 @@ public class MainActivity extends Activity {
     // Make sure that user entered stuff into all EditText
     private boolean validator() {
     	int[] ids = {
-        	R.id.txt_name,
+        	R.id.txt_first_name,
+        	R.id.txt_last_name,
         	R.id.txt_phone,
         	R.id.txt_email,
         	R.id.txt_image
         };
         
         String[] fields = {
-        	"name",
+        	"first name",
+        	"last name",
         	"phone number",
         	"email address",
         	"image link"
@@ -74,7 +77,8 @@ public class MainActivity extends Activity {
     	}
     	
     	Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-    	intent.putExtra("name", ((EditText)findViewById(R.id.txt_name)).getText().toString());
+    	intent.putExtra("firstName", ((EditText)findViewById(R.id.txt_first_name)).getText().toString());
+    	intent.putExtra("lastName", ((EditText)findViewById(R.id.txt_last_name)).getText().toString());
     	intent.putExtra("phone", ((EditText)findViewById(R.id.txt_phone)).getText().toString());
     	intent.putExtra("email", ((EditText)findViewById(R.id.txt_email)).getText().toString());
     	intent.putExtra("image", ((EditText)findViewById(R.id.txt_image)).getText().toString());

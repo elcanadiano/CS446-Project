@@ -6,21 +6,14 @@
     <string name="hello_world">Hello world!</string>
 
     <!-- MainActivity -->
-    <string name="name">Full name</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
     <string name="phone">Phone number</string>
-    <string name="text">Texting number</string>
     <string name="email">Email address</string>
-    <string name="color">Your profile color (in hex)</string>
     <string name="image">Name of image file (without extension)</string>
-    <string name="btn_profile">Standard style profile</string>
+    <string name="btn_profile">Go to profile</string>
     
     <!-- ProfileActivity -->
-    <string name="name_and_signup">NAME HERE \n SIGNUP HERE</string>
     <string name="title_activity_profile">Profile Activity</string>
-    <string name="welcome_to_profile">Welcome to the profile activity</string>
-    <string name="txt_profile_name">FIRSTNAME LASTNAME</string>
-    <string name="txt_profile_signup">XX/YY/ZZZZ</string>
-    <string name="title_activity_mainer">MainActivity</string>
-    <string name="txt_profile_info">22sp</string>
 
 </resources>

@@ -8,50 +8,76 @@
     <RelativeLayout
         	android:id="@+id/profile"
         	android:layout_width="fill_parent"
-        	android:layout_height="200dp"
+        	android:layout_height="175dp"
         	android:orientation="vertical">
 	    
-	    <ImageView
+	    <ImageButton
 			android:id="@+id/profile_pic"
 		    android:contentDescription="This is the user's profile picture"
-		    android:paddingLeft="5dp"
-		    android:paddingTop="20dp"
-		    android:paddingRight="0dp"
+		    android:layout_marginLeft="5dp"
+		    android:layout_marginTop="20dp"
+		    android:layout_marginRight="5dp"
 		    android:layout_height="150dp"
 		    android:layout_width="125dp"
-		    android:scaleType="fitXY" />
+		    android:scaleType="fitXY"
+		    android:background="@null"
+		    android:onClick="goToFacebook" />
 
         <TextView
-            style="@style/profilePageHeader"
-            android:id="@+id/name"
-            android:text="@string/txt_profile_name"
-            android:layout_marginLeft="2dp"
-            android:layout_toRightOf="@id/profile_pic" />
+            style="@style/profilePageName"
+            android:id="@+id/first_name"
+            android:layout_toRightOf="@id/profile_pic"
+            android:layout_marginTop="10dp" />
         
-		<TextView
+        <TextView
+            style="@style/profilePageName"
+            android:id="@+id/last_name"
+            android:layout_toRightOf="@id/profile_pic"
+            android:layout_below="@id/first_name"/>
+        
+        <ImageView
+            android:id="@+id/phone_img"
+            android:src="@drawable/phone"
+            android:layout_below="@id/last_name"
+            android:layout_toRightOf="@id/profile_pic"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="7dp"
+            android:layout_width="36dp"
+         	android:layout_height="36dp" />
+                
+		<EditText
 		    style="@style/profilePageInfo"
 	        android:id="@+id/phone"
-	        android:layout_toRightOf="@id/profile_pic"
-	        android:layout_below="@id/name"
-	        android:text="@string/phone"
-	        android:autoLink="phone"
-	        android:drawableLeft="@drawable/phone" />
+	        android:inputType="phone"
+	        android:singleLine="true"
+	        android:imeOptions="actionDone"
+	        android:layout_toRightOf="@id/phone_img"
+	        android:layout_below="@id/last_name" />
+		
+		<ImageView
+            android:id="@+id/email_img"
+            android:src="@drawable/email"
+            android:layout_below="@id/phone"
+            android:layout_toRightOf="@id/profile_pic"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="7dp"
+            android:layout_width="36dp"
+         	android:layout_height="36dp" />
 	    
-	    <TextView
+	    <EditText
 	        style="@style/profilePageInfo"
 	        android:id="@+id/email"
-	        android:layout_toRightOf="@id/profile_pic"
-	        android:text="@string/email"
-	        android:autoLink="email"
-	        android:layout_below="@id/phone"
-	        android:drawableLeft="@drawable/email" />
+	        android:inputType="textEmailAddress"
+	        android:singleLine="true"
+	        android:imeOptions="actionDone"
+	        android:layout_toRightOf="@id/email_img"
+	        android:layout_below="@id/phone" />
     </RelativeLayout>
     
     <TextView
         style="@style/profileBooksHeader"
         android:id="@+id/books_selling_text"
-        android:layout_below="@id/profile"
-        android:text="@string/txt_profile_name" />
+        android:layout_below="@id/profile" />
     
     <ListView
           android:id="@+id/my_books"

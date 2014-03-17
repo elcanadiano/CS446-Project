@@ -2,8 +2,8 @@
 // This is what a proper URL would look like: https://fortuna.uwaterloo.ca/cgi-bin/cgiwrap/rsic/book/search.html?mv_profile=search_course&mv_searchspec=1141&mv_searchspec=CS&mv_searchspec=135&mv_searchspec=&mv_searchspec=
 
 $baseURL = "https://fortuna.uwaterloo.ca/cgi-bin/cgiwrap/rsic/book/search.html?mv_profile=search_course";
-//$subjects = array("CS");	// All subjects that we want books for
-/*$subjects=array("ACC","ACTSC","AFM","AHS","AMATH","ANTH","APPLS","ARBUS",
+
+$subjects=array("ACC","ACTSC","AFM","AHS","AMATH","ANTH","APPLS","ARBUS",
 "ARCH","ARTS","BE","BET","BIOL","BUS","CHE","CHEM","CHINA","CIVE","CLAS","CM",
 "CMW","CO","COGSCI","COMM","CROAT","CS","CT","DAC","DEI","DRAMA","DUTCH",
 "EARTH","EASIA","ECE","ECON","ENBUS","ENGL","ENVE","ENVS","ERS","ESL","FINE",
@@ -15,57 +15,10 @@ $baseURL = "https://fortuna.uwaterloo.ca/cgi-bin/cgiwrap/rsic/book/search.html?m
 "REES","RS","RUSS","SCBUS","SCI","SDS","SE","SI","SMF","SOC","SOCWK","SPAN",
 "SPCOM","SPD","STAT","STV","SUSM","SWK","SWREN","SYDE","TOUR","TS","UNIV",
 "VCULT","WS");
-*/
-
-//$subjects = array("ACC", "ACTSC", "AFM");
-//$subjects = array("AHS", "AMATH", "ANTH");
-//$subjects = array("ANTH");
-//$subjects = array("APPLS", "ARBUS", "ARCH");
-//$subjects = array("ARTS", "BE", "BET");
-$subjects = array("BIOL", "BUS", "CHE");
-//$subjects = array("CHEM", "CHINA", "CIVE");
-//$subjects = array("CLAS", "CM", "CMW");
-//$subjects = array("CO", "COGSCI", "COMM");
-//$subjects = array("CROAT", "CS", "CT");
-//$subjects = array("DAC", "DEI", "DRAMA");
-//$subjects = array("DUTCH", "EARTH", "EASIA");
-//$subjects = array("ECE", "ECON", "ENBUS");
-//$subjects = array("ENGL", "ENVE", "ENVS");
-//$subjects = array("ERS", "ESL", "FINE");
-//$subjects = array("FR", "GBDA", "GEMCC");
-//$subjects = array("GENE", "GEOE", "GEOG");
-//$subjects = array("GER", "GERON", "GGOV");
-//$subjects = array("GRK", "HIST", "HLTH");
-//$subjects = array("HRM", "HSG", "HUMSC");
-//$subjects = array("IAIN", "INDEV", "INTEG");
-//$subjects = array("INTST", "ISS", "ITAL");
-//$subjects = array("ITALST", "JAPAN", "JS");
-//$subjects = array("KIN", "KOREA", "LAT");
-//$subjects = array("LED", "LS", "MATBUS");
-//$subjects = array("MATH", "MCT", "ME");
-//$subjects = array("MEDVL", "MNS", "MSCI");
-//$subjects = array("MTE", "MTHEL", "MUSIC");
-//$subjects = array("NANO", "NE", "OPTOM");
-//$subjects = array("PACS", "PHARM", "PHIL");
-//$subjects = array("PHS", "PHYS", "PLAN");
-//$subjects = array("PMATH", "PORT", "PS");
-//$subjects = array("PSCI", "PSYCH", "REC");
-//$subjects = array("REES", "RS", "RUSS");
-//$subjects = array("SCBUS", "SCI", "SDS");
-//$subjects = array("SE", "SI", "SMF");
-//$subjects = array("SOC", "SOCWK", "SPAN");
-//$subjects = array("SPCOM", "SPD", "STAT");
-//$subjects = array("STV", "SUSM", "SWK");
-//$subjects = array("SWREN", "SYDE", "TOUR");
-//$subjects = array("TS", "UNIV", "VCULT");
-//$subjects = array("WS");
-
 
 $terms = array("1141");		// All terms that we want books for
 $section = "";
 $instructor = "";
-//$filteredResult = "";
-//$filePath = "books.txt";
 
 // Book object for storing and accessing of Book information
 class Book {
@@ -142,8 +95,14 @@ function getBooks($html) {
 }
 
 // Returns the HTML of the bookstore query
-function getHTML($url) {
+function getHTML($url, $delay) {
 	$response = file_get_contents($url);
+	
+	if ($response === false) {
+		echo "Get HTML failed. Delay for ".$delay. " seconds\n";
+		sleep($delay);
+		return getHTML($url, 30);
+	}
 	return $response;
 }
 
@@ -161,7 +120,7 @@ foreach ($terms as $term) {
 	foreach ($subjects as $subject) {
 		$courses = getCourseNumbers($term, $subject);
 		$filteredResult = "";
-		$filePath = "books/".$subject."_books.txt";	
+		$filePath = "books/".$subject."_".$term;	
 		
 		foreach ($courses as $course) {
 			$param1 = "&mv_searchspec=".$term;	// Term that we are searching (e.g. 1141)
@@ -172,7 +131,8 @@ foreach ($terms as $term) {
 			$URL = $baseURL.$param1.$param2.$param3.$param4.$param5;
 
 			echo "Get HTML for ".$subject." ".$course."\n";
-			$html = getHTML($URL);
+			$html = getHTML($URL, 420);
+			echo "Get HTML success";
 			echo "Getting books for ".$subject." ".$course."\n";
 			$books = getBooks($html);
 			
@@ -189,7 +149,4 @@ foreach ($terms as $term) {
 		file_put_contents($filePath, $filteredResult);
 	}
 }	
-
-//file_put_contents($filePath, $filteredResult);
-
 ?>
