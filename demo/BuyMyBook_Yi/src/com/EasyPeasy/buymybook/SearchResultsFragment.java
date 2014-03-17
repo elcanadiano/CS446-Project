@@ -28,15 +28,7 @@ import android.widget.AdapterView.OnItemClickListener;
 public class SearchResultsFragment extends Fragment{
 	final String tag = "SearchResultsFragment";
 	String result = null;
-	/*
-	@Override
-	public ListView onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
-		
-		View view = inflater.inflate(R.layout.fragment_results_search,container,false);
-		return view;
-		
-	}
-	*/
+
 	/*
 	 *Called before onCreateView() of the fragment
 	 */
@@ -106,48 +98,41 @@ public class SearchResultsFragment extends Fragment{
 		            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
 		                Object o = lv1.getItemAtPosition(position);
 		                SearchListItem newsData = (SearchListItem) o;
-		                Toast.makeText(getActivity(), "Selected :" + " " + newsData, Toast.LENGTH_LONG).show();
-		                
-		                detailsFragment();
+		                Toast.makeText(getActivity(), "Selected :" + " " + newsData, Toast.LENGTH_LONG).show();            
+		                detailsFragment(newsData);
 		            }
 		 
 		        });
 		   }
 		   else{
 			   Log.d(tag,"searchresultfragment, adapter null");
-		   }
-		   
-		   
-	       
+		   }	       
 		   //lv1.setAdapter(new CustomSearchListAdaptor(inflater, image_details));
 		return view;
 	}
 
-
-public void detailsFragment(){
-	FragmentActivity f;
-	Fragment fragment = null;
-	fragment =  new DetailsFragment();
-	f = getActivity();
-		if (fragment != null) {
-			Bundle args = new Bundle();
-			args.putString("json", result);
-			fragment.setArguments(args);
-			f.getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null).commit();
+	public void detailsFragment(SearchListItem newsData){
+		FragmentActivity f;
+		Fragment fragment = null;
+		fragment =  new DetailsFragment();
+		f = getActivity();
+			if (fragment != null) {
+				Bundle args = new Bundle();
+				
+				args.putString("json", result);
+				fragment.setArguments(args);
+				f.getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null).commit();
+			}
+	}
+		
+	private ArrayList parseJSONResult(JSONArray jsonArray){
 			
-		
-		}
-
-}
-	
-private ArrayList parseJSONResult(JSONArray jsonArray){
-		
-		ArrayList results = new ArrayList();
-		
-		try{
-			for(int i = 0 ; i < jsonArray.length();i++){
-				JSONObject childObject = jsonArray.getJSONObject(i);
-				String title = childObject.getString("title");
+			ArrayList results = new ArrayList();
+			
+			try{
+				for(int i = 0 ; i < jsonArray.length();i++){
+					JSONObject childObject = jsonArray.getJSONObject(i);
+					String title = childObject.getString("title");
 				String author = childObject.getString("authors");
 				String price = "1";
 				String condition = "1";
@@ -165,16 +150,5 @@ private ArrayList parseJSONResult(JSONArray jsonArray){
 		}
 		return results;
 	}
-/*
-	private OnItemSelectedListener listener;
-	public void onAttach(Activity activity){
-		super.onAttach(activity);
-		if (activity instanceof OnItemSelectedListener) {
-	        listener = (OnItemSelectedListener) activity;
-	      } else {
-	        throw new ClassCastException(activity.toString()
-	            + " must implemenet MyListFragment.OnItemSelectedListener");
-	      }
-	}
-*/
+
 }

@@ -45,7 +45,9 @@ public class SearchResultsActivity extends FragmentActivity {
 		else{
 			Log.d(tag,"null pointer");
 		}
-		
+		/*
+		 * Launches the result fragment upon creation
+		 */
 		Fragment fragment = null;
 		fragment =  new SearchResultsFragment();
 			if (fragment != null) {
@@ -65,44 +67,7 @@ public class SearchResultsActivity extends FragmentActivity {
 		getMenuInflater().inflate(R.menu.search_results, menu);
 		return true;
 	}
-	public void submit2(View view){
-		Fragment fragment = null;
-		 fragment =  new DetailsFragment();
-		 getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null).commit();
-	}
-	public void submit(View view){
-		
-		Fragment fragment = null;
-	  fragment =  new SearchResultsFragment();
-		if (fragment != null) {
-			
-			getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null).commit();
-			
-			
-			/*Log.d(tag,"fragment replace");
-			FragmentManager fragmentManager = getSupportFragmentManager();
-			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
-					*/
-		}
-		else{
-			Log.d(tag,"fragment is null");
-		}
-		if(fragment != null && fragment.isInLayout()){
-			
-			
-			Log.d(tag,"detailsfragment");
-		}//if
-		if(fragment == null){
-			Log.d(tag,"fragment is null");
-		}
-		else if(fragment.isInLayout()){
-			Log.d(tag,"fragment is in layout");
-		}
-		Log.d(tag,"submit");
-		
-	}//submit
-	
+
 	/*
 	 * Added support for fragment
 	 */

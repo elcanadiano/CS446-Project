@@ -28,8 +28,11 @@ public class DetailsFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
 		
 		View view = inflater.inflate(R.layout.fragment_results_details,container,false);
-		
-		
+		TextView txt = (TextView) view.findViewById(R.id.search_manual_title);
+		String result = getArguments() != null ? getArguments().getString("json") : null;
+		if(result != null){
+			txt.setText(result);
+		}
 		return view;
 		
 	}
@@ -37,6 +40,7 @@ public class DetailsFragment extends Fragment {
 	@Override
     public void onAttach(Activity activity) {
       super.onAttach(activity);
+      
       
       /*
       if (activity instanceof OnItemSelectedListener) {
