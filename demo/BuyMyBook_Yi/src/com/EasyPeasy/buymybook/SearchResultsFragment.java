@@ -36,6 +36,24 @@ public class SearchResultsFragment extends Fragment{
 		super();
 		;
 	}
+	private ArrayList populateBooks(){
+		ArrayList results = new ArrayList();
+		for(int i = 0 ; i< 20; i++){
+			String title="Clear Thinking In a Blurry World";
+			String author="Tim Kenyon";
+			String price="100";
+			String condition="1";
+			SearchListItem item = new SearchListItem(title,author,price,condition);
+			results.add(item);
+			title = "Introduction to Algorithmns";
+			author = "Cormen";
+			price = "50";
+			condition = "5";
+			item =new SearchListItem(title,author,price,condition);
+			results.add(item);
+		}
+		return results;
+	}
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -85,7 +103,8 @@ public class SearchResultsFragment extends Fragment{
 		else{
 			Log.d(tag,"imagedetails not null");
 		}
-		
+			//fake input
+			image_details = populateBooks();
 		   final ListView lv1 = (ListView) view.findViewById(R.id.search_manual_listview);
 		   if(lv1 != null){
 			   lv1.setAdapter(new CustomSearchListAdaptor(getActivity(), image_details));
@@ -118,8 +137,10 @@ public class SearchResultsFragment extends Fragment{
 		f = getActivity();
 			if (fragment != null) {
 				Bundle args = new Bundle();
-				
-				args.putString("json", result);
+				args.putString("title", newsData.getTitle());
+				args.putString("author", newsData.getAuthor());
+				args.putString("price", newsData.getPrice());
+				args.putString("condition", newsData.getCondition());
 				fragment.setArguments(args);
 				f.getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null).commit();
 			}

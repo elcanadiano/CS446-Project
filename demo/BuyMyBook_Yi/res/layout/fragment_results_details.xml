@@ -15,6 +15,39 @@
         android:text="@string/hello_world"
         android:layout_centerHorizontal="true"
     />   
+     <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_below="@id/search_manual_title"
+        android:layout_centerHorizontal="true"
+   
+    />
+      <TextView
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_centerHorizontal="false"
+        android:layout_below="@id/title"
+    />
+       <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_centerHorizontal="false"
+        android:layout_below="@id/author"
+    />
+        <TextView
+        android:id="@+id/condition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_centerHorizontal="false"
+        android:layout_below="@id/price"
+    />
     
 
 </RelativeLayout>

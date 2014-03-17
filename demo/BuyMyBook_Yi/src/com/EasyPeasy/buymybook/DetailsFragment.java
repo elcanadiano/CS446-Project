@@ -29,10 +29,16 @@ public class DetailsFragment extends Fragment {
 		
 		View view = inflater.inflate(R.layout.fragment_results_details,container,false);
 		TextView txt = (TextView) view.findViewById(R.id.search_manual_title);
-		String result = getArguments() != null ? getArguments().getString("json") : null;
-		if(result != null){
+		//String result = getArguments() != null ? getArguments().getString("json") : null;
+		/*if(result != null){
 			txt.setText(result);
-		}
+		}*/
+		String title = getArguments().getString("title");
+		String author = getArguments().getString("author");
+		String price = getArguments().getString("price");
+		String condition = getArguments().getString("condition");
+		String result = new String(title.toString()+author.toString()+price.toString()+condition.toString());
+		txt.setText(result);
 		return view;
 		
 	}
