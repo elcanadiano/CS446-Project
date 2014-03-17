@@ -18,6 +18,10 @@ public class CustomSearchListAdaptor extends BaseAdapter{
 		this.listData = listData;
 		layoutInflater = LayoutInflater.from(context);
 	}
+	public CustomSearchListAdaptor(LayoutInflater inflater,ArrayList listData){
+		layoutInflater = inflater;
+		this.listData = listData;
+	}
 	
 	@Override
 	public int getCount() {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	 <string name="submit">Submit</string>
+
+    <string name="submit">Submit</string>
     <string name="app_name">Buy My Book</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
@@ -9,17 +10,16 @@
     <!-- MainActivity Strings -->
     <string name="main_greeting">SPRING2014 is almost here! Remember to sell your books.</string>
     <string name="main_instruction">not set!</string>
-	<string name="main_inst_sell"> to sell a book.\n Swipe </string>
-	<string name="main_inst_swipe"> to access your menu.\n </string>
-	<string name="main_inst_look"> to look for books.</string>
-	
-	<!-- drawer menu Strings - the arrays are in array[dot]xml-->
+    <string name="main_inst_sell"> to sell a book.\n Swipe </string>
+    <string name="main_inst_swipe"> to access your menu.\n </string>
+    <string name="main_inst_look"> to look for books.</string>
+
+    <!-- drawer menu Strings - the arrays are in array[dot]xml -->
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="drawer_open">Menu Open</string>
     <string name="drawer_close">Menu Close</string>
-    
-    
-      <!-- Strings for Searching -->
+
+    <!-- Strings for Searching -->
     <string name="search_manual">Search Manually</string>
     <string name="search_scan">Search by Scanning</string>
     <string name="default_search">DefaultText</string>
@@ -34,11 +34,11 @@
     <string name="term">Term</string>
     <string name="scanISBN">Scan ISBN</string>
     <string name="subject">Subject</string>
-     <string name="post_manual_header_text">We\'ll find the best match</string>
+    <string name="post_manual_header_text">We\'ll find the best match</string>
     <string name="post_manual_booktitle_hint">Book Title</string>
     <string name="post_manual_bookauthor_hint">Author(s)</string>
     <string name="post_manual_bookisbn_hint">ISBN</string>
     <string name="post_manual_deptspinner_prompt">Dept</string>
-    
-    
+    <string name="title_activity_search_results">SearchResultsActivity</string>
+
 </resources>

@@ -24,6 +24,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
+
 /*
  * This activity is the result
  * xmlfile:activity_search_manual.xml

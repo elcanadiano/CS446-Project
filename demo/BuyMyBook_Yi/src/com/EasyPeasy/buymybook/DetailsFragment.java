@@ -1,7 +1,7 @@
 package com.EasyPeasy.buymybook;
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +12,18 @@ import android.widget.TextView;
  * xml file: fragment_results_search.xml
  */
 public class DetailsFragment extends Fragment {
-	private OnItemSelectedListener listener;
+	//private OnItemSelectedListener listener;
+	
+	public DetailsFragment(){
+		;
+	}
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+	}
+	
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
 		
@@ -26,12 +37,15 @@ public class DetailsFragment extends Fragment {
 	@Override
     public void onAttach(Activity activity) {
       super.onAttach(activity);
+      
+      /*
       if (activity instanceof OnItemSelectedListener) {
         listener = (OnItemSelectedListener) activity;
       } else {
         throw new ClassCastException(activity.toString()
             + " must implemenet MyListFragment.OnItemSelectedListener");
       }
+      */
     }
 	
 	

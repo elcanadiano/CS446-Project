@@ -12,6 +12,9 @@ import org.json.JSONObject;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -151,12 +154,15 @@ public class SearchManualActivity extends Activity {
                 Object o = lv1.getItemAtPosition(position);
                 SearchListItem newsData = (SearchListItem) o;
                 Toast.makeText(SearchManualActivity.this, "Selected :" + " " + newsData, Toast.LENGTH_LONG).show();
+               
             }
  
         });
 	
 	}
-
+public void detailsFragment(){
+	
+}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

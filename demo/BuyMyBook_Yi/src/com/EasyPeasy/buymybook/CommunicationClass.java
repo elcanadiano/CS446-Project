@@ -84,8 +84,9 @@ public class CommunicationClass{
 
         protected void onPostExecute(String result) {
         	Log.d(tag, "ONPOSTEXECUTE");
-        	//Log.d(tag,"jsonON: "+ result);
+        	Log.d(tag,"jsonON: "+ result);
         	try {
+        		jsonObj = null;
 				jsonObj = new JSONObject(result);
 				
 				if (typeDownload.equals("post")) { // show post confimration activity
@@ -100,11 +101,11 @@ public class CommunicationClass{
 					Log.d(tag,"else case");
 					// carl, but your result code here!
 					
-					Intent intent = new Intent(this.context, SearchManualActivity.class);
+					Intent intent = new Intent(this.context, SearchResultsActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					
 					intent.putExtra("json", result.toString());
-					
+					Log.d(tag,"Passing json to SearchResults: "+result.toString());
 					context.startActivity(intent);
 					
 				}

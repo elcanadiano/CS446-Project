@@ -116,31 +116,11 @@
         android:onClick="submitResults"
         android:layout_below="@id/scanISBNButton"  />
        
-       
-       
-       
-       
-       
-       
-       
-       
-        <fragment
-        android:id="@+id/listFragment"
-        android:layout_width="0dp"
-    
-        android:layout_height="match_parent"
-        android:layout_marginTop="?android:attr/actionBarSize"
-        class="com.EasyPeasy.buymybook.SearchManualActivity" ></fragment>
 
-   		<fragment
-        android:id="@+id/detailFragment"
-        android:layout_width="0dp"
-   
-        android:layout_height="match_parent"
-        class="com.EasyPeasy.buymybook.DetailsFragment" >
-        </fragment>
+      
        
        
+  
        
        
        

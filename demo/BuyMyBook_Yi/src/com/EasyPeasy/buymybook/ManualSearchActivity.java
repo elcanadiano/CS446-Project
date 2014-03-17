@@ -3,7 +3,8 @@ package com.EasyPeasy.buymybook;
 import com.EasyPeasy.buymybook.CommunicationClass.DownloadJSON;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -63,6 +64,10 @@ public class ManualSearchActivity extends Activity {
 		return true;
 	}
 	
+	public void test(View view){
+		
+	}
+	
 	public void submitResults(View view){
 		String title = textTitle.getText().toString();
 		String author = textAuthor.getText().toString();
@@ -92,6 +97,13 @@ public class ManualSearchActivity extends Activity {
 		IntentIntegrator scanIntegrator = new IntentIntegrator(this);
 		scanIntegrator.initiateScan();
 	}
+	
+	public void testFragment(View view){
+		Log.d(TAG,"testFragment");
+		Intent intent = new Intent(this,SearchResultsActivity.class);
+		startActivity(intent);
+	}
+	
 	public void onActivityResult(int requestCode, int resultCode, Intent intent){
 		//retrieve result of scanning - instantiate ZXing object
 		IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
