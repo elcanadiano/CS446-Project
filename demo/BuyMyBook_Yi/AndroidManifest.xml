@@ -3,9 +3,11 @@
     package="com.EasyPeasy.buymybook"
     android:versionCode="1"
     android:versionName="1.0" >
-	<uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="10"
         android:targetSdkVersion="19" />
 
     <application
@@ -21,6 +23,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.EasyPeasy.buymybook.PostActivity"
+            android:label="@string/title_activity_post"
+            android:parentActivityName="com.EasyPeasy.buymybook.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.EasyPeasy.buymybook.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.EasyPeasy.buymybook.ScannerManager"
+            android:label="@string/title_activity_scanner_manager" >
         </activity>
     </application>
 

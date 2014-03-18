@@ -10,19 +10,12 @@
     <color name="list_background">#2c3e50</color>
     <color name="list_background_pressed">#d35400</color>
     <color name="list_divider">#34495e</color>
-    <!-- 
-    <color name="list_item_title">#f7ffff</color>
-    <color name="list_background">#34495e</color>
-    <color name="list_background_pressed">#2c3e50</color>
-    <color name="list_divider">#2c3e50</color>
-    -->
     <color name="counter_text_bg">#626262</color>
     <color name="counter_text_color">#c5c4c4</color>
     
     <!-- general colours for views -->
     <color name="default_background_grey">#ecf0f1</color>
     <color name="default_text_colour">#34495e</color>
-
     <color name="testing_orange">#ffa200</color>
 
 </resources>

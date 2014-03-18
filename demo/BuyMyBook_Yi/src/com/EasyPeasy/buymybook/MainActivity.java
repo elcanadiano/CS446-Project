@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ import com.EasyPeasy.buymybook.model.NavDrawerItem;
 public class MainActivity extends Activity implements OnClickListener{
 	final Context contenxt = this;
 	//drawer menu items
+	
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -44,11 +47,11 @@ public class MainActivity extends Activity implements OnClickListener{
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
     
-    
-	//UI instance variables
+    	//UI instance variables
 	private ImageButton scanBtn;
 	private TextView greeting, instruction;
-
+    protected boolean dieAfterFinish = false;
+    
 	//local db stuff
 	private DBHelper dbHelper;
 	
@@ -56,6 +59,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+	
 		setContentView(R.layout.activity_main);
 		
 		//install drawer
@@ -115,7 +119,7 @@ public class MainActivity extends Activity implements OnClickListener{
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
-        getActionBar().setTitle(mTitle);
+        //getActionBar().setTitle(mTitle);
     }
  
     /**
@@ -133,24 +137,38 @@ public class MainActivity extends Activity implements OnClickListener{
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        // Pass any configuration change to the drawer toggls
+        // Pass any configuration change to the drawer toggles
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
+    
 	@Override
-	public void onClick(View v) {
+	public void onClick(View v) { // DON'T CHANGE THIS -YI
 		switch (v.getId()) {
 		case R.id.scan_button:
 			System.out.println("i should scan something....");
 			scanBtn.setBackgroundResource(R.drawable.scan_button_contact);
+			Intent intent = new Intent(this, PostActivity.class);
+			startActivity(intent);
+			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+			
 			break;
 		}
-		
+	}
+	@Override
+	public void onResume() {
+		super.onResume();
+		scanBtn.setBackgroundResource(R.drawable.scan_button);
+	}
+	@Override
+	public void onBackPressed() {
+	    super.onBackPressed();
+	    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 	}
 	
 	
 	/// helpers for set up
 	
-	private void setupDrawer(Bundle savedInstanceState) {
+	protected void setupDrawer(Bundle savedInstanceState) {
 		mTitle = mDrawerTitle = getTitle();
 		 
         // load slide menu items
@@ -178,7 +196,10 @@ public class MainActivity extends Activity implements OnClickListener{
  
         // Recycle the typed array
         navMenuIcons.recycle();
- 
+        // install listeners for drawer
+        
+        mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
+        
         // setting the nav drawer list adapter
         adapter = new NavDrawerListAdapter(getApplicationContext(),
                 navDrawerItems);
@@ -194,52 +215,66 @@ public class MainActivity extends Activity implements OnClickListener{
                 R.string.app_name // nav drawer close - description for accessibility
         ){
             public void onDrawerClosed(View view) {
-                getActionBar().setTitle(mTitle);
+                //getActionBar().setTitle(mTitle);
                 // calling onPrepareOptionsMenu() to show action bar icons
-                invalidateOptionsMenu();
+                //invalidateOptionsMenu();
             }
  
             public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle(mDrawerTitle);
+                //getActionBar().setTitle(mDrawerTitle);
                 // calling onPrepareOptionsMenu() to hide action bar icons
-                invalidateOptionsMenu();
+                //invalidateOptionsMenu();
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
  
         if (savedInstanceState == null) {
             // on first time display view for first nav item
-            displayView(0);
-        }	
+            displayView(99);
+        }else {
+        	//what screen should we display!?!?! D:
+        }
 	}
 	/**
      * Diplaying fragment view for selected nav drawer list item
      * */
     private void displayView(int position) {
+    	
+    	//launching new activity
+    	mDrawerLayout.closeDrawers();
+    	
         // update the main content by replacing fragments
         switch (position) {
-        case 0:
-           
+        case 0: //SELL
+        	Intent intent = new Intent(this, PostActivity.class);
+			startActivity(intent);
+			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+			
+	        //decide how to finish the activity
+			if(dieAfterFinish) {
+				finish();
+			}
             break;
-        case 1:
+        case 1: //SEARCH
+        	//	CARL ADD SEARCH HERE!!!!
+        	
+        	this.finishActivity();
+            break;
+        case 2: //MY PROFILE
+        	//KAHLIM ADD PROFILE PAGE HERE!!!
+        	this.finishActivity();
           
             break;
-        case 2:
-          
-            break;
-        case 3:
-            
-            break;
-        case 4:
-           
-            break;
-        case 5:
-            
-            break;
- 
         default:
             break;
         }
+    }
+    
+    //helper to decide how to finish - helper for displayView()
+    private void finishActivity() {
+    	if(dieAfterFinish) { 
+            	finish();
+            }
     }
 	
 	private void setupGreeting() {
@@ -286,4 +321,18 @@ public class MainActivity extends Activity implements OnClickListener{
 		
 		instruction.setText(builder);
 	}
+	
+	/**
+	 * Slide menu item click listener
+	 * */
+	private class SlideMenuClickListener implements
+			ListView.OnItemClickListener {
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			// display view for selected nav drawer item
+			displayView(position);
+		}
+	}
+
 }

@@ -9,12 +9,18 @@
     <!-- MainActivity Strings -->
     <string name="main_greeting">SPRING2014 is almost here! Remember to sell your books.</string>
     <string name="main_instruction">not set!</string>
-	<string name="main_inst_sell"> to sell a book.\n Swipe </string>
-	<string name="main_inst_swipe"> to access your menu.\n </string>
-	<string name="main_inst_look"> to look for books.</string>
-	
-	<!-- drawer menu Strings - the arrays are in array[dot]xml-->
+    <string name="main_inst_sell"> to sell a book.\n Swipe </string>
+    <string name="main_inst_swipe"> to access your menu.\n </string>
+    <string name="main_inst_look"> to look for books.</string>
+
+    <!-- drawer menu Strings - the arrays are in array[dot]xml -->
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="drawer_open">Menu Open</string>
     <string name="drawer_close">Menu Close</string>
+
+    <!-- strings for PostActivity -->
+    <string name="title_activity_post">Sell Your Book!</string>
+    <string name="errorMsg_activity_post">Sorry, something went wrong while you were posting your book. Please try again.</string>
+    <string name="title_activity_scanner_manager">ScannerManager</string>
+
 </resources>
