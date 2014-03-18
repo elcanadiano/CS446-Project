@@ -36,6 +36,20 @@
             android:name="com.EasyPeasy.buymybook.ScannerManager"
             android:label="@string/title_activity_scanner_manager" >
         </activity>
+        <activity
+            android:name="com.EasyPeasy.buymybook.ManualSearchActivity"
+            android:label="@string/title_activity_manual_search"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.EasyPeasy.buymybook.SearchManualActivity"
+            android:label="@string/title_activity_search_manual"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.EasyPeasy.buymybook.SearchResultsActivity"
+            android:label="@string/title_activity_search_results" >
+        </activity>
     </application>
 
 </manifest>

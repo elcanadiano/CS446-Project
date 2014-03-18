@@ -3,74 +3,91 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileActivity"
-    android:background="#1ABC9C" >
-    	
+    android:background="@color/background_color" >
+    
     <RelativeLayout
         	android:id="@+id/profile"
         	android:layout_width="fill_parent"
-        	android:layout_height="200dp"
-        	android:orientation="vertical">       
-        <TextView 
-            android:id="@+id/nameandsignup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:text="@string/name_and_signup"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:gravity="right"
-            android:textColor="#adadad"
-	        android:textColorLink="#adadad"
-            android:background="@drawable/square" />
-		<TextView
-	        android:id="@+id/phone"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_below="@id/nameandsignup"
-	        android:layout_alignParentRight="true"
-	        android:layout_marginTop="20dp"
-	        android:text="@string/phone"
-	        android:textSize="16sp"
-	        android:textStyle="bold"
-	        android:autoLink="phone"
-			android:textColor="#adadad"
-	        android:textColorLink="#adadad"
-	        android:background="@drawable/square" />
-	    <TextView
-	        android:id="@+id/text"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_below="@id/phone"
-		    android:layout_alignParentRight="true"
-		    android:layout_marginTop="20dp"
-	        android:text="@string/text"
-	        android:textSize="16sp"
-			android:textStyle="bold"
-			android:textColor="#adadad"
-	        android:textColorLink="#adadad"
-			android:background="@drawable/square" />
-	    <TextView
-	        android:id="@+id/email"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_below="@id/text"
-	        android:layout_alignParentRight="true"
-	        android:layout_marginTop="20dp"
-	        android:text="@string/email"
-	        android:textSize="16sp"
-	        android:textStyle="bold"
-	        android:textColor="#adadad"
-	        android:textColorLink="#adadad"
-	        android:autoLink="email"
-	        android:background="@drawable/square" />
-	     <ImageView
+        	android:layout_height="175dp"
+        	android:orientation="vertical">
+	    
+	    <ImageButton
 			android:id="@+id/profile_pic"
 		    android:contentDescription="This is the user's profile picture"
-		    android:layout_height="100dp"
+		    android:layout_marginLeft="5dp"
+		    android:layout_marginTop="20dp"
+		    android:layout_marginRight="5dp"
+		    android:layout_height="150dp"
 		    android:layout_width="125dp"
 		    android:scaleType="fitXY"
-		    android:layout_alignParentTop="true"
-		    android:layout_alignParentLeft="true" />
+		    android:background="@null"
+		    android:onClick="goToFacebook" />
+
+        <TextView
+            style="@style/profilePageName"
+            android:id="@+id/first_name"
+            android:layout_toRightOf="@id/profile_pic"
+            android:layout_marginTop="10dp" />
+        
+        <TextView
+            style="@style/profilePageName"
+            android:id="@+id/last_name"
+            android:layout_toRightOf="@id/profile_pic"
+            android:layout_below="@id/first_name"/>
+        
+        <ImageView
+            android:id="@+id/phone_img"
+            android:src="@drawable/phone"
+            android:layout_below="@id/last_name"
+            android:layout_toRightOf="@id/profile_pic"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="7dp"
+            android:layout_width="36dp"
+         	android:layout_height="36dp" />
+                
+		<EditText
+		    style="@style/profilePageInfo"
+	        android:id="@+id/phone"
+	        android:inputType="phone"
+	        android:singleLine="true"
+	        android:imeOptions="actionDone"
+	        android:layout_toRightOf="@id/phone_img"
+	        android:layout_below="@id/last_name" />
+		
+		<ImageView
+            android:id="@+id/email_img"
+            android:src="@drawable/email"
+            android:layout_below="@id/phone"
+            android:layout_toRightOf="@id/profile_pic"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="7dp"
+            android:layout_width="36dp"
+         	android:layout_height="36dp" />
+	    
+	    <EditText
+	        style="@style/profilePageInfo"
+	        android:id="@+id/email"
+	        android:inputType="textEmailAddress"
+	        android:singleLine="true"
+	        android:imeOptions="actionDone"
+	        android:layout_toRightOf="@id/email_img"
+	        android:layout_below="@id/phone" />
     </RelativeLayout>
+    
+    <TextView
+        style="@style/profileBooksHeader"
+        android:id="@+id/books_selling_text"
+        android:layout_below="@id/profile" />
+    
+    <ListView
+          android:id="@+id/my_books"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/books_selling_text"
+          android:layout_marginTop="20dp"
+          android:background="@color/list_bg_color"
+          android:cacheColorHint="@android:color/transparent"
+          android:divider="@color/list_divider"
+          android:dividerHeight="10dp"
+          android:paddingLeft="2dp" />
 </RelativeLayout>

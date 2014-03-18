@@ -43,7 +43,8 @@ public class CommunicationClass{
 	*/
 	public CommunicationClass(String url){
 		String uri = new String(url);
-        //new DownloadJSON().execute(uri , null, null);
+		
+        new DownloadJSON().execute(uri , null, null);
 	}
 	
 	
@@ -54,7 +55,7 @@ public class CommunicationClass{
 		try{
 			//add data
 			List<NameValuePair> nvp = new ArrayList<NameValuePair>();
-			nvp.add(new BasicNameValuePair("author","Tim Kenyon"));
+			nvp.add(new BasicNameValuePair("authors","Tim Kenyon"));
 			httppost.setEntity(new UrlEncodedFormEntity(nvp));
 			//execute http post request
 			HttpResponse response = httpclient.execute(httppost);

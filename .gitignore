@@ -1,2 +1,6 @@
 demo/zxing-android/BarcodeScanningApp/bin/*.apk
 demo/zxing-android/BarcodeScanningApp/bin/resources.ap_
+demo/ProfileScreen/bin/*.apk
+demo/ProfileScreen/bin/resources.ap_
+demo/BuyMyBook_Yi/bin/*.apk
+demo/BuyMyBook_Yi/bin/resources.ap_

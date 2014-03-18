@@ -20,12 +20,22 @@ public final class R {
     }
     public static final class color {
         public static final int actionbar_grey=0x7f060001;
+        public static final int alizarin=0x7f06001b;
+        public static final int amethyst=0x7f060014;
+        public static final int asbestos=0x7f060019;
+        public static final int belizehole=0x7f060013;
+        public static final int carrot=0x7f06001d;
+        public static final int clouds=0x7f06000e;
+        public static final int concrete=0x7f060018;
         public static final int counter_text_bg=0x7f060006;
         public static final int counter_text_color=0x7f060007;
         /**  general colours for views 
          */
         public static final int default_background_grey=0x7f060008;
         public static final int default_text_colour=0x7f060009;
+        public static final int default_text_hint_colour=0x7f06000a;
+        public static final int emerald=0x7f060010;
+        public static final int greensea=0x7f06000f;
         public static final int list_background=0x7f060003;
         public static final int list_background_pressed=0x7f060004;
         public static final int list_divider=0x7f060005;
@@ -33,10 +43,22 @@ public final class R {
   slide menu colours 
          */
         public static final int list_item_title=0x7f060002;
-        public static final int testing_orange=0x7f06000a;
+        public static final int midnightblue=0x7f060017;
+        public static final int nephritis=0x7f060011;
+        public static final int orange=0x7f060020;
+        public static final int peterriver=0x7f060012;
+        public static final int pomegranate=0x7f06001c;
+        public static final int pumpkin=0x7f06001e;
+        public static final int silver=0x7f06001a;
+        public static final int sunflower=0x7f06001f;
+        public static final int testing_orange=0x7f06000b;
         /**  action bar colours 
          */
         public static final int title_background=0x7f060000;
+        public static final int turqoise=0x7f06000c;
+        public static final int wetasphalt=0x7f060016;
+        public static final int white=0x7f06000d;
+        public static final int wisteria=0x7f060015;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -49,75 +71,127 @@ public final class R {
         public static final int activity_vertical_margin=0x7f070001;
     }
     public static final class drawable {
-        public static final int counter_bg=0x7f020000;
-        public static final int drawer_shadow=0x7f020001;
-        public static final int ic_action_camera=0x7f020002;
-        public static final int ic_action_defaulticon=0x7f020003;
-        public static final int ic_action_search=0x7f020004;
-        public static final int ic_booker_default=0x7f020005;
-        public static final int ic_communities=0x7f020006;
-        public static final int ic_drawer=0x7f020007;
-        public static final int ic_home=0x7f020008;
-        public static final int ic_launcher=0x7f020009;
-        public static final int ic_menu_booker_normal=0x7f02000a;
-        public static final int ic_menu_camera_normal=0x7f02000b;
-        public static final int ic_menu_search_normal=0x7f02000c;
-        public static final int ic_pages=0x7f02000d;
-        public static final int ic_people=0x7f02000e;
-        public static final int ic_photos=0x7f02000f;
-        public static final int ic_swipe_menu=0x7f020010;
-        public static final int ic_whats_hot=0x7f020011;
-        public static final int list_item_bg_normal=0x7f020012;
-        public static final int list_item_bg_pressed=0x7f020013;
-        public static final int list_selector=0x7f020014;
-        public static final int scan_button=0x7f020015;
-        public static final int scan_button_contact=0x7f020016;
+        public static final int bookpixel=0x7f020000;
+        public static final int counter_bg=0x7f020001;
+        public static final int drawer_shadow=0x7f020002;
+        public static final int ic_action_camera=0x7f020003;
+        public static final int ic_action_defaulticon=0x7f020004;
+        public static final int ic_action_search=0x7f020005;
+        public static final int ic_booker_default=0x7f020006;
+        public static final int ic_communities=0x7f020007;
+        public static final int ic_drawer=0x7f020008;
+        public static final int ic_home=0x7f020009;
+        public static final int ic_launcher=0x7f02000a;
+        public static final int ic_menu_booker_normal=0x7f02000b;
+        public static final int ic_menu_camera_normal=0x7f02000c;
+        public static final int ic_menu_search_normal=0x7f02000d;
+        public static final int ic_pages=0x7f02000e;
+        public static final int ic_people=0x7f02000f;
+        public static final int ic_photos=0x7f020010;
+        public static final int ic_swipe_menu=0x7f020011;
+        public static final int ic_whats_hot=0x7f020012;
+        public static final int list_item_bg_normal=0x7f020013;
+        public static final int list_item_bg_pressed=0x7f020014;
+        public static final int list_selector=0x7f020015;
+        public static final int scan_button=0x7f020016;
+        public static final int scan_button_contact=0x7f020017;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b0008;
-        public static final int counter=0x7f0b0007;
+        public static final int action_settings=0x7f0b001d;
+        public static final int author=0x7f0b0015;
+        public static final int condition=0x7f0b0017;
+        public static final int counter=0x7f0b0014;
         public static final int drawer_layout=0x7f0b0000;
+        public static final int frame_container=0x7f0b0011;
         public static final int greeting=0x7f0b0001;
-        public static final int icon=0x7f0b0005;
+        public static final int icon=0x7f0b0012;
+        public static final int image=0x7f0b001c;
         public static final int instruction=0x7f0b0002;
         public static final int list_slidermenu=0x7f0b0004;
+        public static final int post_manual_submit=0x7f0b000e;
+        public static final int price=0x7f0b0016;
+        public static final int scanISBNButton=0x7f0b000d;
         public static final int scan_button=0x7f0b0003;
-        public static final int title=0x7f0b0006;
+        public static final int search_manual_author=0x7f0b0019;
+        public static final int search_manual_bookauthor=0x7f0b000b;
+        public static final int search_manual_bookisbn=0x7f0b000c;
+        public static final int search_manual_booktitle=0x7f0b000a;
+        public static final int search_manual_btitle=0x7f0b0018;
+        public static final int search_manual_condition=0x7f0b001b;
+        public static final int search_manual_header=0x7f0b0005;
+        public static final int search_manual_listview=0x7f0b0010;
+        public static final int search_manual_price=0x7f0b001a;
+        public static final int search_manual_title=0x7f0b000f;
+        public static final int spinnerCourse=0x7f0b0007;
+        public static final int spinnerTerm=0x7f0b0009;
+        public static final int subject=0x7f0b0006;
+        public static final int textCourseNum=0x7f0b0008;
+        public static final int title=0x7f0b0013;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int activity_post=0x7f030001;
-        public static final int activity_post_error=0x7f030002;
-        public static final int activity_scanner_manager=0x7f030003;
-        public static final int drawer_list_item=0x7f030004;
+        public static final int activity_manual_search=0x7f030001;
+        public static final int activity_post=0x7f030002;
+        public static final int activity_post_error=0x7f030003;
+        public static final int activity_scanner_manager=0x7f030004;
+        public static final int activity_search_manual=0x7f030005;
+        public static final int activity_search_results=0x7f030006;
+        public static final int drawer_list_item=0x7f030007;
+        public static final int fragment_results_details=0x7f030008;
+        public static final int fragment_results_search=0x7f030009;
+        public static final int searchlistinglayout=0x7f03000a;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
         public static final int post=0x7f0a0001;
         public static final int scanner_manager=0x7f0a0002;
+        public static final int search_results=0x7f0a0003;
     }
     public static final class string {
-        public static final int action_settings=0x7f080001;
-        public static final int app_name=0x7f080000;
+        public static final int action_settings=0x7f080002;
+        public static final int app_name=0x7f080001;
+        public static final int courseText=0x7f08001a;
+        public static final int default_search=0x7f080012;
         /**  drawer menu Strings - the arrays are in array[dot]xml 
          */
-        public static final int desc_list_item_icon=0x7f080009;
-        public static final int drawer_close=0x7f08000b;
-        public static final int drawer_open=0x7f08000a;
-        public static final int errorMsg_activity_post=0x7f08000d;
-        public static final int hello_world=0x7f080002;
-        public static final int hello_world_long=0x7f080003;
+        public static final int desc_list_item_icon=0x7f08000a;
+        public static final int drawer_close=0x7f08000c;
+        public static final int drawer_open=0x7f08000b;
+        public static final int errorMsg_activity_post=0x7f08000e;
+        public static final int hello_world=0x7f080003;
+        public static final int hello_world_long=0x7f080004;
         /**  MainActivity Strings 
          */
-        public static final int main_greeting=0x7f080004;
-        public static final int main_inst_look=0x7f080008;
-        public static final int main_inst_sell=0x7f080006;
-        public static final int main_inst_swipe=0x7f080007;
-        public static final int main_instruction=0x7f080005;
+        public static final int main_greeting=0x7f080005;
+        public static final int main_inst_look=0x7f080009;
+        public static final int main_inst_sell=0x7f080007;
+        public static final int main_inst_swipe=0x7f080008;
+        public static final int main_instruction=0x7f080006;
+        public static final int post_manual_bookauthor_hint=0x7f080020;
+        public static final int post_manual_bookisbn_hint=0x7f080021;
+        public static final int post_manual_booktitle_hint=0x7f08001f;
+        public static final int post_manual_deptspinner_prompt=0x7f080022;
+        public static final int post_manual_header_text=0x7f08001e;
+        public static final int scanISBN=0x7f08001c;
+        /**  Strings for Searching 
+         */
+        public static final int search_manual=0x7f080010;
+        public static final int search_manual_title=0x7f080014;
+        public static final int search_scan=0x7f080011;
+        public static final int subject=0x7f08001d;
+        public static final int submit=0x7f080000;
+        public static final int term=0x7f08001b;
+        public static final int title_activity_manual_search=0x7f080016;
         /**  strings for PostActivity 
          */
-        public static final int title_activity_post=0x7f08000c;
-        public static final int title_activity_scanner_manager=0x7f08000e;
+        public static final int title_activity_post=0x7f08000d;
+        public static final int title_activity_post_confirmation=0x7f080018;
+        public static final int title_activity_post_scan_confirmation=0x7f080019;
+        public static final int title_activity_scanner_manager=0x7f08000f;
+        public static final int title_activity_search_manual=0x7f080013;
+        public static final int title_activity_search_results=0x7f080023;
+        public static final int title_activity_search_scan=0x7f080015;
+        public static final int title_manual_search=0x7f080017;
     }
     public static final class style {
         /**  stuff for the action bar 

@@ -24,7 +24,7 @@
           android:layout_height="wrap_content"
           android:layout_below="@id/search_manual_title"
           android:layout_marginTop="20dp"
-          android:background="@color/clouds"
+          android:background="@color/silver"
           android:cacheColorHint="@android:color/transparent"
           android:divider="@color/turqoise"
           android:dividerHeight="10dp"

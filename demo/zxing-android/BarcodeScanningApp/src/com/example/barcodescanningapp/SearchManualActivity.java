@@ -24,6 +24,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
+
 /*
  * This activity is the result
  * xmlfile:activity_search_manual.xml
@@ -75,11 +76,15 @@ public class SearchManualActivity extends Activity {
 			for(int i = 0 ; i < jsonArray.length();i++){
 				JSONObject childObject = jsonArray.getJSONObject(i);
 				String title = childObject.getString("title");
-				String author = childObject.getString("author");
-				String price = childObject.getString("listing_price");
-				String condition = childObject.getString("condition");
+				String author = childObject.getString("authors");
+				String price = "1";
+				String condition = "1";
+				
+				//String price = childObject.getString("listing_price");
+				//String condition = childObject.getString("condition");
 			
-				SearchListItem item =new SearchListItem(title,author,price,condition);
+				SearchListItem item = new SearchListItem(title,author,price,condition);
+				
 				results.add(item);
 			}//for
 		}//try
@@ -104,36 +109,52 @@ public class SearchManualActivity extends Activity {
 		String result = extras.getString("json");
 		Log.d(tag,"extras: "+result);
 		JSONArray endResult = new JSONArray();
-	if(result != null){
-		try{
-			JSONObject jsonString = new JSONObject(result);
-			endResult = jsonString.getJSONObject("data").getJSONArray("listings");
-		}
-		catch(JSONException e){
-			Log.d(tag,"Exception: "+e.toString());
-		}
-	}//if
+		/*
+		 * Problem: listings vs single item
+		 * Will Alex return a listing? or just one data item
+		 * 
+		 */
+		JSONObject book = new JSONObject();
+		JSONObject data = new JSONObject();
+		if(result != null){
+			try{
+				JSONObject jsonString = new JSONObject(result);
+				data = jsonString.getJSONObject("data");
+				Log.d(tag,"got data");
+				endResult = data.getJSONArray("book");
+				//endResult.put(data);
+				Log.d(tag,"got book");
+				//endResult = book.getJSONArray("listings");
+				Log.d(tag,"got end result");
+				Log.d(tag,"endResult size: "+endResult.length());
+				
+			}
+			catch(JSONException e){
+				Log.d(tag,"Exception: "+e.toString());
+			}
+		}//if
+		//endResult.put(book);
+		Log.d(tag,"endResult size: "+endResult.length());
+		Log.d(tag,"endResult: "+endResult.toString());
 	
-			Log.d(tag,"endResult: "+endResult.toString());
-		
-			ArrayList image_details;
-			image_details = parseJSONResult(endResult);
-	
-	        final ListView lv1 = (ListView) findViewById(R.id.search_manual_listview);
-	        lv1.setAdapter(new CustomSearchListAdaptor(this, image_details));
-	        lv1.setOnItemClickListener(new OnItemClickListener() {
-	        	/*
-	        	 * Click listener for each item view
-	        	 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
-	        	 */
-	            @Override
-	            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-	                Object o = lv1.getItemAtPosition(position);
-	                SearchListItem newsData = (SearchListItem) o;
-	                Toast.makeText(SearchManualActivity.this, "Selected :" + " " + newsData, Toast.LENGTH_LONG).show();
-	            }
-	 
-	        });
+		ArrayList image_details;
+		image_details = parseJSONResult(endResult);
+
+        final ListView lv1 = (ListView) findViewById(R.id.search_manual_listview);
+        lv1.setAdapter(new CustomSearchListAdaptor(this, image_details));
+        lv1.setOnItemClickListener(new OnItemClickListener() {
+        	/*
+        	 * Click listener for each item view
+        	 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
+        	 */
+            @Override
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                Object o = lv1.getItemAtPosition(position);
+                SearchListItem newsData = (SearchListItem) o;
+                Toast.makeText(SearchManualActivity.this, "Selected :" + " " + newsData, Toast.LENGTH_LONG).show();
+            }
+ 
+        });
 	
 	}
 

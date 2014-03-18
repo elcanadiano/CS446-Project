@@ -97,8 +97,9 @@ public class SearchActivity extends Activity implements OnClickListener{
 			Intent resultsIntent = new Intent(this,SearchManualActivity.class);
 			
 			//scanContent = new String("9787887031990"); //fake it
-			String url="http://buymybookapp.com/api/search/search_book/" + scanContent;
-			
+			//scanContent =  new String("9780176251949");
+			String url="http://buymybookapp.com/api/search/get_book/" + scanContent;
+			Log.d(TAG,"scanContent: "+scanContent);
 			CommunicationClass c = new CommunicationClass(url);
 			c.new DownloadJSON(this,"search").execute(url);		
 			

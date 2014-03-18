@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="submit">Submit</string>
     <string name="app_name">Buy My Book</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
@@ -18,9 +19,33 @@
     <string name="drawer_open">Menu Open</string>
     <string name="drawer_close">Menu Close</string>
 
+
     <!-- strings for PostActivity -->
     <string name="title_activity_post">Sell Your Book!</string>
     <string name="errorMsg_activity_post">Sorry, something went wrong while you were posting your book. Please try again.</string>
     <string name="title_activity_scanner_manager">ScannerManager</string>
+
+    <!-- Strings for Searching -->
+    <string name="search_manual">Search Manually</string>
+    <string name="search_scan">Search by Scanning</string>
+    <string name="default_search">DefaultText</string>
+    <string name="title_activity_search_manual">Search results</string>
+    <string name="search_manual_title">Search Results</string>
+    <string name="title_activity_search_scan">SearchScan</string>
+    <string name="title_activity_manual_search">Find Your Book</string>
+    <string name="title_manual_search">We will find best match</string>
+    <string name="title_activity_post_confirmation">PostConfirmationActivity</string>
+    <string name="title_activity_post_scan_confirmation">Post a book - confirm scan information</string>
+    <string name="courseText">Course</string>
+    <string name="term">Term</string>
+    <string name="scanISBN">Scan ISBN</string>
+    <string name="subject">Subject</string>
+    <string name="post_manual_header_text">We\'ll find the best match</string>
+    <string name="post_manual_booktitle_hint">Book Title</string>
+    <string name="post_manual_bookauthor_hint">Author(s)</string>
+    <string name="post_manual_bookisbn_hint">ISBN</string>
+    <string name="post_manual_deptspinner_prompt">Dept</string>
+    <string name="title_activity_search_results">SearchResultsActivity</string>
+
 
 </resources>

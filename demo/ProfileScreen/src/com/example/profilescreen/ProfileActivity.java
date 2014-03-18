@@ -1,75 +1,75 @@
 package com.example.profilescreen;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.text.method.KeyListener;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.Window;
-import android.widget.RelativeLayout;
+import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.ImageView;
+import android.widget.EditText;
 import android.widget.Toast;
 
+// Yi - make sure this extends MainActivity when merged into Main Activity
+// Keep image if Facebook image works
 public class ProfileActivity extends Activity {
+	
+	private EditText editPhoneNumber;
+	private EditText editEmailAddress;
+	private KeyListener originalPhoneKeyListener;
+	private KeyListener originalEmailKeyListener;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_profile);
-		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.new_title_bar);
 		
-		// Get name, phone, text, and email that were supplied by the user
-		String profile = getIntent().getExtras().getString("name") + "'s profile";
-		String imageName = getIntent().getExtras().getString("image");
-		int color = Integer.parseInt(getIntent().getExtras().getString("color"), 16)+0xFF000000;
+		editPhoneNumber = (EditText)findViewById(R.id.phone);
+		editEmailAddress = (EditText)findViewById(R.id.email);
 		
-		// Find and display wallpaper
-		RelativeLayout ll = ((RelativeLayout)findViewById(R.id.profile));
-		int imageId = getResources().getIdentifier(imageName + "wallpaper", "drawable", getPackageName());
-		if (imageId == 0) {
-			Toast toast = Toast.makeText(
-					getApplicationContext(),
-					"Could not find file: " + imageName + "wallpaper",
-					Toast.LENGTH_SHORT);
-			toast.show();
-		} else {
-			ll.setBackgroundDrawable(getResources().getDrawable(imageId));
-		}
+		originalPhoneKeyListener = editPhoneNumber.getKeyListener();
+		originalEmailKeyListener = editEmailAddress.getKeyListener();
+		
+		//Put name, join date, phone, text, and email
+		((TextView)findViewById(R.id.first_name)).setText(
+				getIntent().getExtras().getString("firstName"));
+		((TextView)findViewById(R.id.last_name)).setText(
+				getIntent().getExtras().getString("lastName"));
+		editPhoneNumber.setText(
+				getIntent().getExtras().getString("phone"));
+		editEmailAddress.setText(
+				getIntent().getExtras().getString("email"));
+		((TextView)findViewById(R.id.books_selling_text)).setText(
+				"Books that " + 
+						getIntent().getExtras().getString("firstName") + 
+						" " + getIntent().getExtras().getString("lastName") +
+						" is selling");
 		
 		// Find and display profile picture
-		ImageView image = ((ImageView)findViewById(R.id.profile_pic));
-		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(image.getLayoutParams());
-		lp.setMargins(30, 70, 0, 0);
-		image.setLayoutParams(lp);
-		imageId = getResources().getIdentifier(imageName, "drawable", getPackageName());
+		String imageName = getIntent().getExtras().getString("image");
+		ImageButton image = ((ImageButton)findViewById(R.id.profile_pic));
+		int imageId = getResources().getIdentifier(imageName, "drawable", getPackageName());
+		
 		if (imageId == 0) {
-			Toast toast = Toast.makeText(
-					getApplicationContext(),
-					"Could not find file: " + imageName,
-					Toast.LENGTH_SHORT);
+		Toast toast = Toast.makeText(
+			getApplicationContext(),
+			"Could not find file: " + imageName,
+			Toast.LENGTH_SHORT);
 			toast.show();
 		} else {
 			image.setImageDrawable(getResources().getDrawable(imageId));
 		}
-		
-		// Put name, join date, phone, text, and email
-		((TextView)findViewById(R.id.nameandsignup)).setText(
-				getIntent().getExtras().getString("name") + "\n" + "Joined: 03/10/2014");
-		((TextView)findViewById(R.id.phone)).setText(
-				"Call: " + getIntent().getExtras().getString("phone"));
-		((TextView)findViewById(R.id.text)).setText(
-				"Text: " + getIntent().getExtras().getString("text"));
-		((TextView)findViewById(R.id.email)).setText(
-				"Email: " + getIntent().getExtras().getString("email"));
-		((TextView)findViewById(R.id.myTitle)).setText(
-				profile);
-		((TextView)findViewById(R.id.myTitle)).setBackgroundColor(
-				color);
 
 		// Launch Messaging app if user clicks on text messaging number
+		/*
 		TextView text = (TextView)findViewById(R.id.text);
 		text.setOnClickListener(new OnClickListener() {
 			@Override
@@ -89,6 +89,100 @@ public class ProfileActivity extends Activity {
 				}
 			}
 		});
+		*/
+		
+		ListView lv = (ListView) findViewById(R.id.my_books);
+		
+		ArrayList<String> myArrayOfBooks = new ArrayList<String>();
+		myArrayOfBooks.add("Foo");
+		myArrayOfBooks.add("Bar");
+		myArrayOfBooks.add("Foobar");
+		myArrayOfBooks.add("Booker");
+		myArrayOfBooks.add("Samsung");
+		myArrayOfBooks.add("Buy My Book");
+		myArrayOfBooks.add("Test1");
+		myArrayOfBooks.add("Test2");
+		
+		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+			this,
+			android.R.layout.simple_list_item_1,
+			myArrayOfBooks );
+		
+		lv.setAdapter(arrayAdapter);
+		
+		editPhoneNumber.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				editPhoneNumber.setKeyListener(originalPhoneKeyListener);
+				editPhoneNumber.requestFocus(); // Might not be needed
+			}
+		});
+		
+		editPhoneNumber.setOnEditorActionListener(
+			    new EditText.OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+			    if (event != null &&
+			    	actionId == EditorInfo.IME_ACTION_SEARCH ||
+			    	actionId == EditorInfo.IME_ACTION_DONE ||
+			        event.getAction() == KeyEvent.ACTION_DOWN &&
+			        event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+			    	
+			    	// Check if user entered 
+			    	if (v.length() != 10) {
+			    		Toast toast = Toast.makeText(
+				    		getApplicationContext(),
+				    		"You must enter 10 digits for the phone number",
+				    		Toast.LENGTH_SHORT);
+				    	toast.show();
+				    	return false;
+			    	} else {
+			    		Toast toast = Toast.makeText(
+				    		getApplicationContext(),
+				    		"Phone number has been updated",
+				    		Toast.LENGTH_SHORT);
+				    	toast.show();
+				    	editPhoneNumber.setKeyListener(null);
+				    	editPhoneNumber.clearFocus();
+				    	return true;
+			    	}
+			    } else {
+			    return false; // pass on to other listeners. 
+			}
+		}
+		});
+	
+	editEmailAddress.setOnClickListener(new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			editEmailAddress.setKeyListener(originalEmailKeyListener);
+			editEmailAddress.requestFocus(); // Might not be needed
+		}
+	});
+	
+	editEmailAddress.setOnEditorActionListener(
+		    new EditText.OnEditorActionListener() {
+		@Override
+		public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+		    if (event != null &&
+		    		actionId == EditorInfo.IME_ACTION_SEARCH ||
+		            actionId == EditorInfo.IME_ACTION_DONE ||
+		            event.getAction() == KeyEvent.ACTION_DOWN &&
+		            event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+		    	Toast toast = Toast.makeText(
+			   		getApplicationContext(),
+			    	"Email address has been updated",
+			    	Toast.LENGTH_SHORT);
+			   	toast.show();
+			   	editEmailAddress.setKeyListener(null);
+			   	editEmailAddress.clearFocus();
+			   	return true;
+		    } else {
+		    	return false; // pass on to other listeners. 
+		}
+	}
+	});
+	
 	}
 
 	@Override
@@ -97,4 +191,13 @@ public class ProfileActivity extends Activity {
 		getMenuInflater().inflate(R.menu.profile, menu);
 		return true;
 	}
+	
+	// Called when user touches the image
+    public void goToFacebook(View view) {
+    	Toast toast = Toast.makeText(
+    		getApplicationContext(),
+    		"This will redirect to your Facebook profile in the future",
+    		Toast.LENGTH_SHORT);
+    	toast.show();
+    }
 }

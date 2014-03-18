@@ -1,0 +1,124 @@
+package com.EasyPeasy.buymybook;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+
+
+
+public class CommunicationClass{
+		//verification before request
+	private String tag = "CommClass";
+	//most commonly used for setting up and starting a progress dialog
+	InputStream inputStream = null;
+	String result = ""; //result of JSON
+	HttpResponse httpResponse2;
+	int typeCall; //0 for post, 1 for scan
+	private boolean done = false;
+	/*
+	public CommunicationClass(){ // should make the ctor a nop later - only run on demand
+		String uri = new String("http://buymybookapp.com/api/test/test2");
+        new DownloadJSON().execute(uri , null, null);
+	}
+	*/
+	public CommunicationClass(String url){
+		String uri = new String(url);
+		
+        new DownloadJSON().execute(uri , null, null);
+	}
+
+	
+	public class DownloadJSON extends AsyncTask<String, Void, String> {
+		JSONObject jsonObj;
+		Context context;
+		String typeDownload;
+		DownloadJSON() {
+		}
+		
+		DownloadJSON(Context context,String type) {
+			this.context= context.getApplicationContext();
+			this.typeDownload = type.toString();
+			Log.d(tag,"Constructing, type: "+type);
+		}
+		protected String doInBackground(String... urls) {
+            HttpClient client = new DefaultHttpClient();
+            String json = "";
+            try {
+                String line = "";
+                HttpGet request = new HttpGet(urls[0]);
+                HttpResponse response = client.execute(request);
+                BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+                while ((line = rd.readLine()) != null) {
+                    json += line + System.getProperty("line.separator");
+                }
+            } catch (IllegalArgumentException e1) {
+                e1.printStackTrace();
+            } catch (IOException e2) {
+                e2.printStackTrace();
+            }
+            return json;
+        }
+
+        protected void onProgressUpdate(Void... progress) {
+
+        }
+
+        protected void onPostExecute(String result) {
+        	Log.d(tag, "ONPOSTEXECUTE");
+        	Log.d(tag,"jsonON: "+ result);
+        	try {
+        		jsonObj = null;
+				jsonObj = new JSONObject(result);
+				
+				if (typeDownload.equals("post")) { // show post confimration activity
+					/*Log.d(tag,"if case");
+					Intent intent = new Intent(this.context, PostScanConfirmationActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					
+					intent.putExtra("json", result.toString());
+					
+					context.startActivity(intent);*/
+				} else {
+					Log.d(tag,"else case");
+					// carl, but your result code here!
+					
+					Intent intent = new Intent(this.context, SearchResultsActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					
+					intent.putExtra("json", result.toString());
+					Log.d(tag,"Passing json to SearchResults: "+result.toString());
+					context.startActivity(intent);
+					
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
+        	catch(Exception e){
+        		Log.d(tag,"Exception: "+e.toString());
+        	}
+        }
+    }
+	
+	
+}//CommunicationClass

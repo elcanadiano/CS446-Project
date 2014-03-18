@@ -29,6 +29,7 @@ import android.widget.TextView;
 import com.EasyPeasy.buymybook.adapter.NavDrawerListAdapter;
 import com.EasyPeasy.buymybook.model.NavDrawerItem;
 
+
 public class MainActivity extends Activity implements OnClickListener{
 	final Context contenxt = this;
 	//drawer menu items
@@ -147,10 +148,15 @@ public class MainActivity extends Activity implements OnClickListener{
 		case R.id.scan_button:
 			System.out.println("i should scan something....");
 			scanBtn.setBackgroundResource(R.drawable.scan_button_contact);
+/*
 			Intent intent = new Intent(this, PostActivity.class);
 			startActivity(intent);
 			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 			
+*/
+			Intent intent = new Intent(this,ManualSearchActivity.class);
+			startActivity(intent);
+			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 			break;
 		}
 	}

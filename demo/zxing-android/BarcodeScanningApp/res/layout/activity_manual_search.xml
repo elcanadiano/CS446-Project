@@ -22,14 +22,26 @@
         android:text="@string/post_manual_header_text" 
         
         />  
+      
+         
+     <TextView
+        android:textColor="@color/white"
+        android:id="@+id/subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_manual_header"
+        android:textIsSelectable="false"
+        android:textSize="15sp"
+        android:text="@string/subject" 
         
-    
+        /> 
       <Spinner 
         android:id="@+id/spinnerCourse"
 		android:textColorHint="@color/white"
 	    android:layout_height="wrap_content"
 	    android:layout_width="wrap_content"
 	    android:layout_below="@id/search_manual_header"
+	    android:layout_toRightOf="@id/subject"
         />
       <EditText
         android:id="@+id/textCourseNum"
@@ -37,14 +49,20 @@
 	    android:layout_height="wrap_content"
 	    android:layout_width="wrap_content"
 	    android:layout_toRightOf="@id/spinnerCourse"
+	    android:layout_below="@id/search_manual_header"
+	    android:digits="0,1,2,3,4,5,6,7,8,9"
+	    android:hint="Enter course number"
+	    android:maxLength="3"
+	    
         />
-      
+  
+     
       
       <Spinner 
         android:id="@+id/spinnerTerm"
 		android:textColorHint="@color/white"
 	    android:layout_height="wrap_content"
-	    android:layout_width="fill_parent"
+	    android:layout_width="wrap_content"
 	    android:layout_below="@id/spinnerCourse"
 	  	android:hint="@string/term"
 	  	

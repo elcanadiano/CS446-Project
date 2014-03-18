@@ -1,3 +1,4 @@
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -7,53 +8,38 @@
     android:background="@color/background_color" >
     
     <EditText
-        android:id="@+id/txt_name"
+        android:id="@+id/txt_first_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/name" />
+        android:hint="@string/first_name" />
+    
+    <EditText
+        android:id="@+id/txt_last_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/last_name" />
     
     <EditText 
         android:id="@+id/txt_phone"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/phone" />
-    
-    <EditText 
-        android:id="@+id/txt_text"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/text" />
-    
     <EditText 
         android:id="@+id/txt_email"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email" />
-    
-    <EditText
-        android:id="@+id/txt_color"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/color" />
-    
     <EditText
         android:id="@+id/txt_image"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/image" />
-    
+
     <Button
         android:id="@+id/btn_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_profile"
-        android:onClick="profile" />
-
-    <Button
-        android:id="@+id/btn_profile2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="profile2"
-        android:text="@string/btn_profile2" />
+        android:onClick="profile"
+        android:text="@string/btn_profile" />
     
 </LinearLayout>
