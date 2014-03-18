@@ -48,17 +48,12 @@ public class ManualSearchActivity extends MainActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		System.out.println("ManualSearchActivity -onCreate loading super stuff");
 		super.onCreate(savedInstanceState);
-		
-		System.out.println("ManualSearchActivity -onCreate loading own stuff");
 		setContentView(R.layout.activity_manual_search);
 		
 		//set drawer menu - from yi
 		this.dieAfterFinish=true;
-		System.out.println("ManualSearchActivity -onCreate setting menu");
 		this.setupDrawer(savedInstanceState);
-		System.out.println("ManualSearchActivity -menu should be set..");
 		
 		textTitle = (EditText)findViewById(R.id.search_manual_booktitle);
 		textAuthor = (EditText)findViewById(R.id.search_manual_bookauthor);
@@ -105,6 +100,10 @@ public class ManualSearchActivity extends MainActivity {
 		CommunicationClass c = new CommunicationClass(url);
 		c.new DownloadJSON(this,"search").execute(url);	
 		//startActivity(intent);
+		//This activity should die now -Yi
+		if(dieAfterFinish) {
+			finish();
+		}
 	}
 	/*
 	 * Called by the scan ISBN button to scan an ISBN into the textfield

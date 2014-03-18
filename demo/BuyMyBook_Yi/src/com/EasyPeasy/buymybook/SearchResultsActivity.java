@@ -5,29 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.os.Bundle;
-import android.app.Activity;
-import com.EasyPeasy.buymybook.SearchResultsFragment;
-
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
-public class SearchResultsActivity extends FragmentActivity {
+/*
+ * Carl - talk to me if you need answers on MyFragmentActivity
+ * 	-yi
+ */
+public class SearchResultsActivity extends MyFragmentActivity {
 	final String tag = "SearchResultsActivity";
 	SimpleAdapter adapter;
 	
@@ -45,6 +33,9 @@ public class SearchResultsActivity extends FragmentActivity {
 		else{
 			Log.d(tag,"null pointer");
 		}
+		
+		//install drawer menu
+		this.setupDrawer(savedInstanceState);
 		/*
 		 * Launches the result fragment upon creation
 		 */
@@ -87,6 +78,7 @@ public class SearchResultsActivity extends FragmentActivity {
 		   //call super method to go back an activity
 		   super.onBackPressed();
 	   }
+	   overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 	}
 
 }

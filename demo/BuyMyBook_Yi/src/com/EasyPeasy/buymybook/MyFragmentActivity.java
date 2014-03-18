@@ -2,128 +2,66 @@ package com.EasyPeasy.buymybook;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.ImageSpan;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.EasyPeasy.buymybook.adapter.NavDrawerListAdapter;
 import com.EasyPeasy.buymybook.model.NavDrawerItem;
-
-
-public class MainActivity extends Activity implements OnClickListener{
+/*
+ * THIS IS AN ABSTRACT CLASS!
+ * It's used so that we can have drawers with SOME of our fragments
+ *  note: we should only use this for fragments that
+ *  		require drawers. Most fragments should not
+ *  		need a drawer
+ *  						-Yi
+ */
+public class MyFragmentActivity extends FragmentActivity {
 	final Context contenxt = this;
+	
 	//drawer menu items
 	
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
-		// nav drawer title
-    private CharSequence mDrawerTitle;
-    	// used to store app title
-    private CharSequence mTitle;
-    	// slide menu items
-    private String[] navMenuTitles;
-    private TypedArray navMenuIcons;
- 
-    private ArrayList<NavDrawerItem> navDrawerItems;
-    private NavDrawerListAdapter adapter;
-    
-    	//UI instance variables
-	private ImageButton scanBtn;
-	private TextView greeting, instruction;
-    protected boolean dieAfterFinish = false;
-    
-	//local db stuff
-	private DBHelper dbHelper;
+			// nav drawer title
+	private CharSequence mDrawerTitle;
+	    	// used to store app title
+	private CharSequence mTitle;
+	    	// slide menu items
+	private String[] navMenuTitles;
+	private TypedArray navMenuIcons;
+	 
+	private ArrayList<NavDrawerItem> navDrawerItems;
+	private NavDrawerListAdapter adapter;
 	
-
+	protected boolean dieAfterFinish = true;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	
-		setContentView(R.layout.activity_main);
-		
+		setContentView(R.layout.activity_my_fragment);
 		//install drawer
 		this.setupDrawer(savedInstanceState);
-		
-		//instantiate UI items
-		scanBtn = (ImageButton)findViewById(R.id.scan_button);
-		greeting=(TextView)findViewById(R.id.greeting);
-		instruction=(TextView)findViewById(R.id.instruction);
-		
-		scanBtn.setOnClickListener(this);
-		scanBtn.setBackgroundResource(R.drawable.scan_button);
-		//set up greeting message (static right now)
-		this.setupGreeting();
-		//set up instructions
-		this.setupInstruction();
-		//set up local db
-		dbHelper = new DBHelper(this);
-		
-		if(true){
-			dbHelper.clearAll();
-		}
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.my, menu);
 		return true;
 	}
-	@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // toggle nav drawer on selecting action bar app icon/title
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        // Handle action bar actions click
-        switch (item.getItemId()) {
-        case R.id.action_settings:
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
-        }
-    }
-	 
-    /***
-     * Called when invalidateOptionsMenu() is triggered
-     */
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        // if nav drawer is opened, hide the action items
-        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
-        return super.onPrepareOptionsMenu(menu);
-    }
- 
-    @Override
-    public void setTitle(CharSequence title) {
-        mTitle = title;
-        //getActionBar().setTitle(mTitle);
-    }
- 
-    /**
+	
+	/**
      * When using the ActionBarDrawerToggle, you must call it during
      * onPostCreate() and onConfigurationChanged()...
      */
@@ -142,45 +80,17 @@ public class MainActivity extends Activity implements OnClickListener{
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
     
-	@Override
-	public void onClick(View v) { // DON'T CHANGE THIS -YI
-		switch (v.getId()) {
-		case R.id.scan_button:
-			System.out.println("i should scan something....");
-			scanBtn.setBackgroundResource(R.drawable.scan_button_contact);
-			
-			Intent intent = new Intent(this, PostActivity.class);
-			startActivity(intent);
-			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
-
-/*//- CARL, Switch the commenting on these two if you want a quick access to Search. -Yi
-			Intent intent = new Intent(this,ManualSearchActivity.class);
-			startActivity(intent);
-			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
-*/	
-			break;
-		}
-	}
-	@Override
-	public void onResume() {
-		super.onResume();
-		scanBtn.setBackgroundResource(R.drawable.scan_button);
-	}
-	@Override
+    @Override
 	public void onBackPressed() {
-		if(dieAfterFinish) {
+    	if(dieAfterFinish) {
 			super.onBackPressed();
 		    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 		} else {
 			//main page, don't do anything.
 		}
-	    
 	}
-	
-	
-	/// helpers for set up
-	
-	protected void setupDrawer(Bundle savedInstanceState) {
+    
+    protected void setupDrawer(Bundle savedInstanceState) {
 		mTitle = mDrawerTitle = getTitle();
 		 
         // load slide menu items
@@ -247,7 +157,8 @@ public class MainActivity extends Activity implements OnClickListener{
         	//what screen should we display!?!?! D:
         }
 	}
-	/**
+    
+    /**
      * Diplaying fragment view for selected nav drawer list item
      * */
     private void displayView(int position) {
@@ -287,60 +198,15 @@ public class MainActivity extends Activity implements OnClickListener{
             break;
         }
     }
-    
+
     //helper to decide how to finish - helper for displayView()
     private void finishActivity() {
-    	if(dieAfterFinish) { 
+    	if(dieAfterFinish) {
             	finish();
             }
     }
-	
-	private void setupGreeting() {
-		
-		Drawable booker = this.getResources().getDrawable(R.drawable.ic_booker_default);
-		booker.setBounds(0, 0, booker.getIntrinsicWidth(), booker.getIntrinsicHeight()); 
-		ImageSpan b = new ImageSpan(booker);
-		
-		SpannableStringBuilder builder = new SpannableStringBuilder();
-		builder.append(" ");
-		builder.append(this.getText(R.string.main_greeting));
-		builder.setSpan(b, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		greeting.setText(builder);
-	}
-	private void setupInstruction() {
-		SpannableStringBuilder builder = new SpannableStringBuilder();
-		
-		Drawable camera = this.getResources().getDrawable(R.drawable.ic_action_camera);
-		camera.setBounds(0, 0, camera.getIntrinsicWidth(), camera.getIntrinsicHeight()); // <---- Very important otherwise your image won't appear
-		ImageSpan c = new ImageSpan(camera);
-		Drawable swipe = this.getResources().getDrawable(R.drawable.ic_swipe_menu);
-		swipe.setBounds(0, 0, swipe.getIntrinsicWidth(), swipe.getIntrinsicHeight());
-		ImageSpan s = new ImageSpan(swipe);
-		Drawable look = this.getResources().getDrawable(R.drawable.ic_action_search);
-		look.setBounds(0, 0, look.getIntrinsicWidth(), look.getIntrinsicHeight());
-		ImageSpan l = new ImageSpan(look);
-		
-		builder.append(" ");
-		builder.append(this.getText(R.string.main_inst_sell));
-		int lengthOfPart1 = builder.length();
-		builder.append(" ");
-		builder.append(this.getText(R.string.main_inst_swipe));
-		int lengthOfPart2 = builder.length();
-		builder.append(" ");
-		builder.append(this.getText(R.string.main_inst_look));
-		
-		builder.setSpan(c, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		builder.setSpan(s,  lengthOfPart1,  lengthOfPart1+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		builder.setSpan(l, lengthOfPart2, lengthOfPart2+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		
-		builder.setSpan(new ForegroundColorSpan(Color.parseColor("#16a085")), 4, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		builder.setSpan(new ForegroundColorSpan(Color.parseColor("#e67e22")), 18, 23, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		builder.setSpan(new ForegroundColorSpan(Color.parseColor("#8e44ad")), 49, 53, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		
-		instruction.setText(builder);
-	}
-	
-	/**
+    
+    /**
 	 * Slide menu item click listener
 	 * */
 	private class SlideMenuClickListener implements
@@ -352,5 +218,6 @@ public class MainActivity extends Activity implements OnClickListener{
 			displayView(position);
 		}
 	}
+
 
 }
