@@ -19,7 +19,6 @@
     <string name="drawer_open">Menu Open</string>
     <string name="drawer_close">Menu Close</string>
 
-
     <!-- strings for PostActivity -->
     <string name="title_activity_post">Sell Your Book!</string>
     <string name="errorMsg_activity_post">Sorry, something went wrong while you were posting your book. Please try again.</string>
@@ -46,6 +45,6 @@
     <string name="post_manual_bookisbn_hint">ISBN</string>
     <string name="post_manual_deptspinner_prompt">Dept</string>
     <string name="title_activity_search_results">SearchResultsActivity</string>
-
+    <string name="title_activity_search">SearchActivity</string>
 
 </resources>

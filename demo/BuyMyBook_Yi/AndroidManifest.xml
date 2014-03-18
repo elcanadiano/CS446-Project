@@ -35,8 +35,8 @@
         <activity
             android:name="com.EasyPeasy.buymybook.ScannerManager"
             android:label="@string/title_activity_scanner_manager" >
-		</activity>
-		<activity
+        </activity>
+        <activity
             android:name="com.EasyPeasy.buymybook.ManualSearchActivity"
             android:label="@string/title_activity_manual_search"
             android:screenOrientation="portrait" >
@@ -49,6 +49,10 @@
         <activity
             android:name="com.EasyPeasy.buymybook.SearchResultsActivity"
             android:label="@string/title_activity_search_results" >
+        </activity>
+        <activity
+            android:name="com.EasyPeasy.buymybook.SearchActivity"
+            android:label="@string/title_activity_search" >
         </activity>
     </application>
 

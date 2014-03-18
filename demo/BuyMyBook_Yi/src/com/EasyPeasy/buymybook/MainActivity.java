@@ -148,15 +148,16 @@ public class MainActivity extends Activity implements OnClickListener{
 		case R.id.scan_button:
 			System.out.println("i should scan something....");
 			scanBtn.setBackgroundResource(R.drawable.scan_button_contact);
-/*
+			
 			Intent intent = new Intent(this, PostActivity.class);
 			startActivity(intent);
 			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
-			
-*/
+
+/*//- CARL, Switch the commenting on these two if you want a quick access to Search. -Yi
 			Intent intent = new Intent(this,ManualSearchActivity.class);
 			startActivity(intent);
 			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+*/	
 			break;
 		}
 	}
@@ -248,11 +249,11 @@ public class MainActivity extends Activity implements OnClickListener{
     	
     	//launching new activity
     	mDrawerLayout.closeDrawers();
-    	
+    	Intent intent;
         // update the main content by replacing fragments
         switch (position) {
         case 0: //SELL
-        	Intent intent = new Intent(this, PostActivity.class);
+        	intent = new Intent(this, PostActivity.class);
 			startActivity(intent);
 			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 			
@@ -263,7 +264,14 @@ public class MainActivity extends Activity implements OnClickListener{
             break;
         case 1: //SEARCH
         	//	CARL ADD SEARCH HERE!!!!
-        	
+        	intent = new Intent(this, ManualSearchActivity.class);
+			startActivity(intent);
+			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+			
+	        //decide how to finish the activity
+			if(dieAfterFinish) {
+				finish();
+			}
         	this.finishActivity();
             break;
         case 2: //MY PROFILE

@@ -22,7 +22,7 @@ import android.view.View.OnClickListener;
  * 		questions = how much do you want to sell it for, condition, take a picture
  * 5. user press sell, load in to server(not done) and local db(not done).
  */
-public class PostActivity extends MainActivity implements OnClickListener{
+public class SearchActivity extends MainActivity implements OnClickListener{
 	final Context context = this;
 
     //UI elements
@@ -60,7 +60,7 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.post, menu);
+		getMenuInflater().inflate(R.menu.search, menu);
 		return true;
 	}
 

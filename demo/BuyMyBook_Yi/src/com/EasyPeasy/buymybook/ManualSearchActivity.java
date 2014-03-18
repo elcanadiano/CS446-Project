@@ -7,20 +7,24 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 //this file is for inputting stuff
 //xml file: activity_manual_Search.xml
-public class ManualSearchActivity extends Activity {
+
+public class ManualSearchActivity extends MainActivity {
+	final Context context = this;
 	String TAG = new String("ManualSearchActivity");
-	private EditText textTitle,textAuthor,textISBN,textCourseNum;
+	private EditText textTitle,textAuthor,textISBN, textCourseNum;
 	/*
 	 * Spinner stuff
 	 */
@@ -39,10 +43,23 @@ public class ManualSearchActivity extends Activity {
 			"SPCOM","SPD","STAT","STV","SUSM","SWK","SWREN","SYDE","TOUR","TS","UNIV",
 			"VCULT","WS"};
 	String[] terms = new String[]{"1141","1145","1149"};
+	
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		System.out.println("ManualSearchActivity -onCreate loading super stuff");
 		super.onCreate(savedInstanceState);
+		
+		System.out.println("ManualSearchActivity -onCreate loading own stuff");
 		setContentView(R.layout.activity_manual_search);
+		
+		//set drawer menu - from yi
+		this.dieAfterFinish=true;
+		System.out.println("ManualSearchActivity -onCreate setting menu");
+		this.setupDrawer(savedInstanceState);
+		System.out.println("ManualSearchActivity -menu should be set..");
+		
 		textTitle = (EditText)findViewById(R.id.search_manual_booktitle);
 		textAuthor = (EditText)findViewById(R.id.search_manual_bookauthor);
 		textISBN = (EditText)findViewById(R.id.search_manual_bookisbn);
@@ -60,7 +77,7 @@ public class ManualSearchActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.manual_search, menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 	

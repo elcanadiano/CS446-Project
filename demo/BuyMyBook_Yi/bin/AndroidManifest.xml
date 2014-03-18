@@ -50,6 +50,10 @@
             android:name="com.EasyPeasy.buymybook.SearchResultsActivity"
             android:label="@string/title_activity_search_results" >
         </activity>
+        <activity
+            android:name="com.EasyPeasy.buymybook.SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
     </application>
 
 </manifest>

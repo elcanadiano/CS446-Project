@@ -134,18 +134,20 @@ public final class R {
         public static final int activity_post=0x7f030002;
         public static final int activity_post_error=0x7f030003;
         public static final int activity_scanner_manager=0x7f030004;
-        public static final int activity_search_manual=0x7f030005;
-        public static final int activity_search_results=0x7f030006;
-        public static final int drawer_list_item=0x7f030007;
-        public static final int fragment_results_details=0x7f030008;
-        public static final int fragment_results_search=0x7f030009;
-        public static final int searchlistinglayout=0x7f03000a;
+        public static final int activity_search=0x7f030005;
+        public static final int activity_search_manual=0x7f030006;
+        public static final int activity_search_results=0x7f030007;
+        public static final int drawer_list_item=0x7f030008;
+        public static final int fragment_results_details=0x7f030009;
+        public static final int fragment_results_search=0x7f03000a;
+        public static final int searchlistinglayout=0x7f03000b;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
         public static final int post=0x7f0a0001;
         public static final int scanner_manager=0x7f0a0002;
-        public static final int search_results=0x7f0a0003;
+        public static final int search=0x7f0a0003;
+        public static final int search_results=0x7f0a0004;
     }
     public static final class string {
         public static final int action_settings=0x7f080002;
@@ -188,6 +190,7 @@ public final class R {
         public static final int title_activity_post_confirmation=0x7f080018;
         public static final int title_activity_post_scan_confirmation=0x7f080019;
         public static final int title_activity_scanner_manager=0x7f08000f;
+        public static final int title_activity_search=0x7f080024;
         public static final int title_activity_search_manual=0x7f080013;
         public static final int title_activity_search_results=0x7f080023;
         public static final int title_activity_search_scan=0x7f080015;
