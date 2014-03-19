@@ -79,11 +79,33 @@
         android:id="@+id/books_selling_text"
         android:layout_below="@id/profile" />
     
+    <TextView
+        android:id="@+id/phoneme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/books_selling_text"
+        android:autoLink="phone"
+        android:text="5198888888" />
+    
+    <TextView
+        android:id="@+id/emailme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phoneme"
+        android:text="khusain@uwaterloo.ca" />
+    
+    <TextView
+        android:id="@+id/textme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailme"
+        android:text="Sendmsg" />
+ 
     <ListView
           android:id="@+id/my_books"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
-          android:layout_below="@id/books_selling_text"
+          android:layout_below="@id/textme"
           android:layout_marginTop="20dp"
           android:background="@color/list_bg_color"
           android:cacheColorHint="@android:color/transparent"

@@ -1,11 +1,16 @@
 package com.example.profilescreen;
 
 import java.util.ArrayList;
-
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Telephony;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.telephony.SmsManager;
 import android.text.method.KeyListener;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -24,6 +29,10 @@ public class ProfileActivity extends Activity {
 	
 	private EditText editPhoneNumber;
 	private EditText editEmailAddress;
+	private TextView phoneme;
+	private TextView emailme;
+	private TextView textme;
+	
 	private KeyListener originalPhoneKeyListener;
 	private KeyListener originalEmailKeyListener;
 	
@@ -34,6 +43,10 @@ public class ProfileActivity extends Activity {
 		
 		editPhoneNumber = (EditText)findViewById(R.id.phone);
 		editEmailAddress = (EditText)findViewById(R.id.email);
+		
+		phoneme = (TextView)findViewById(R.id.phoneme);
+		emailme = (TextView)findViewById(R.id.emailme);
+		textme = (TextView)findViewById(R.id.textme);
 		
 		originalPhoneKeyListener = editPhoneNumber.getKeyListener();
 		originalEmailKeyListener = editEmailAddress.getKeyListener();
@@ -152,36 +165,90 @@ public class ProfileActivity extends Activity {
 		}
 		});
 	
-	editEmailAddress.setOnClickListener(new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			editEmailAddress.setKeyListener(originalEmailKeyListener);
-			editEmailAddress.requestFocus(); // Might not be needed
-		}
-	});
+		editEmailAddress.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				editEmailAddress.setKeyListener(originalEmailKeyListener);
+				editEmailAddress.requestFocus(); // Might not be needed
+			}
+		});
+		
+		// Allows the ability to send an email
+		emailme.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String aEmailList[] = { "user@fakehost.com","user2@fakehost.com" };
+
+				
+				final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+		        intent.setType("plain/text");
+		        intent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
+		        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "OMG SUBJECT");
+		        intent.putExtra(android.content.Intent.EXTRA_TEXT, "OMG SELFIE!");
+		        startActivity(intent);
+			}
+		});
+		
+		// Allows the ability to send a test message
+		textme.setOnClickListener(new View.OnClickListener() {
+			
+			//  Need becuase Build.VERSION if stmt uses KitKat specific stuff
+			@SuppressLint("NewApi")
+			@Override
+			public void onClick(View v) {
+				String smsText = "HELLO WORLD";
+				String smsNumber = "5195728132";
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) //At least KitKat
+			    {
+			        String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(getApplicationContext());
+			        Intent sendIntent = new Intent(
+			        		Intent.ACTION_SENDTO, 
+			        		Uri.parse("smsto:" + Uri.encode(smsNumber)));
+			        sendIntent.putExtra("sms_body", smsText);
+
+			        // If the user doesn't have a default app that supports SMS
+			        if (defaultSmsPackageName != null)
+			        {
+			            sendIntent.setPackage(defaultSmsPackageName);
+			        }
+			        startActivity(sendIntent);
+
+			    }
+			    else // Stuff for pre KitKat
+			    {
+			        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+			        sendIntent.setData(Uri.parse("sms:"));
+			        sendIntent.putExtra("sms_body", smsText);
+			        sendIntent.putExtra("address", smsNumber);
+			        startActivity(sendIntent);
+			    }
+			}
+		});
 	
-	editEmailAddress.setOnEditorActionListener(
-		    new EditText.OnEditorActionListener() {
-		@Override
-		public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-		    if (event != null &&
-		    		actionId == EditorInfo.IME_ACTION_SEARCH ||
-		            actionId == EditorInfo.IME_ACTION_DONE ||
-		            event.getAction() == KeyEvent.ACTION_DOWN &&
-		            event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-		    	Toast toast = Toast.makeText(
-			   		getApplicationContext(),
-			    	"Email address has been updated",
-			    	Toast.LENGTH_SHORT);
-			   	toast.show();
-			   	editEmailAddress.setKeyListener(null);
-			   	editEmailAddress.clearFocus();
-			   	return true;
-		    } else {
-		    	return false; // pass on to other listeners. 
+		editEmailAddress.setOnEditorActionListener(
+			    new EditText.OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+			    if (event != null &&
+			    		actionId == EditorInfo.IME_ACTION_SEARCH ||
+			            actionId == EditorInfo.IME_ACTION_DONE ||
+			            event.getAction() == KeyEvent.ACTION_DOWN &&
+			            event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+			    	Toast toast = Toast.makeText(
+				   		getApplicationContext(),
+				    	"Email address has been updated",
+				    	Toast.LENGTH_SHORT);
+				   	toast.show();
+				   	editEmailAddress.setKeyListener(null);
+				   	editEmailAddress.clearFocus();
+				   	return true;
+			    } else {
+			    	return false; // pass on to other listeners. 
+			}
 		}
-	}
-	});
+		});
+
 	
 	}
 

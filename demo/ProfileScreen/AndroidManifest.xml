@@ -3,6 +3,8 @@
     package="com.example.profilescreen"
     android:versionCode="1"
     android:versionName="1.0" >
+    
+    <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
 
     <uses-sdk
         android:minSdkVersion="14"
