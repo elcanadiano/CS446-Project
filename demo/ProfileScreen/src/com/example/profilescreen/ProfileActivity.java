@@ -1,6 +1,7 @@
 package com.example.profilescreen;
 
 import java.util.ArrayList;
+
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -62,9 +64,9 @@ public class ProfileActivity extends Activity {
 				getIntent().getExtras().getString("email"));
 		((TextView)findViewById(R.id.books_selling_text)).setText(
 				"Books that " + 
-						getIntent().getExtras().getString("firstName") + 
-						" " + getIntent().getExtras().getString("lastName") +
-						" is selling");
+				getIntent().getExtras().getString("firstName") + 
+				" " + getIntent().getExtras().getString("lastName") +
+				" is selling");
 		
 		// Find and display profile picture
 		String imageName = getIntent().getExtras().getString("image");
@@ -80,29 +82,6 @@ public class ProfileActivity extends Activity {
 		} else {
 			image.setImageDrawable(getResources().getDrawable(imageId));
 		}
-
-		// Launch Messaging app if user clicks on text messaging number
-		/*
-		TextView text = (TextView)findViewById(R.id.text);
-		text.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				try {
-					Intent smsIntent = new Intent(Intent.ACTION_VIEW);
-					smsIntent.putExtra("address", getIntent().getExtras().getString("phone"));
-					smsIntent.putExtra("sms_body", "Hey! I found your profile on Buy My Book!");
-					smsIntent.setType("vnd.android-dir/mms-sms");
-					startActivity(smsIntent);
-				} catch (Exception e) {
-					Toast toast = Toast.makeText(
-						getApplicationContext(),
-						"SMS Failed!",
-						Toast.LENGTH_LONG);
-					toast.show();
-				}
-			}
-		});
-		*/
 		
 		ListView lv = (ListView) findViewById(R.id.my_books);
 		
@@ -135,11 +114,10 @@ public class ProfileActivity extends Activity {
 			    new EditText.OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-			    if (event != null &&
-			    	actionId == EditorInfo.IME_ACTION_SEARCH ||
-			    	actionId == EditorInfo.IME_ACTION_DONE ||
-			        event.getAction() == KeyEvent.ACTION_DOWN &&
-			        event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+				if (actionId == EditorInfo.IME_ACTION_SEND
+			            || actionId == EditorInfo.IME_ACTION_DONE
+			            || actionId == EditorInfo.IME_ACTION_GO
+			            || event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
 			    	
 			    	// Check if user entered 
 			    	if (v.length() != 10) {
@@ -155,14 +133,14 @@ public class ProfileActivity extends Activity {
 				    		"Phone number has been updated",
 				    		Toast.LENGTH_SHORT);
 				    	toast.show();
-				    	editPhoneNumber.setKeyListener(null);
 				    	editPhoneNumber.clearFocus();
+				    	hideKeyboard(v);
 				    	return true;
 			    	}
 			    } else {
-			    return false; // pass on to other listeners. 
+			    	return false; // pass on to other listeners. 
+			    }
 			}
-		}
 		});
 	
 		editEmailAddress.setOnClickListener(new View.OnClickListener() {
@@ -172,84 +150,75 @@ public class ProfileActivity extends Activity {
 				editEmailAddress.requestFocus(); // Might not be needed
 			}
 		});
-		
-		// Allows the ability to send an email
-		emailme.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				String aEmailList[] = { "user@fakehost.com","user2@fakehost.com" };
-
-				
-				final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-		        intent.setType("plain/text");
-		        intent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
-		        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "OMG SUBJECT");
-		        intent.putExtra(android.content.Intent.EXTRA_TEXT, "OMG SELFIE!");
-		        startActivity(intent);
-			}
-		});
-		
-		// Allows the ability to send a test message
-		textme.setOnClickListener(new View.OnClickListener() {
-			
-			//  Need becuase Build.VERSION if stmt uses KitKat specific stuff
-			@SuppressLint("NewApi")
-			@Override
-			public void onClick(View v) {
-				String smsText = "HELLO WORLD";
-				String smsNumber = "5195728132";
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) //At least KitKat
-			    {
-			        String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(getApplicationContext());
-			        Intent sendIntent = new Intent(
-			        		Intent.ACTION_SENDTO, 
-			        		Uri.parse("smsto:" + Uri.encode(smsNumber)));
-			        sendIntent.putExtra("sms_body", smsText);
-
-			        // If the user doesn't have a default app that supports SMS
-			        if (defaultSmsPackageName != null)
-			        {
-			            sendIntent.setPackage(defaultSmsPackageName);
-			        }
-			        startActivity(sendIntent);
-
-			    }
-			    else // Stuff for pre KitKat
-			    {
-			        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-			        sendIntent.setData(Uri.parse("sms:"));
-			        sendIntent.putExtra("sms_body", smsText);
-			        sendIntent.putExtra("address", smsNumber);
-			        startActivity(sendIntent);
-			    }
-			}
-		});
 	
 		editEmailAddress.setOnEditorActionListener(
 			    new EditText.OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-			    if (event != null &&
-			    		actionId == EditorInfo.IME_ACTION_SEARCH ||
-			            actionId == EditorInfo.IME_ACTION_DONE ||
-			            event.getAction() == KeyEvent.ACTION_DOWN &&
-			            event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+				if (actionId == EditorInfo.IME_ACTION_SEND
+			            || actionId == EditorInfo.IME_ACTION_DONE
+			            || actionId == EditorInfo.IME_ACTION_GO
+			            || event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
 			    	Toast toast = Toast.makeText(
 				   		getApplicationContext(),
 				    	"Email address has been updated",
 				    	Toast.LENGTH_SHORT);
 				   	toast.show();
-				   	editEmailAddress.setKeyListener(null);
 				   	editEmailAddress.clearFocus();
+				   	hideKeyboard(v);
 				   	return true;
 			    } else {
 			    	return false; // pass on to other listeners. 
+			    }
 			}
-		}
 		});
+		
+		// Allows the ability to send an email
+		emailme.setOnClickListener(new View.OnClickListener() {
+					
+			@Override
+			public void onClick(View v) {
+				String aEmailList[] = { "user@fakehost.com","user2@fakehost.com" };
+						
+				final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+			    intent.setType("plain/text");
+			    intent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
+			    intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "OMG SUBJECT");
+			    intent.putExtra(android.content.Intent.EXTRA_TEXT, "OMG SELFIE!");
+			    startActivity(intent);
+			}
+		});
+				
+		// Allows the ability to send a text message
+		textme.setOnClickListener(new View.OnClickListener() {
+			// Need because Build.VERSION if statement uses KitKat specific stuff
+			@SuppressLint("NewApi")
+			@Override
+			public void onClick(View v) {
+				String smsText = "HELLO WORLD";
+				String smsNumber = "5195728132";
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { //At least KitKat
+					String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(getApplicationContext());
+					Intent sendIntent = new Intent(
+						Intent.ACTION_SENDTO, 
+						Uri.parse("smsto:" + Uri.encode(smsNumber)));
+					sendIntent.putExtra("sms_body", smsText);
 
-	
+					// If the user doesn't have a default app that supports SMS
+					if (defaultSmsPackageName != null) {
+						sendIntent.setPackage(defaultSmsPackageName);
+					}
+					startActivity(sendIntent);
+
+				} else { // Stuff for pre-KitKat
+					Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+					sendIntent.setData(Uri.parse("sms:"));
+					sendIntent.putExtra("sms_body", smsText);
+					sendIntent.putExtra("address", smsNumber);
+					startActivity(sendIntent);
+				}
+			}
+		});
 	}
 
 	@Override
@@ -267,4 +236,11 @@ public class ProfileActivity extends Activity {
     		Toast.LENGTH_SHORT);
     	toast.show();
     }
+    
+	private void hideKeyboard(View view) {
+	    InputMethodManager manager = (InputMethodManager) view.getContext()
+	            .getSystemService(INPUT_METHOD_SERVICE);
+	    if (manager != null)
+	        manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+	}
 }

@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
         // Populate the fields - Debugging purposes
         ((EditText)findViewById(R.id.txt_first_name)).setText("Daniel");
         ((EditText)findViewById(R.id.txt_last_name)).setText("Bryan");
-        ((EditText)findViewById(R.id.txt_phone)).setText("(519)-888-8888");
+        ((EditText)findViewById(R.id.txt_phone)).setText("5198888888");
         ((EditText)findViewById(R.id.txt_email)).setText("dbryan@uwaterloo.ca");
         ((EditText)findViewById(R.id.txt_image)).setText("bryan");
     }
