@@ -72,61 +72,78 @@ public final class R {
     }
     public static final class drawable {
         public static final int bookpixel=0x7f020000;
-        public static final int counter_bg=0x7f020001;
-        public static final int drawer_shadow=0x7f020002;
-        public static final int ic_action_camera=0x7f020003;
-        public static final int ic_action_defaulticon=0x7f020004;
-        public static final int ic_action_search=0x7f020005;
-        public static final int ic_booker_default=0x7f020006;
-        public static final int ic_communities=0x7f020007;
-        public static final int ic_drawer=0x7f020008;
-        public static final int ic_home=0x7f020009;
-        public static final int ic_launcher=0x7f02000a;
-        public static final int ic_menu_booker_normal=0x7f02000b;
-        public static final int ic_menu_camera_normal=0x7f02000c;
-        public static final int ic_menu_search_normal=0x7f02000d;
-        public static final int ic_pages=0x7f02000e;
-        public static final int ic_people=0x7f02000f;
-        public static final int ic_photos=0x7f020010;
-        public static final int ic_swipe_menu=0x7f020011;
-        public static final int ic_whats_hot=0x7f020012;
-        public static final int list_item_bg_normal=0x7f020013;
-        public static final int list_item_bg_pressed=0x7f020014;
-        public static final int list_selector=0x7f020015;
-        public static final int scan_button=0x7f020016;
-        public static final int scan_button_contact=0x7f020017;
+        public static final int bryan=0x7f020001;
+        public static final int counter_bg=0x7f020002;
+        public static final int drawer_shadow=0x7f020003;
+        public static final int email=0x7f020004;
+        public static final int ic_action_camera=0x7f020005;
+        public static final int ic_action_defaulticon=0x7f020006;
+        public static final int ic_action_search=0x7f020007;
+        public static final int ic_booker_default=0x7f020008;
+        public static final int ic_communities=0x7f020009;
+        public static final int ic_drawer=0x7f02000a;
+        public static final int ic_home=0x7f02000b;
+        public static final int ic_launcher=0x7f02000c;
+        public static final int ic_menu_booker_normal=0x7f02000d;
+        public static final int ic_menu_camera_normal=0x7f02000e;
+        public static final int ic_menu_search_normal=0x7f02000f;
+        public static final int ic_pages=0x7f020010;
+        public static final int ic_people=0x7f020011;
+        public static final int ic_photos=0x7f020012;
+        public static final int ic_swipe_menu=0x7f020013;
+        public static final int ic_whats_hot=0x7f020014;
+        public static final int list_item_bg_normal=0x7f020015;
+        public static final int list_item_bg_pressed=0x7f020016;
+        public static final int list_selector=0x7f020017;
+        public static final int message=0x7f020018;
+        public static final int phone=0x7f020019;
+        public static final int scan_button=0x7f02001a;
+        public static final int scan_button_contact=0x7f02001b;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b001d;
-        public static final int author=0x7f0b0015;
-        public static final int condition=0x7f0b0017;
-        public static final int counter=0x7f0b0014;
+        public static final int action_settings=0x7f0b002a;
+        public static final int author=0x7f0b0022;
+        public static final int books_selling_text=0x7f0b0017;
+        public static final int condition=0x7f0b0024;
+        public static final int counter=0x7f0b0021;
         public static final int drawer_layout=0x7f0b0000;
-        public static final int frame_container=0x7f0b0011;
+        public static final int email=0x7f0b0016;
+        public static final int email_img=0x7f0b0015;
+        public static final int emailme=0x7f0b0019;
+        public static final int first_name=0x7f0b0011;
+        public static final int frame_container=0x7f0b001e;
         public static final int greeting=0x7f0b0001;
-        public static final int icon=0x7f0b0012;
-        public static final int image=0x7f0b001c;
+        public static final int icon=0x7f0b001f;
+        public static final int image=0x7f0b0029;
         public static final int instruction=0x7f0b0002;
+        public static final int last_name=0x7f0b0012;
         public static final int list_slidermenu=0x7f0b0004;
+        public static final int my_books=0x7f0b001b;
+        public static final int phone=0x7f0b0014;
+        public static final int phone_img=0x7f0b0013;
+        public static final int phoneme=0x7f0b0018;
         public static final int post_manual_submit=0x7f0b000e;
-        public static final int price=0x7f0b0016;
+        public static final int price=0x7f0b0023;
+        public static final int profile=0x7f0b000f;
+        public static final int profile_pic=0x7f0b0010;
         public static final int scanISBNButton=0x7f0b000d;
         public static final int scan_button=0x7f0b0003;
-        public static final int search_manual_author=0x7f0b0019;
+        public static final int search_manual_author=0x7f0b0026;
         public static final int search_manual_bookauthor=0x7f0b000b;
         public static final int search_manual_bookisbn=0x7f0b000c;
         public static final int search_manual_booktitle=0x7f0b000a;
-        public static final int search_manual_btitle=0x7f0b0018;
-        public static final int search_manual_condition=0x7f0b001b;
+        public static final int search_manual_btitle=0x7f0b0025;
+        public static final int search_manual_condition=0x7f0b0028;
         public static final int search_manual_header=0x7f0b0005;
-        public static final int search_manual_listview=0x7f0b0010;
-        public static final int search_manual_price=0x7f0b001a;
-        public static final int search_manual_title=0x7f0b000f;
+        public static final int search_manual_listview=0x7f0b001d;
+        public static final int search_manual_price=0x7f0b0027;
+        public static final int search_manual_title=0x7f0b001c;
         public static final int spinnerCourse=0x7f0b0007;
         public static final int spinnerTerm=0x7f0b0009;
         public static final int subject=0x7f0b0006;
         public static final int textCourseNum=0x7f0b0008;
-        public static final int title=0x7f0b0013;
+        public static final int textme=0x7f0b001a;
+        public static final int title=0x7f0b0020;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -134,20 +151,24 @@ public final class R {
         public static final int activity_my_fragment=0x7f030002;
         public static final int activity_post=0x7f030003;
         public static final int activity_post_error=0x7f030004;
-        public static final int activity_scanner_manager=0x7f030005;
-        public static final int activity_search_manual=0x7f030006;
-        public static final int activity_search_results=0x7f030007;
-        public static final int drawer_list_item=0x7f030008;
-        public static final int fragment_results_details=0x7f030009;
-        public static final int fragment_results_search=0x7f03000a;
-        public static final int searchlistinglayout=0x7f03000b;
+        public static final int activity_profile=0x7f030005;
+        public static final int activity_scanner_manager=0x7f030006;
+        public static final int activity_search=0x7f030007;
+        public static final int activity_search_manual=0x7f030008;
+        public static final int activity_search_results=0x7f030009;
+        public static final int drawer_list_item=0x7f03000a;
+        public static final int fragment_results_details=0x7f03000b;
+        public static final int fragment_results_search=0x7f03000c;
+        public static final int searchlistinglayout=0x7f03000d;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
         public static final int my=0x7f0a0001;
         public static final int post=0x7f0a0002;
-        public static final int scanner_manager=0x7f0a0003;
-        public static final int search_results=0x7f0a0004;
+        public static final int profile=0x7f0a0003;
+        public static final int scanner_manager=0x7f0a0004;
+        public static final int search=0x7f0a0005;
+        public static final int search_results=0x7f0a0006;
     }
     public static final class string {
         public static final int action_settings=0x7f080002;
@@ -190,6 +211,9 @@ public final class R {
         public static final int title_activity_post=0x7f08000d;
         public static final int title_activity_post_confirmation=0x7f080018;
         public static final int title_activity_post_scan_confirmation=0x7f080019;
+        /**  Strings for ProfileActivity 
+         */
+        public static final int title_activity_profile=0x7f080026;
         public static final int title_activity_scanner_manager=0x7f08000f;
         public static final int title_activity_search=0x7f080024;
         public static final int title_activity_search_manual=0x7f080013;
@@ -200,8 +224,8 @@ public final class R {
     public static final class style {
         /**  stuff for the action bar 
          */
-        public static final int ActionBar=0x7f090004;
-        public static final int ActionBar_Text=0x7f090005;
+        public static final int ActionBar=0x7f090008;
+        public static final int ActionBar_Text=0x7f090009;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -223,16 +247,20 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f090004;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
+        public static final int AppTheme=0x7f090005;
         /**  BmB theme here THIS FILE SHOULD BE OBSOLETE DO NOT EDIT1!!! -YI 
  BmB Theme here 
  <item name="android:background">@color/background_grey</item> 
          */
-        public static final int ThemeSelector=0x7f090002;
-        public static final int WindowTitleBackground=0x7f090003;
+        public static final int ThemeSelector=0x7f090006;
+        public static final int WindowTitleBackground=0x7f090007;
+        public static final int profileBooksHeader=0x7f090000;
+        public static final int profilePage=0x7f090003;
+        public static final int profilePageInfo=0x7f090001;
+        public static final int profilePageName=0x7f090002;
     }
 }

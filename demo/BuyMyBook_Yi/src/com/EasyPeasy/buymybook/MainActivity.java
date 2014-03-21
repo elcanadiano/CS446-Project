@@ -280,8 +280,14 @@ public class MainActivity extends Activity implements OnClickListener{
             break;
         case 2: //MY PROFILE
         	//KAHLIM ADD PROFILE PAGE HERE!!!
-        	this.finishActivity();
-          
+        	intent = new Intent(this, ProfileActivity.class);
+        	startActivity(intent);
+        	overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+        	
+        	// decide how to finish the activity
+        	if (dieAfterFinish) {
+        		finish();
+        	}
             break;
         default:
             break;
@@ -328,6 +334,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		int lengthOfPart2 = builder.length();
 		builder.append(" ");
 		builder.append(this.getText(R.string.main_inst_look));
+		int lengthOfPart3 = builder.length();
 		
 		builder.setSpan(c, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		builder.setSpan(s,  lengthOfPart1,  lengthOfPart1+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

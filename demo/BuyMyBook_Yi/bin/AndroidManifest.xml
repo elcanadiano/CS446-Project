@@ -55,6 +55,10 @@
             android:label="@string/title_activity_search" >
         </activity>
         <activity
+            android:name="com.EasyPeasy.buymybook.ProfileActivity"
+            android:label="@string/title_activity_profile">
+        </activity>
+        <activity
             android:name="com.EasyPeasy.buymybook.MyFragmentActivity"
             android:label="@string/title_activity_my_fragment" >
         </activity>
