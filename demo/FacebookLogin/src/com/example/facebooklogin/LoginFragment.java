@@ -16,6 +16,7 @@ import com.facebook.*;
 import com.facebook.internal.Logger;
 import com.facebook.model.*;
 import com.facebook.widget.LoginButton;
+import com.facebook.widget.ProfilePictureView;
 
 public class LoginFragment extends Fragment {
 	
@@ -64,6 +65,7 @@ public class LoginFragment extends Fragment {
         final TextView userId = (TextView) view.findViewById(R.id.userId);
         final TextView name = (TextView) view.findViewById(R.id.name);
         final TextView fbURL = (TextView) view.findViewById(R.id.fbURL);
+        final ProfilePictureView profilePic = (ProfilePictureView) view.findViewById(R.id.profilePicture);
         
 	    if (state.isOpened()) {
 	        Log.i(TAG, "Logged in...");
@@ -82,6 +84,10 @@ public class LoginFragment extends Fragment {
       		    			+ " and your last name is: " + user.getLastName());
       		    	fbURL.setText("Your Facebook URL is: " + user.getLink());
       		    	
+      		    	// Facebook Profile Picture -- http://graph.facebook.com/id/picture
+      		    	// For Booker Book, it is http://graph.facebook.com/100008045347915/picture
+      		    	profilePic.setProfileId(user.getId());
+      		    	
       		    	// Should we query the server here to see if the user exists?
       		    	
       		    } else {
@@ -94,12 +100,14 @@ public class LoginFragment extends Fragment {
 	        userId.setVisibility(View.VISIBLE);
 	        name.setVisibility(View.VISIBLE);
 	        fbURL.setVisibility(View.VISIBLE);
+	        profilePic.setVisibility(View.VISIBLE);
 	    } else if (state.isClosed()) {
 	        Log.i(TAG, "Logged out...");
 	        accessToken.setVisibility(View.INVISIBLE);
 	        userId.setVisibility(View.INVISIBLE);
 	        name.setVisibility(View.INVISIBLE);
 	        fbURL.setVisibility(View.INVISIBLE);
+	        profilePic.setVisibility(View.INVISIBLE);
 	    }
 	}
 	
@@ -115,7 +123,6 @@ public class LoginFragment extends Fragment {
 	           (session.isOpened() || session.isClosed()) ) {
 	        onSessionStateChange(session, session.getState(), null);
 	    }
-	    
 	    uiHelper.onResume();
 	}
 
