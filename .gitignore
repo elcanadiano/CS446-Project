@@ -4,3 +4,5 @@ demo/ProfileScreen/bin/*.apk
 demo/ProfileScreen/bin/resources.ap_
 demo/BuyMyBook_Yi/bin/*.apk
 demo/BuyMyBook_Yi/bin/resources.ap_
+demo/FacebookLogin/bin/*.apk
+demo/FacebookLogin/bin/resources.ap_
