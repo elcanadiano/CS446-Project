@@ -1,6 +1,6 @@
-package com.example.facebooklogin;
+package com.EasyPeasy.buymybook;
 
-import android.os.Bundle;
+import android.os.Bundle; 
 import android.support.v4.app.FragmentActivity;
 
 public class LoginActivity extends FragmentActivity {
@@ -23,5 +23,4 @@ public class LoginActivity extends FragmentActivity {
 	        .findFragmentById(android.R.id.content);
 	    }
 	}
-
 }

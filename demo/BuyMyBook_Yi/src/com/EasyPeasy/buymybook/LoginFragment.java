@@ -1,4 +1,4 @@
-package com.example.facebooklogin;
+package com.EasyPeasy.buymybook;
 
 import java.util.Arrays;
 
@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.facebook.*;
@@ -46,7 +47,17 @@ public class LoginFragment extends Fragment {
 	     * "publish_actions" lets the app post content/comment/likes to a user's stream (might be useful feature in future)
 	     */
 	    authButton.setReadPermissions(Arrays.asList("basic_info", "email"));
-
+	    
+	    Button newPage = (Button) view.findViewById(R.id.goToMain);
+	    newPage.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), MainActivity.class);
+				getActivity().startActivity(intent);
+			}
+		});
+	    
 	    return view;
 	}
 	
@@ -63,6 +74,7 @@ public class LoginFragment extends Fragment {
         final TextView userId = (TextView) view.findViewById(R.id.userId);
         final TextView name = (TextView) view.findViewById(R.id.name);
         final TextView fbURL = (TextView) view.findViewById(R.id.fbURL);
+        final Button goToMain = (Button) view.findViewById(R.id.goToMain);
         final ProfilePictureView profilePic = (ProfilePictureView) view.findViewById(R.id.profilePicture);
         
 	    if (state.isOpened()) {
@@ -87,7 +99,7 @@ public class LoginFragment extends Fragment {
       		    	profilePic.setProfileId(user.getId());
       		    	
       		    	// Change the title bar text
-      		        getActivity().setTitle("Welcome back " + user.getFirstName() + " " + user.getLastName() + "!");
+      		        getActivity().setTitle("Welcome back!");
       		    	
       		    	// Should we query the server here to see if the user exists?
       		    } else {
@@ -99,6 +111,7 @@ public class LoginFragment extends Fragment {
 	        userId.setVisibility(View.VISIBLE);
 	        name.setVisibility(View.VISIBLE);
 	        fbURL.setVisibility(View.VISIBLE);
+	        goToMain.setVisibility(View.VISIBLE);
 	        profilePic.setVisibility(View.VISIBLE);
 	    } else if (state.isClosed()) {
 	        Log.i(TAG, "Logged out...");
@@ -106,7 +119,9 @@ public class LoginFragment extends Fragment {
 	        userId.setVisibility(View.INVISIBLE);
 	        name.setVisibility(View.INVISIBLE);
 	        fbURL.setVisibility(View.INVISIBLE);
+	        goToMain.setVisibility(View.INVISIBLE);
 	        profilePic.setVisibility(View.INVISIBLE);
+	        getActivity().setTitle("Login to use Buy My Book");
 	    }
 	}
 	
@@ -148,5 +163,4 @@ public class LoginFragment extends Fragment {
 	    super.onSaveInstanceState(outState);
 	    uiHelper.onSaveInstanceState(outState);
 	}
-	
 }
