@@ -53,5 +53,8 @@
     
     <!-- Strings for ProfileActivity -->
     <string name="title_activity_profile">My Profile</string>
+    <string name="phone_img_description">Image of a phone</string>
+    <string name="message_img_description">Image of a message</string>
+    <string name="email_img_description">Image of an email</string>
 
 </resources>

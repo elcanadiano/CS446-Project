@@ -19,7 +19,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.EditText;
@@ -32,12 +32,16 @@ public class ProfileActivity extends MainActivity {
 	final String tag = "ProfileActivity";
 	
 	private EditText editPhoneNumber;
+	private EditText editTextNumber;
 	private EditText editEmailAddress;
-	private TextView emailme;
-	private TextView textme;
 	
 	private KeyListener originalPhoneKeyListener;
+	private KeyListener originalTextKeyListener;
 	private KeyListener originalEmailKeyListener;
+	
+	private ImageView callme;
+	private ImageView textme;
+	private ImageView emailme;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +50,15 @@ public class ProfileActivity extends MainActivity {
 		this.dieAfterFinish=true;
 		
 		editPhoneNumber = (EditText)findViewById(R.id.phone);
+		editTextNumber = (EditText)findViewById(R.id.message);
 		editEmailAddress = (EditText)findViewById(R.id.email);
 		
-		emailme = (TextView)findViewById(R.id.emailme);
-		textme = (TextView)findViewById(R.id.textme);
+		callme = (ImageView)findViewById(R.id.phone_img);
+		emailme = (ImageView)findViewById(R.id.email_img);
+		textme = (ImageView)findViewById(R.id.message_img);
 		
 		originalPhoneKeyListener = editPhoneNumber.getKeyListener();
+		originalTextKeyListener = editTextNumber.getKeyListener();
 		originalEmailKeyListener = editEmailAddress.getKeyListener();
 		
 		//Put name, join date, phone, text, and email
@@ -61,6 +68,8 @@ public class ProfileActivity extends MainActivity {
 				"Your last name here");
 		editPhoneNumber.setText(
 				"5198888888");
+		editTextNumber.setText(
+				"2268888888");
 		editEmailAddress.setText(
 				"khusain@uwaterloo.ca");
 		((TextView)findViewById(R.id.books_selling_text)).setText(
@@ -69,15 +78,12 @@ public class ProfileActivity extends MainActivity {
 		// Hardcoded for now
 		((ProfilePictureView)findViewById(R.id.profile_pic)).setProfileId("100008045347915");
 		
-		
 		ListView lv = (ListView) findViewById(R.id.my_books);
 		
 		ArrayList<String> myArrayOfBooks = new ArrayList<String>();
-		myArrayOfBooks.add("Introduction to Winning");
-		myArrayOfBooks.add("Winning: The Charlie Sheen Story");
 		myArrayOfBooks.add("Introduction to Android");
 		myArrayOfBooks.add("Linear Algebra I");
-		myArrayOfBooks.add("C++ book");
+		myArrayOfBooks.add("Intermediate C++");
 		myArrayOfBooks.add("Java: The good parts");
 		myArrayOfBooks.add("C# in a nutshell");
 		myArrayOfBooks.add("Introduction to Macroeconomics 4th Canadian Edition "
@@ -130,6 +136,46 @@ public class ProfileActivity extends MainActivity {
 			    }
 			}
 		});
+		
+		editTextNumber.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				editTextNumber.setKeyListener(originalTextKeyListener);
+			}
+		});
+		
+		editTextNumber.setOnEditorActionListener(
+			    new EditText.OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				if (actionId == EditorInfo.IME_ACTION_SEND
+			            || actionId == EditorInfo.IME_ACTION_DONE
+			            || actionId == EditorInfo.IME_ACTION_GO
+			            || event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+			    	
+			    	// Check if user entered 
+			    	if (v.length() != 10) {
+			    		Toast toast = Toast.makeText(
+				    		getApplicationContext(),
+				    		"You must enter 10 digits for the texting number",
+				    		Toast.LENGTH_SHORT);
+				    	toast.show();
+				    	return false;
+			    	} else {
+			    		Toast toast = Toast.makeText(
+				    		getApplicationContext(),
+				    		"Texting number has been updated",
+				    		Toast.LENGTH_SHORT);
+				    	toast.show();
+				    	editTextNumber.clearFocus();
+				    	hideKeyboard(v);
+				    	return true;
+			    	}
+			    } else {
+			    	return false; // pass on to other listeners. 
+			    }
+			}
+		});
 	
 		editEmailAddress.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -160,22 +206,17 @@ public class ProfileActivity extends MainActivity {
 			}
 		});
 		
-		// Allows the ability to send an email
-		emailme.setOnClickListener(new View.OnClickListener() {
-					
+		callme.setOnClickListener(new View.OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
-				String aEmailList[] = { "user@fakehost.com","user2@fakehost.com" };
-						
-				final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-			    intent.setType("plain/text");
-			    intent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
-			    intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "OMG SUBJECT");
-			    intent.putExtra(android.content.Intent.EXTRA_TEXT, "OMG SELFIE!");
-			    startActivity(intent);
+				Intent callIntent = new Intent(Intent.ACTION_DIAL);
+				callIntent.setData(Uri.parse("tel:"+ editPhoneNumber.getText().toString()));
+				callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
+				startActivity(callIntent);
 			}
 		});
-				
+		
 		// Allows the ability to send a text message
 		textme.setOnClickListener(new View.OnClickListener() {
 			// Need because Build.VERSION if statement uses KitKat specific stuff
@@ -183,12 +224,13 @@ public class ProfileActivity extends MainActivity {
 			@Override
 			public void onClick(View v) {
 				String smsText = "HELLO WORLD";
-				String smsNumber = "5195728132";
+				String smsNumber = editTextNumber.getText().toString();
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { //At least KitKat
 					String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(getApplicationContext());
 					Intent sendIntent = new Intent(
 						Intent.ACTION_SENDTO, 
-						Uri.parse("smsto:" + Uri.encode(smsNumber)));
+						Uri.parse("smsto:" + Uri.encode(smsNumber))
+					);
 					sendIntent.putExtra("sms_body", smsText);
 
 					// If the user doesn't have a default app that supports SMS
@@ -196,7 +238,6 @@ public class ProfileActivity extends MainActivity {
 						sendIntent.setPackage(defaultSmsPackageName);
 					}
 					startActivity(sendIntent);
-
 				} else { // Stuff for pre-KitKat
 					Intent sendIntent = new Intent(Intent.ACTION_VIEW);
 					sendIntent.setData(Uri.parse("sms:"));
@@ -204,6 +245,21 @@ public class ProfileActivity extends MainActivity {
 					sendIntent.putExtra("address", smsNumber);
 					startActivity(sendIntent);
 				}
+			}
+		});
+		
+		// Allows the ability to send an email
+		emailme.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String aEmailList[] = { editEmailAddress.getText().toString()};
+						
+				final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+			    intent.setType("plain/text");
+			    intent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
+			    intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Reply to your <BOOK TITLE> ad on Buy My Book!");
+			    intent.putExtra(android.content.Intent.EXTRA_TEXT, "<EMAIL BODY TEXT HERE>");
+			    startActivity(intent);
 			}
 		});
 	}
