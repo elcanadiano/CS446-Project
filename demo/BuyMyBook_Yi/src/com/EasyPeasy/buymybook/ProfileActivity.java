@@ -8,19 +8,14 @@ import android.os.Bundle;
 import android.provider.Telephony;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.NavUtils;
-import android.telephony.SmsManager;
 import android.text.method.KeyListener;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -30,15 +25,14 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
-// Yi - make sure this extends MainActivity when merged into Main Activity
-// Keep image if Facebook image works
+import com.facebook.widget.ProfilePictureView;
+
 public class ProfileActivity extends MainActivity {
 	final Context context = this;
 	final String tag = "ProfileActivity";
 	
 	private EditText editPhoneNumber;
 	private EditText editEmailAddress;
-	private TextView phoneme;
 	private TextView emailme;
 	private TextView textme;
 	
@@ -50,12 +44,10 @@ public class ProfileActivity extends MainActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile);
 		this.dieAfterFinish=true;
-		//this.setupDrawer(savedInstanceState);
 		
 		editPhoneNumber = (EditText)findViewById(R.id.phone);
 		editEmailAddress = (EditText)findViewById(R.id.email);
 		
-		phoneme = (TextView)findViewById(R.id.phoneme);
 		emailme = (TextView)findViewById(R.id.emailme);
 		textme = (TextView)findViewById(R.id.textme);
 		
@@ -64,39 +56,19 @@ public class ProfileActivity extends MainActivity {
 		
 		//Put name, join date, phone, text, and email
 		((TextView)findViewById(R.id.first_name)).setText(
-				//getIntent().getExtras().getString("firstName"));
 				"Your first name here");
 		((TextView)findViewById(R.id.last_name)).setText(
-				//getIntent().getExtras().getString("lastName"));
 				"Your last name here");
 		editPhoneNumber.setText(
-				//getIntent().getExtras().getString("phone"));
 				"5198888888");
 		editEmailAddress.setText(
-				//getIntent().getExtras().getString("email"));
 				"khusain@uwaterloo.ca");
 		((TextView)findViewById(R.id.books_selling_text)).setText(
-				"Books that " + 
-				//getIntent().getExtras().getString("firstName") + 
-				//" " + getIntent().getExtras().getString("lastName") +
-				//" is selling");
-				"you are selling");
+				"Books that you are selling");
 		
-		// Find and display profile picture
-		//String imageName = getIntent().getExtras().getString("image");
-		String imageName = "bryan";
-		ImageButton image = ((ImageButton)findViewById(R.id.profile_pic));
-		int imageId = getResources().getIdentifier(imageName, "drawable", getPackageName());
+		// Hardcoded for now
+		((ProfilePictureView)findViewById(R.id.profile_pic)).setProfileId("100008045347915");
 		
-		if (imageId == 0) {
-		Toast toast = Toast.makeText(
-			getApplicationContext(),
-			"Could not find file: " + imageName,
-			Toast.LENGTH_SHORT);
-			toast.show();
-		} else {
-			image.setImageDrawable(getResources().getDrawable(imageId));
-		}
 		
 		ListView lv = (ListView) findViewById(R.id.my_books);
 		
@@ -108,7 +80,9 @@ public class ProfileActivity extends MainActivity {
 		myArrayOfBooks.add("C++ book");
 		myArrayOfBooks.add("Java: The good parts");
 		myArrayOfBooks.add("C# in a nutshell");
-		myArrayOfBooks.add("Introduction to Macroeconomics 4th Canadian Edition Revision 2 UWaterloo Edition Golden Hardcover Limited Print Foreward by Larry Smith");
+		myArrayOfBooks.add("Introduction to Macroeconomics 4th Canadian Edition "
+				+ "Revision 2 UWaterloo Edition Golden Hardcover Limited Print "
+				+ "Foreward by Larry Smith");
 		
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
 			this,
@@ -268,13 +242,16 @@ public class ProfileActivity extends MainActivity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	// Called when user touches the image
+	// When user presses the profile pic, it will go to the Facebook profile
     public void goToFacebook(View view) {
-    	Toast toast = Toast.makeText(
-    		getApplicationContext(),
-    		"This will redirect to your Facebook profile in the future",
-    		Toast.LENGTH_SHORT);
-    	toast.show();
+    	try { // Try launching through Facebook app first
+    	    context.getPackageManager().getPackageInfo("com.facebook.katana", 0);
+    	    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://profile/100008045347915"));
+    	    startActivity(intent);
+    	} catch (Exception e) { // Fallback to web browser if Facebook app doesn't exist or failed to launch
+    		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/booker.book3"));
+    	   	startActivity(intent);
+    	}
     }
     
 	private void hideKeyboard(View view) {

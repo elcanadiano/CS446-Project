@@ -294,9 +294,9 @@ containing a value of this type.
         public static final int scan_button_contact=0x7f02003b;
     }
     public static final class id {
-        public static final int accessToken=0x7f050005;
+        public static final int accessToken=0x7f050004;
         public static final int action_settings=0x7f050049;
-        public static final int authButton=0x7f050004;
+        public static final int authButton=0x7f050003;
         public static final int author=0x7f050041;
         public static final int books_selling_text=0x7f050021;
         public static final int com_facebook_login_activity_progress_bar=0x7f05002b;
@@ -321,53 +321,53 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_profile_name=0x7f05003c;
         public static final int condition=0x7f050043;
         public static final int counter=0x7f050040;
-        public static final int drawer_layout=0x7f05000a;
-        public static final int email=0x7f050020;
-        public static final int email_img=0x7f05001f;
+        public static final int drawer_layout=0x7f05000b;
+        public static final int email=0x7f050007;
+        public static final int email_img=0x7f050020;
         public static final int emailme=0x7f050023;
         public static final int fbURL=0x7f050008;
-        public static final int first_name=0x7f05001b;
+        public static final int first_name=0x7f05001c;
         public static final int frame_container=0x7f050028;
-        public static final int goToMain=0x7f050003;
-        public static final int greeting=0x7f05000b;
+        public static final int goToMain=0x7f05000a;
+        public static final int greeting=0x7f05000c;
         public static final int icon=0x7f05003e;
         public static final int image=0x7f050048;
-        public static final int instruction=0x7f05000c;
+        public static final int instruction=0x7f05000d;
         public static final int large=0x7f050002;
-        public static final int last_name=0x7f05001c;
-        public static final int list_slidermenu=0x7f05000e;
+        public static final int last_name=0x7f05001d;
+        public static final int list_slidermenu=0x7f05000f;
         public static final int my_books=0x7f050025;
-        public static final int name=0x7f050007;
+        public static final int name=0x7f050006;
         public static final int normal=0x7f050001;
-        public static final int phone=0x7f05001e;
-        public static final int phone_img=0x7f05001d;
+        public static final int phone=0x7f05001f;
+        public static final int phone_img=0x7f05001e;
         public static final int phoneme=0x7f050022;
         public static final int picker_subtitle=0x7f050038;
-        public static final int post_manual_submit=0x7f050018;
+        public static final int post_manual_submit=0x7f050019;
         public static final int price=0x7f050042;
-        public static final int profile=0x7f050019;
+        public static final int profile=0x7f05001a;
         public static final int profilePicture=0x7f050009;
-        public static final int profile_pic=0x7f05001a;
-        public static final int scanISBNButton=0x7f050017;
-        public static final int scan_button=0x7f05000d;
+        public static final int profile_pic=0x7f05001b;
+        public static final int scanISBNButton=0x7f050018;
+        public static final int scan_button=0x7f05000e;
         public static final int search_manual_author=0x7f050045;
-        public static final int search_manual_bookauthor=0x7f050015;
-        public static final int search_manual_bookisbn=0x7f050016;
-        public static final int search_manual_booktitle=0x7f050014;
+        public static final int search_manual_bookauthor=0x7f050016;
+        public static final int search_manual_bookisbn=0x7f050017;
+        public static final int search_manual_booktitle=0x7f050015;
         public static final int search_manual_btitle=0x7f050044;
         public static final int search_manual_condition=0x7f050047;
-        public static final int search_manual_header=0x7f05000f;
+        public static final int search_manual_header=0x7f050010;
         public static final int search_manual_listview=0x7f050027;
         public static final int search_manual_price=0x7f050046;
         public static final int search_manual_title=0x7f050026;
         public static final int small=0x7f050000;
-        public static final int spinnerCourse=0x7f050011;
-        public static final int spinnerTerm=0x7f050013;
-        public static final int subject=0x7f050010;
-        public static final int textCourseNum=0x7f050012;
+        public static final int spinnerCourse=0x7f050012;
+        public static final int spinnerTerm=0x7f050014;
+        public static final int subject=0x7f050011;
+        public static final int textCourseNum=0x7f050013;
         public static final int textme=0x7f050024;
         public static final int title=0x7f05003f;
-        public static final int userId=0x7f050006;
+        public static final int userId=0x7f050005;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
@@ -410,8 +410,8 @@ containing a value of this type.
         public static final int search_results=0x7f0b0006;
     }
     public static final class string {
-        public static final int action_settings=0x7f08001c;
-        public static final int app_id=0x7f08001f;
+        public static final int action_settings=0x7f08001b;
+        public static final int app_id=0x7f08001e;
         public static final int app_name=0x7f08001a;
         public static final int com_facebook_choose_friends=0x7f08000f;
         public static final int com_facebook_dialogloginactivity_ok_button=0x7f080000;
@@ -446,9 +446,9 @@ containing a value of this type.
         public static final int drawer_close=0x7f080027;
         public static final int drawer_open=0x7f080026;
         public static final int errorMsg_activity_post=0x7f080029;
-        public static final int hello_world=0x7f08001d;
-        public static final int hello_world_long=0x7f08001e;
-        public static final int login=0x7f08001b;
+        public static final int go_to_main=0x7f08001f;
+        public static final int hello_world=0x7f08001c;
+        public static final int hello_world_long=0x7f08001d;
         /**  MainActivity Strings 
          */
         public static final int main_greeting=0x7f080020;

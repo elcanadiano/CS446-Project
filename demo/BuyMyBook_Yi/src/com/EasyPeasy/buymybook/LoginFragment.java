@@ -22,7 +22,7 @@ public class LoginFragment extends Fragment {
 	private static final String TAG = "LoginFragment";
 	private UiLifecycleHelper uiHelper;
 	
-	 View view = null; // This might be problematic.
+	 View view = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,7 @@ public class LoginFragment extends Fragment {
 	    Button newPage = (Button) view.findViewById(R.id.goToMain);
 	    newPage.setOnClickListener(new View.OnClickListener() {
 			
+	    	// Go to main page when user clicks on the appropriate button
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -73,6 +74,7 @@ public class LoginFragment extends Fragment {
         final TextView accessToken = (TextView) view.findViewById(R.id.accessToken);
         final TextView userId = (TextView) view.findViewById(R.id.userId);
         final TextView name = (TextView) view.findViewById(R.id.name);
+        final TextView email = (TextView) view.findViewById(R.id.email);
         final TextView fbURL = (TextView) view.findViewById(R.id.fbURL);
         final Button goToMain = (Button) view.findViewById(R.id.goToMain);
         final ProfilePictureView profilePic = (ProfilePictureView) view.findViewById(R.id.profilePicture);
@@ -92,24 +94,26 @@ public class LoginFragment extends Fragment {
       		    	userId.setText("Your userId is: " + user.getId());
       		    	name.setText("Your first name is: " + user.getFirstName() 
       		    			+ " and your last name is: " + user.getLastName());
+      		    	email.setText("Your email address is: " + user.asMap().get("email"));
       		    	fbURL.setText("Your Facebook URL is: " + user.getLink());
       		    	
       		    	// Facebook Profile Picture -- http://graph.facebook.com/id/picture
       		    	// For Booker Book, it is http://graph.facebook.com/100008045347915/picture
       		    	profilePic.setProfileId(user.getId());
       		    	
-      		    	// Change the title bar text
-      		        getActivity().setTitle("Welcome back!");
+      		    	// Should we query the server here to see if the user exists in our database? 
       		    	
-      		    	// Should we query the server here to see if the user exists?
+      		    	
       		    } else {
       		    	userId.setText("Sorry, something went wrong and we were not able to get your Facebook information.");
+      		    	return;
       		    }
       		  }
       		}).executeAsync();
 	        accessToken.setVisibility(View.VISIBLE);
 	        userId.setVisibility(View.VISIBLE);
 	        name.setVisibility(View.VISIBLE);
+	        email.setVisibility(View.VISIBLE);
 	        fbURL.setVisibility(View.VISIBLE);
 	        goToMain.setVisibility(View.VISIBLE);
 	        profilePic.setVisibility(View.VISIBLE);
@@ -118,10 +122,10 @@ public class LoginFragment extends Fragment {
 	        accessToken.setVisibility(View.INVISIBLE);
 	        userId.setVisibility(View.INVISIBLE);
 	        name.setVisibility(View.INVISIBLE);
+	        email.setVisibility(View.INVISIBLE);
 	        fbURL.setVisibility(View.INVISIBLE);
 	        goToMain.setVisibility(View.INVISIBLE);
 	        profilePic.setVisibility(View.INVISIBLE);
-	        getActivity().setTitle("Login to use Buy My Book");
 	    }
 	}
 	

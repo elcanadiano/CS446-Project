@@ -16,16 +16,13 @@
         	android:layout_height="175dp"
         	android:orientation="vertical">
 	    
-	    <ImageButton
+	    <com.facebook.widget.ProfilePictureView
 			android:id="@+id/profile_pic"
-		    android:contentDescription="This is the user's profile picture"
 		    android:layout_marginLeft="5dp"
 		    android:layout_marginTop="20dp"
 		    android:layout_marginRight="5dp"
-		    android:layout_height="150dp"
-		    android:layout_width="125dp"
-		    android:scaleType="fitXY"
-		    android:background="@null"
+		    android:layout_height="wrap_content"
+		    android:layout_width="wrap_content"
 		    android:onClick="goToFacebook" />
 
         <TextView
