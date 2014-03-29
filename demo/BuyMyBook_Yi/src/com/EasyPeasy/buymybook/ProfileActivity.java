@@ -49,6 +49,14 @@ public class ProfileActivity extends MainActivity {
 		setContentView(R.layout.activity_profile);
 		this.dieAfterFinish=true;
 		
+		Toast toast = Toast.makeText(
+			getApplicationContext(),
+			getIntent().getStringExtra("userId"),
+			Toast.LENGTH_SHORT);
+		toast.show();
+		
+		String userId = getIntent().getStringExtra("userId");
+		
 		editPhoneNumber = (EditText)findViewById(R.id.phone);
 		editTextNumber = (EditText)findViewById(R.id.message);
 		editEmailAddress = (EditText)findViewById(R.id.email);
@@ -76,7 +84,7 @@ public class ProfileActivity extends MainActivity {
 				"Books that you are selling");
 		
 		// Hardcoded for now
-		((ProfilePictureView)findViewById(R.id.profile_pic)).setProfileId("100008045347915");
+		((ProfilePictureView)findViewById(R.id.profile_pic)).setProfileId(userId);
 		
 		ListView lv = (ListView) findViewById(R.id.my_books);
 		

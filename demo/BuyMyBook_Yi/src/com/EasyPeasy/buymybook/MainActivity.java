@@ -61,6 +61,12 @@ public class MainActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		Toast toast = Toast.makeText(
+			getApplicationContext(),
+			getIntent().getStringExtra("userId"),
+			Toast.LENGTH_SHORT);
+		toast.show();
 	
 		setContentView(R.layout.activity_main);
 		
@@ -251,7 +257,7 @@ public class MainActivity extends Activity implements OnClickListener{
         }
 	}
 	/**
-     * Diplaying fragment view for selected nav drawer list item
+     * Displaying fragment view for selected nav drawer list item
      * */
     private void displayView(int position) {
     	
@@ -295,6 +301,7 @@ public class MainActivity extends Activity implements OnClickListener{
     		callFacebookLogout(getApplicationContext());
     		finish();
     		intent = new Intent(this, LoginActivity.class);
+    		intent.putExtra("userID", getIntent().getStringExtra("userId"));
     		startActivity(intent);
     		overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
     		
