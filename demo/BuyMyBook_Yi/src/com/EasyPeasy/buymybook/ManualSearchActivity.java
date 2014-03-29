@@ -92,14 +92,14 @@ public class ManualSearchActivity extends MainActivity {
 		intent.putExtra("SUBMITVAL_TITLE", title);
 		intent.putExtra("SUBMITVAL_AUTHOR", author);
 		intent.putExtra("SUBMITVAL_ISBN", isbn);
-		Intent resultsIntent = new Intent(this,SearchManualActivity.class);
+		Intent resultsIntent = new Intent(this,SearchResultsActivity.class);
 		//String scanContent = new String("9787887031990"); //fake it
 		String scanContent = new String("9780176251949");
 		String url="http://buymybookapp.com/api/search/get_book/"+scanContent;
 		//communication class does all the work in getting results
-		CommunicationClass c = new CommunicationClass(url);
-		c.new DownloadJSON(this,"search").execute(url);	
-		//startActivity(intent);
+//		/CommunicationClass c = new CommunicationClass(url);
+		//c.new DownloadJSON(this,"search").execute(url);	
+		startActivity(resultsIntent);
 		//This activity should die now -Yi
 		if(dieAfterFinish) {
 			finish();
