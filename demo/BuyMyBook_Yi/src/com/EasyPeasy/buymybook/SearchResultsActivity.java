@@ -32,6 +32,8 @@ public class SearchResultsActivity extends MyFragmentActivity {
 		}
 		else{
 			Log.d(tag,"null pointer");
+			//delete later
+			result = "dsfsd";
 		}
 		
 		//install drawer menu
