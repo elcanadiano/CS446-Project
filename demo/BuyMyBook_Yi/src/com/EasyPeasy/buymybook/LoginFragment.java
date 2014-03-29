@@ -166,8 +166,12 @@ public class LoginFragment extends Fragment {
 	        	informUser.setText(getResources().getString(R.string.inform_user));
 	        	informUser.setVisibility(View.VISIBLE);
 	        	phoneNum.setVisibility(View.VISIBLE);
+	        	phoneNum.setText("8888888888");
 	        	textNum.setVisibility(View.VISIBLE);
+	        	textNum.setText("8888888888");
 	        	newEmail.setVisibility(View.VISIBLE);
+	        	newEmail.setText("booker@buymybook.com");
+	        	goToMain.setVisibility(View.VISIBLE); // TESTING PURPOSES
 	        } else { // Exists in database -- DEAD CODE
 	        	newUser = true;
 	        	welcome.setText(getResources().getString(R.string.welcome_back));
