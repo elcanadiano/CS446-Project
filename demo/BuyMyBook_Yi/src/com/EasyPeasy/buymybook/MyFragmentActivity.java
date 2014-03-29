@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.EasyPeasy.buymybook.adapter.NavDrawerListAdapter;
 import com.EasyPeasy.buymybook.model.NavDrawerItem;
@@ -95,7 +96,6 @@ public class MyFragmentActivity extends FragmentActivity {
 		 
         // load slide menu items
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
- 
         // nav drawer icons from resources
         navMenuIcons = getResources()
                 .obtainTypedArray(R.array.nav_drawer_icons);
@@ -112,9 +112,9 @@ public class MyFragmentActivity extends FragmentActivity {
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
         // PROFILE
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-        // Communities, Will add a counter here
-        
-         
+        // LOGOUT
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
+        // Communities, Will add a counter here  (??)
  
         // Recycle the typed array
         navMenuIcons.recycle();
@@ -190,10 +190,19 @@ public class MyFragmentActivity extends FragmentActivity {
 			}
             break;
         case 2: //MY PROFILE
-        	//KAHLIM ADD PROFILE PAGE HERE!!!
+        	intent = new Intent(this, ProfileActivity.class);
+        	startActivity(intent);
+        	overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+     
         	this.finishActivity();
-          
             break;
+        case 3: // LOGOUT
+    		Toast toast = Toast.makeText(
+    			getApplicationContext(),
+    			"Toasty!",
+    			Toast.LENGTH_SHORT);
+    		toast.show();
+        	break;
         default:
             break;
         }
