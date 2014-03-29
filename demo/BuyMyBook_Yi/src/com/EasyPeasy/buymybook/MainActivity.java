@@ -3,7 +3,6 @@ package com.EasyPeasy.buymybook;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -25,9 +24,11 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.EasyPeasy.buymybook.adapter.NavDrawerListAdapter;
 import com.EasyPeasy.buymybook.model.NavDrawerItem;
+import com.facebook.Session;
 
 
 public class MainActivity extends Activity implements OnClickListener{
@@ -60,6 +61,15 @@ public class MainActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		/*
+		// For some reason, the app likes jumping to MainActivity.
+		// If we go here by mistake, don't let MainActivity continue.
+		Bundle extras = getIntent().getExtras(); 
+		if (extras != null) {
+			finish();
+		}
+		*/
 	
 		setContentView(R.layout.activity_main);
 		
@@ -195,14 +205,16 @@ public class MainActivity extends Activity implements OnClickListener{
  
         navDrawerItems = new ArrayList<NavDrawerItem>();
  
-        // adding nav drawer items to array
+     // adding nav drawer items to array
         // SELL
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
         // BUY
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
         // PROFILE
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-        // Communities, Will add a counter here
+        // LOGOUT
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
+        // Communities, Will add a counter here  (??)
         
          
  
@@ -279,7 +291,6 @@ public class MainActivity extends Activity implements OnClickListener{
 			}
             break;
         case 2: //MY PROFILE
-        	//KAHLIM ADD PROFILE PAGE HERE!!!
         	intent = new Intent(this, ProfileActivity.class);
         	startActivity(intent);
         	overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
@@ -289,16 +300,36 @@ public class MainActivity extends Activity implements OnClickListener{
         		finish();
         	}
             break;
+        case 3: // LOGOUT
+    		callFacebookLogout(getApplicationContext());
+    		finish();
+    		intent = new Intent(this, LoginActivity.class);
+    		startActivity(intent);
+    		overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+    		
+    		if (dieAfterFinish) {
+        		finish();
+        	}
+    		
+        	break;
         default:
             break;
         }
     }
     
-    //helper to decide how to finish - helper for displayView()
-    private void finishActivity() {
-    	if(dieAfterFinish) { 
-            	finish();
+    public static void callFacebookLogout(Context context) {
+    	Session session = Session.getActiveSession();
+        if (session != null) {
+            if (!session.isClosed()) {
+                session.closeAndClearTokenInformation();
+                //clear your preferences if saved
             }
+        } else {
+        	session = new Session(context);
+            Session.setActiveSession(session);
+            session.closeAndClearTokenInformation();
+            //clear your preferences if saved
+        }
     }
 	
 	private void setupGreeting() {
@@ -334,7 +365,6 @@ public class MainActivity extends Activity implements OnClickListener{
 		int lengthOfPart2 = builder.length();
 		builder.append(" ");
 		builder.append(this.getText(R.string.main_inst_look));
-		int lengthOfPart3 = builder.length();
 		
 		builder.setSpan(c, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		builder.setSpan(s,  lengthOfPart1,  lengthOfPart1+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
