@@ -65,12 +65,8 @@ public class LoginFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				
-				if (! newUser) {
-					Toast toast = Toast.makeText(
-						getActivity().getApplicationContext(),
-				    	"NEW USER!!!!",
-				    	Toast.LENGTH_SHORT);
-				    toast.show();
+				if (newUser) {
+					// Do stuff if you are a new user?
 				}
 				
 				Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -144,8 +140,6 @@ public class LoginFragment extends Fragment {
       		    	// Facebook Profile Picture -- http://graph.facebook.com/id/picture
       		    	// For Booker Book, it is http://graph.facebook.com/100008045347915/picture
       		    	profilePic.setProfileId(user.getId());
-      		    	
-      		    	
       		    } else {
       		    	userId.setText("Sorry, something went wrong and we were not able to get your Facebook information.");
       		    	return;
@@ -166,12 +160,12 @@ public class LoginFragment extends Fragment {
 	        	informUser.setText(getResources().getString(R.string.inform_user));
 	        	informUser.setVisibility(View.VISIBLE);
 	        	phoneNum.setVisibility(View.VISIBLE);
-	        	phoneNum.setText("8888888888");
+	        	phoneNum.setText("8888888888");				// TESTING PURPOSES
 	        	textNum.setVisibility(View.VISIBLE);
-	        	textNum.setText("8888888888");
-	        	newEmail.setVisibility(View.VISIBLE);
-	        	newEmail.setText("booker@buymybook.com");
-	        	goToMain.setVisibility(View.VISIBLE); // TESTING PURPOSES
+	        	textNum.setText("8888888888");				// TESTING PURPOSES
+	        	newEmail.setVisibility(View.VISIBLE); 
+	        	newEmail.setText("booker@buymybook.com"); 	// TESTING PURPOSES
+	        	goToMain.setVisibility(View.VISIBLE);		// TESTING PURPOSES
 	        } else { // Exists in database -- DEAD CODE
 	        	newUser = true;
 	        	welcome.setText(getResources().getString(R.string.welcome_back));

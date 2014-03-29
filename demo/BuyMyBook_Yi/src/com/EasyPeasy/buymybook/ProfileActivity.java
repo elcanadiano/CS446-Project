@@ -43,19 +43,15 @@ public class ProfileActivity extends MainActivity {
 	private ImageView textme;
 	private ImageView emailme;
 	
+	private String fbUserId;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile);
 		this.dieAfterFinish=true;
 		
-		Toast toast = Toast.makeText(
-			getApplicationContext(),
-			getIntent().getStringExtra("userId"),
-			Toast.LENGTH_SHORT);
-		toast.show();
-		
-		String userId = getIntent().getStringExtra("userId");
+		fbUserId = getIntent().getStringExtra("userId");
 		
 		editPhoneNumber = (EditText)findViewById(R.id.phone);
 		editTextNumber = (EditText)findViewById(R.id.message);
@@ -70,21 +66,14 @@ public class ProfileActivity extends MainActivity {
 		originalEmailKeyListener = editEmailAddress.getKeyListener();
 		
 		//Put name, join date, phone, text, and email
-		((TextView)findViewById(R.id.first_name)).setText(
-				"Your first name here");
-		((TextView)findViewById(R.id.last_name)).setText(
-				"Your last name here");
-		editPhoneNumber.setText(
-				"5198888888");
-		editTextNumber.setText(
-				"2268888888");
-		editEmailAddress.setText(
-				"khusain@uwaterloo.ca");
-		((TextView)findViewById(R.id.books_selling_text)).setText(
-				"Books that you are selling");
+		((TextView)findViewById(R.id.first_name)).setText("Your first name here");
+		((TextView)findViewById(R.id.last_name)).setText("Your last name here");
+		editPhoneNumber.setText("5198888888");
+		editTextNumber.setText("2268888888");
+		editEmailAddress.setText("khusain@uwaterloo.ca");
+		((TextView)findViewById(R.id.books_selling_text)).setText("Books that you are selling");
 		
-		// Hardcoded for now
-		((ProfilePictureView)findViewById(R.id.profile_pic)).setProfileId(userId);
+		((ProfilePictureView)findViewById(R.id.profile_pic)).setProfileId(fbUserId);
 		
 		ListView lv = (ListView) findViewById(R.id.my_books);
 		
