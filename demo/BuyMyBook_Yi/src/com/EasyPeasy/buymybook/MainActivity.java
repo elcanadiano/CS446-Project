@@ -61,15 +61,6 @@ public class MainActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		/*
-		// For some reason, the app likes jumping to MainActivity.
-		// If we go here by mistake, don't let MainActivity continue.
-		Bundle extras = getIntent().getExtras(); 
-		if (extras != null) {
-			finish();
-		}
-		*/
 	
 		setContentView(R.layout.activity_main);
 		
