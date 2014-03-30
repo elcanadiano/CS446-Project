@@ -297,7 +297,7 @@ public class MainActivity extends Activity implements OnClickListener{
             break;
         case 3: // LOGOUT
     		callFacebookLogout(getApplicationContext());
-    		//finish();
+    		finish();
     		intent = new Intent(this, LoginActivity.class);
     		startActivity(intent);
     		overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);

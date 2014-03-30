@@ -7,13 +7,15 @@
     
     <!-- Dummy item to prevent other views from receiving focus -->
     <LinearLayout
-    	android:focusable="true" android:focusableInTouchMode="true"
-    	android:layout_width="0px" android:layout_height="0px" />
+    	android:focusable="true"
+    	android:focusableInTouchMode="true"
+    	android:layout_width="0px"
+    	android:layout_height="0px" />
     
     <RelativeLayout
         	android:id="@+id/profile"
         	android:layout_width="fill_parent"
-        	android:layout_height="175dp"
+        	android:layout_height="200dp"
         	android:orientation="vertical">
 	    
 	    <com.facebook.widget.ProfilePictureView
@@ -103,12 +105,14 @@
         style="@style/profileBooksHeader"
         android:layout_below="@id/profile" />
  
+    <!-- This will be updated when Carl finishes his Search List View -->
     <ListView
           android:id="@+id/my_books"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
           android:layout_below="@id/books_selling_text"
           android:layout_marginTop="10dp"
+          android:layout_alignParentBottom="true"
           android:background="@color/list_background"
           android:cacheColorHint="@android:color/transparent"
           android:divider="@color/list_divider"
