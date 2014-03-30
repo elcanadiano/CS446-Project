@@ -36,6 +36,7 @@ public class LoginFragment extends Fragment {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		Log.i("onCreate:39", "Accessing this function");
 	    super.onCreate(savedInstanceState);
 	    uiHelper = new UiLifecycleHelper(getActivity(), callback);
 	    uiHelper.onCreate(savedInstanceState);
@@ -45,6 +46,8 @@ public class LoginFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, 
 	        ViewGroup container, 
 	        Bundle savedInstanceState) {
+		
+		Log.i("onCreateView:49", "Accessing this function");
 	    view = inflater.inflate(R.layout.activity_login, container, false);
 	    
 	    LoginButton authButton = (LoginButton) view.findViewById(R.id.authButton);
@@ -65,12 +68,8 @@ public class LoginFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				
-				if (! newUser) {
-					Toast toast = Toast.makeText(
-						getActivity().getApplicationContext(),
-				    	"NEW USER!!!!",
-				    	Toast.LENGTH_SHORT);
-				    toast.show();
+				if (newUser) {
+					// Do stuff if you are a new user?
 				}
 				
 				Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -85,12 +84,15 @@ public class LoginFragment extends Fragment {
 	private Session.StatusCallback callback = new Session.StatusCallback() {
 	    @Override
 	    public void call(Session session, SessionState state, Exception exception) {
+	    	Log.i("Session.StatusCallback:84", "Accessing this function");
 	        onSessionStateChange(session, state, exception);
 	    }
 	};
 	
 	// Does stuff when the user is logged in and when the user is not logged in
 	private void onSessionStateChange(Session session, SessionState state, Exception exception) {
+		
+		Log.i("onSessionStateChange:91", "Accessing this function");
         final TextView accessToken = (TextView) view.findViewById(R.id.accessToken);
         final TextView userId = (TextView) view.findViewById(R.id.userId);
         final TextView welcome = (TextView) view.findViewById(R.id.welcome);
@@ -104,6 +106,7 @@ public class LoginFragment extends Fragment {
         final Button goToMain = (Button) view.findViewById(R.id.goToMain);
         final ProfilePictureView profilePic = (ProfilePictureView) view.findViewById(R.id.profilePicture);
         
+        Log.i("onSessionStateChange:109", "Called up the necessary Views and Buttons");
         final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
         	"[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
             "\\@" +
@@ -113,6 +116,10 @@ public class LoginFragment extends Fragment {
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
             ")+"
         );
+        
+        if (state == null) {
+        	Log.i("onSessionStateChange:121", "why is my state null?");
+        }
         
 	    if (state.isOpened()) {
 	        Log.i(TAG, "Logged in...");
@@ -144,8 +151,6 @@ public class LoginFragment extends Fragment {
       		    	// Facebook Profile Picture -- http://graph.facebook.com/id/picture
       		    	// For Booker Book, it is http://graph.facebook.com/100008045347915/picture
       		    	profilePic.setProfileId(user.getId());
-      		    	
-      		    	
       		    } else {
       		    	userId.setText("Sorry, something went wrong and we were not able to get your Facebook information.");
       		    	return;
@@ -166,12 +171,12 @@ public class LoginFragment extends Fragment {
 	        	informUser.setText(getResources().getString(R.string.inform_user));
 	        	informUser.setVisibility(View.VISIBLE);
 	        	phoneNum.setVisibility(View.VISIBLE);
-	        	phoneNum.setText("8888888888");
+	        	phoneNum.setText("8888888888");				// TESTING PURPOSES
 	        	textNum.setVisibility(View.VISIBLE);
-	        	textNum.setText("8888888888");
-	        	newEmail.setVisibility(View.VISIBLE);
-	        	newEmail.setText("booker@buymybook.com");
-	        	goToMain.setVisibility(View.VISIBLE); // TESTING PURPOSES
+	        	textNum.setText("8888888888");				// TESTING PURPOSES
+	        	newEmail.setVisibility(View.VISIBLE); 
+	        	newEmail.setText("booker@buymybook.com"); 	// TESTING PURPOSES
+	        	goToMain.setVisibility(View.VISIBLE);		// TESTING PURPOSES
 	        } else { // Exists in database -- DEAD CODE
 	        	newUser = true;
 	        	welcome.setText(getResources().getString(R.string.welcome_back));

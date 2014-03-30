@@ -57,16 +57,13 @@ public class MainActivity extends Activity implements OnClickListener{
 	//local db stuff
 	private DBHelper dbHelper;
 	
+	private String fbUserId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		Toast toast = Toast.makeText(
-			getApplicationContext(),
-			getIntent().getStringExtra("userId"),
-			Toast.LENGTH_SHORT);
-		toast.show();
+		fbUserId = getIntent().getStringExtra("userId");
 	
 		setContentView(R.layout.activity_main);
 		
@@ -289,6 +286,7 @@ public class MainActivity extends Activity implements OnClickListener{
             break;
         case 2: //MY PROFILE
         	intent = new Intent(this, ProfileActivity.class);
+    		intent.putExtra("userId", fbUserId);
         	startActivity(intent);
         	overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
         	
@@ -301,7 +299,6 @@ public class MainActivity extends Activity implements OnClickListener{
     		callFacebookLogout(getApplicationContext());
     		finish();
     		intent = new Intent(this, LoginActivity.class);
-    		intent.putExtra("userID", getIntent().getStringExtra("userId"));
     		startActivity(intent);
     		overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
     		
