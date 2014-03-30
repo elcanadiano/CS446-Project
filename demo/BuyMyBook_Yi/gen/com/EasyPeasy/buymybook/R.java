@@ -298,7 +298,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int accessToken=0x7f05000d;
-        public static final int action_settings=0x7f050053;
+        public static final int action_settings=0x7f050054;
         public static final int authButton=0x7f050005;
         public static final int author=0x7f050049;
         public static final int authorTitle=0x7f050048;
@@ -337,7 +337,7 @@ containing a value of this type.
         public static final int goToMain=0x7f050006;
         public static final int greeting=0x7f050012;
         public static final int icon=0x7f050043;
-        public static final int image=0x7f050052;
+        public static final int image=0x7f050053;
         public static final int informUserForMoreInfo=0x7f05000c;
         public static final int instruction=0x7f050013;
         public static final int large=0x7f050002;
@@ -361,15 +361,15 @@ containing a value of this type.
         public static final int profile_pic=0x7f050021;
         public static final int scanISBNButton=0x7f05001e;
         public static final int scan_button=0x7f050014;
-        public static final int search_manual_author=0x7f05004f;
+        public static final int search_manual_author=0x7f050050;
         public static final int search_manual_bookauthor=0x7f05001c;
         public static final int search_manual_bookisbn=0x7f05001d;
         public static final int search_manual_booktitle=0x7f05001b;
-        public static final int search_manual_btitle=0x7f05004e;
-        public static final int search_manual_condition=0x7f050051;
+        public static final int search_manual_btitle=0x7f05004f;
+        public static final int search_manual_condition=0x7f050052;
         public static final int search_manual_header=0x7f050016;
         public static final int search_manual_listview=0x7f05002c;
-        public static final int search_manual_price=0x7f050050;
+        public static final int search_manual_price=0x7f050051;
         public static final int search_manual_title=0x7f05002b;
         public static final int small=0x7f050000;
         public static final int spinnerCourse=0x7f050018;
@@ -377,6 +377,7 @@ containing a value of this type.
         public static final int subject=0x7f050017;
         public static final int tableRow=0x7f050004;
         public static final int textCourseNum=0x7f050019;
+        public static final int textLayout=0x7f05004e;
         public static final int textNum=0x7f05000a;
         public static final int title=0x7f050044;
         public static final int userId=0x7f05000e;
