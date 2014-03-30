@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.text.method.KeyListener;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -259,7 +260,12 @@ public class ProfileActivity extends MainActivity {
 			    startActivity(intent);
 			}
 		});
-	}
+	
+		Log.i("profileActivity", "time for drawer setup");
+		//install drawer
+		//this.setupDrawer(savedInstanceState);
+		Log.i("profileActivity", "Drawer setup worked");
+	} // onCreate end
 	
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
@@ -299,9 +305,11 @@ public class ProfileActivity extends MainActivity {
     public void goToFacebook(View view) {
     	try { // Try launching through Facebook app first
     	    context.getPackageManager().getPackageInfo("com.facebook.katana", 0);
-    	    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://profile/100008045347915"));
+    	    String URI = "fb://profile/" + fbUserId;
+    	    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(URI));
     	    startActivity(intent);
     	} catch (Exception e) { // Fallback to web browser if Facebook app doesn't exist or failed to launch
+    		//String URI2 = "https://www.facebook.com/" + 
     		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/booker.book3"));
     	   	startActivity(intent);
     	}
