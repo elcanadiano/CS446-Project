@@ -36,6 +36,7 @@ public class LoginFragment extends Fragment {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		Log.i("onCreate:39", "Accessing this function");
 	    super.onCreate(savedInstanceState);
 	    uiHelper = new UiLifecycleHelper(getActivity(), callback);
 	    uiHelper.onCreate(savedInstanceState);
@@ -45,6 +46,8 @@ public class LoginFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, 
 	        ViewGroup container, 
 	        Bundle savedInstanceState) {
+		
+		Log.i("onCreateView:49", "Accessing this function");
 	    view = inflater.inflate(R.layout.activity_login, container, false);
 	    
 	    LoginButton authButton = (LoginButton) view.findViewById(R.id.authButton);
@@ -81,12 +84,15 @@ public class LoginFragment extends Fragment {
 	private Session.StatusCallback callback = new Session.StatusCallback() {
 	    @Override
 	    public void call(Session session, SessionState state, Exception exception) {
+	    	Log.i("Session.StatusCallback:84", "Accessing this function");
 	        onSessionStateChange(session, state, exception);
 	    }
 	};
 	
 	// Does stuff when the user is logged in and when the user is not logged in
 	private void onSessionStateChange(Session session, SessionState state, Exception exception) {
+		
+		Log.i("onSessionStateChange:91", "Accessing this function");
         final TextView accessToken = (TextView) view.findViewById(R.id.accessToken);
         final TextView userId = (TextView) view.findViewById(R.id.userId);
         final TextView welcome = (TextView) view.findViewById(R.id.welcome);
@@ -100,6 +106,7 @@ public class LoginFragment extends Fragment {
         final Button goToMain = (Button) view.findViewById(R.id.goToMain);
         final ProfilePictureView profilePic = (ProfilePictureView) view.findViewById(R.id.profilePicture);
         
+        Log.i("onSessionStateChange:109", "Called up the necessary Views and Buttons");
         final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
         	"[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
             "\\@" +
@@ -109,6 +116,10 @@ public class LoginFragment extends Fragment {
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
             ")+"
         );
+        
+        if (state == null) {
+        	Log.i("onSessionStateChange:121", "why is my state null?");
+        }
         
 	    if (state.isOpened()) {
 	        Log.i(TAG, "Logged in...");
