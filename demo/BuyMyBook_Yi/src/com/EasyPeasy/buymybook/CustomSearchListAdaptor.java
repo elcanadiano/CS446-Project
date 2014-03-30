@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class CustomSearchListAdaptor extends BaseAdapter{
@@ -51,7 +52,7 @@ public class CustomSearchListAdaptor extends BaseAdapter{
 	            holder.authorView = (TextView) convertView.findViewById(R.id.search_manual_author);
 	            holder.priceView = (TextView) convertView.findViewById(R.id.search_manual_price);
 	            holder.condition = (TextView) convertView.findViewById(R.id.search_manual_condition);
-	            
+	            holder.image = (ImageView) convertView.findViewById(R.id.image);
 	            convertView.setTag(holder);
 	        } else {
 	            holder = (ViewHolder) convertView.getTag();
@@ -87,11 +88,7 @@ public class CustomSearchListAdaptor extends BaseAdapter{
 	        		
 	        }//switch
 	        holder.condition.setText("Condition: "+ condition);
-	        /*
-	        holder.headlineView.setText(listData.get(position).getHeadline());
-	        holder.reporterNameView.setText("By, " + listData.get(position).getReporterName());
-	        holder.reportedDateView.setText(listData.get(position).getDate());
-	 */
+	        holder.image.setImageResource(R.drawable.clearthinking);
 	        return convertView;
 	}
 	static class ViewHolder {
@@ -99,5 +96,6 @@ public class CustomSearchListAdaptor extends BaseAdapter{
         TextView authorView;
         TextView priceView;
         TextView condition;
+        ImageView image;
     }
 }
