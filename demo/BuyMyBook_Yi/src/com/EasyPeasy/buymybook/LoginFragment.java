@@ -55,7 +55,6 @@ public class LoginFragment extends Fragment {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		Log.i("onCreate:39", "Accessing this function");
 	    super.onCreate(savedInstanceState);
 	    uiHelper = new UiLifecycleHelper(getActivity(), callback);
 	    uiHelper.onCreate(savedInstanceState);
@@ -64,9 +63,8 @@ public class LoginFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, 
 	        ViewGroup container, 
-	        Bundle savedInstanceState) {
-		
-		Log.i("onCreateView:49", "Accessing this function");
+	        Bundle savedInstanceState
+	) {
 	    view = inflater.inflate(R.layout.activity_login, container, false);
 	    
 	    LoginButton authButton = (LoginButton) view.findViewById(R.id.authButton);
@@ -86,11 +84,9 @@ public class LoginFragment extends Fragment {
 	    	// Go to main page when user clicks on the appropriate button
 			@Override
 			public void onClick(View v) {
-				
 				if (newUser) {
 					// Do stuff if you are a new user?
 				}
-				
 				Intent intent = new Intent(getActivity(), MainActivity.class);
 				intent.putExtra("userId", fbUserId);
 				intent.putExtra("userName", fbUserName);
@@ -104,15 +100,12 @@ public class LoginFragment extends Fragment {
 	private Session.StatusCallback callback = new Session.StatusCallback() {
 	    @Override
 	    public void call(Session session, SessionState state, Exception exception) {
-	    	Log.i("Session.StatusCallback:84", "Accessing this function");
 	        onSessionStateChange(session, state, exception);
 	    }
 	};
 	
 	// Does stuff when the user is logged in and when the user is not logged in
 	private void onSessionStateChange(Session session, SessionState state, Exception exception) {
-		
-		Log.i("onSessionStateChange:91", "Accessing this function");
         final TextView welcome = (TextView) view.findViewById(R.id.welcome);
         final TextView name = (TextView) view.findViewById(R.id.name);
         final TextView informUser = (TextView) view.findViewById(R.id.informUserForMoreInfo);
@@ -121,8 +114,6 @@ public class LoginFragment extends Fragment {
         final EditText newEmail = (EditText) view.findViewById(R.id.newEmail);
         final Button goToMain = (Button) view.findViewById(R.id.goToMain);
         final ProfilePictureView profilePic = (ProfilePictureView) view.findViewById(R.id.profilePicture);
-        
-        Log.i("onSessionStateChange:109", "Called up the necessary Views and Buttons");
         final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
         	"[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
             "\\@" +
@@ -185,7 +176,6 @@ public class LoginFragment extends Fragment {
 				CommunicationClass x = null;
 				FacebookStuff a = x.new FacebookStuff(httppost);
 				response = a.Login();
-				//response = new FacebookStuff(httppost).Login();
 	        } catch (Exception e) {
 	        	// TODO: Catch exception...
 	        }
