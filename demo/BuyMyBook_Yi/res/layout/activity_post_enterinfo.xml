@@ -16,7 +16,14 @@
     
     tools:context=".PostActivity" >
 
-
+	<TextView
+        android:id="@+id/post_scan_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:text="@string/hello_world" />
+   
+    
     
     
 </RelativeLayout>

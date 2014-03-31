@@ -3,6 +3,9 @@ package com.EasyPeasy.buymybook;
 
 import java.util.concurrent.ExecutionException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -36,6 +39,8 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	
 	//enter info page
 	String json;
+	String title;
+	String author;
 	/*
 	private TextView info;
 	private Button confirmBtn;
@@ -148,20 +153,37 @@ public class PostActivity extends MainActivity implements OnClickListener{
 			System.out.println("scanner returned, isbn is "+isbn_13);
 			
 			//2. talk to server to get book info
-			String url="http://isbndb.com/api/v2/json/2L1HKXO4/book/" + isbn_13;
+				//9780201314526=cs246
+			String url="http://buymybookapp.com/api/search/get_book/" + isbn_13;
 			CommunicationClass c = new CommunicationClass(url);
 			String return_json=null;
+			
 			try {
 				return_json = c.new DownloadJSON(this,"post").execute(url).get();
+				
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ExecutionException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}		
+			}
 			
-			System.out.println("isbndb returned "+return_json);
+			JSONObject jsonObj=null;
+			try {
+				jsonObj = new JSONObject(return_json);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				title = jsonObj.getJSONObject("data").getJSONObject("book").getString("title");
+				author = jsonObj.getJSONObject("data").getJSONObject("book").getString("author");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("SERVER RETURNED returned "+title);
 			//3. set layout screen for following page :
 			setContentView(R.layout.activity_post_enterinfo);
 			Bundle dummie = new Bundle();
