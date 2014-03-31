@@ -251,7 +251,7 @@ containing a value of this type.
         public static final int com_facebook_list_section_header_background=0x7f020011;
         public static final int com_facebook_loginbutton_silver=0x7f020012;
         public static final int com_facebook_logo=0x7f020013;
-        public static final int com_facebook_picker_default_separator_color=0x7f02003f;
+        public static final int com_facebook_picker_default_separator_color=0x7f020040;
         public static final int com_facebook_picker_item_background=0x7f020014;
         public static final int com_facebook_picker_list_focused=0x7f020015;
         public static final int com_facebook_picker_list_longpressed=0x7f020016;
@@ -280,29 +280,31 @@ containing a value of this type.
         public static final int ic_drawer=0x7f02002d;
         public static final int ic_home=0x7f02002e;
         public static final int ic_launcher=0x7f02002f;
-        public static final int ic_menu_booker_normal=0x7f020030;
-        public static final int ic_menu_camera_normal=0x7f020031;
-        public static final int ic_menu_search_normal=0x7f020032;
-        public static final int ic_pages=0x7f020033;
-        public static final int ic_people=0x7f020034;
-        public static final int ic_photos=0x7f020035;
-        public static final int ic_swipe_menu=0x7f020036;
-        public static final int ic_whats_hot=0x7f020037;
-        public static final int list_item_bg_normal=0x7f020038;
-        public static final int list_item_bg_pressed=0x7f020039;
-        public static final int list_selector=0x7f02003a;
-        public static final int message=0x7f02003b;
-        public static final int phone=0x7f02003c;
-        public static final int scan_button=0x7f02003d;
-        public static final int scan_button_contact=0x7f02003e;
+        public static final int ic_list_remove=0x7f020030;
+        public static final int ic_menu_booker_normal=0x7f020031;
+        public static final int ic_menu_camera_normal=0x7f020032;
+        public static final int ic_menu_search_normal=0x7f020033;
+        public static final int ic_pages=0x7f020034;
+        public static final int ic_people=0x7f020035;
+        public static final int ic_photos=0x7f020036;
+        public static final int ic_swipe_menu=0x7f020037;
+        public static final int ic_whats_hot=0x7f020038;
+        public static final int list_item_bg_normal=0x7f020039;
+        public static final int list_item_bg_pressed=0x7f02003a;
+        public static final int list_selector=0x7f02003b;
+        public static final int message=0x7f02003c;
+        public static final int phone=0x7f02003d;
+        public static final int scan_button=0x7f02003e;
+        public static final int scan_button_contact=0x7f02003f;
     }
     public static final class id {
         public static final int accessToken=0x7f05000d;
-        public static final int action_settings=0x7f050054;
+        public static final int action_settings=0x7f050058;
         public static final int authButton=0x7f050005;
         public static final int author=0x7f050049;
         public static final int authorTitle=0x7f050048;
         public static final int bookTitle=0x7f050047;
+        public static final int book_img=0x7f050055;
         public static final int books_selling_text=0x7f050029;
         public static final int com_facebook_login_activity_progress_bar=0x7f050030;
         public static final int com_facebook_picker_activity_circle=0x7f05002f;
@@ -328,7 +330,10 @@ containing a value of this type.
         public static final int conditionTitle=0x7f05004c;
         public static final int contactInfo=0x7f050046;
         public static final int counter=0x7f050045;
+        public static final int delete_button=0x7f05004f;
+        public static final int delete_img=0x7f050056;
         public static final int drawer_layout=0x7f050011;
+        public static final int dummyText=0x7f05004e;
         public static final int email=0x7f05000f;
         public static final int email_img=0x7f050028;
         public static final int fbURL=0x7f050010;
@@ -337,7 +342,7 @@ containing a value of this type.
         public static final int goToMain=0x7f050006;
         public static final int greeting=0x7f050012;
         public static final int icon=0x7f050043;
-        public static final int image=0x7f050053;
+        public static final int image=0x7f050057;
         public static final int informUserForMoreInfo=0x7f05000c;
         public static final int instruction=0x7f050013;
         public static final int large=0x7f050002;
@@ -361,15 +366,15 @@ containing a value of this type.
         public static final int profile_pic=0x7f050021;
         public static final int scanISBNButton=0x7f05001e;
         public static final int scan_button=0x7f050014;
-        public static final int search_manual_author=0x7f050050;
+        public static final int search_manual_author=0x7f050052;
         public static final int search_manual_bookauthor=0x7f05001c;
         public static final int search_manual_bookisbn=0x7f05001d;
         public static final int search_manual_booktitle=0x7f05001b;
-        public static final int search_manual_btitle=0x7f05004f;
-        public static final int search_manual_condition=0x7f050052;
+        public static final int search_manual_btitle=0x7f050051;
+        public static final int search_manual_condition=0x7f050054;
         public static final int search_manual_header=0x7f050016;
         public static final int search_manual_listview=0x7f05002c;
-        public static final int search_manual_price=0x7f050051;
+        public static final int search_manual_price=0x7f050053;
         public static final int search_manual_title=0x7f05002b;
         public static final int small=0x7f050000;
         public static final int spinnerCourse=0x7f050018;
@@ -377,7 +382,7 @@ containing a value of this type.
         public static final int subject=0x7f050017;
         public static final int tableRow=0x7f050004;
         public static final int textCourseNum=0x7f050019;
-        public static final int textLayout=0x7f05004e;
+        public static final int textLayout=0x7f050050;
         public static final int textNum=0x7f05000a;
         public static final int title=0x7f050044;
         public static final int userId=0x7f05000e;
@@ -412,7 +417,9 @@ containing a value of this type.
         public static final int drawer_list_item=0x7f030019;
         public static final int fragment_results_details=0x7f03001a;
         public static final int fragment_results_search=0x7f03001b;
-        public static final int searchlistinglayout=0x7f03001c;
+        public static final int list_item_example=0x7f03001c;
+        public static final int peronal_listing_layout=0x7f03001d;
+        public static final int searchlistinglayout=0x7f03001e;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;

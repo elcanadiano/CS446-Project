@@ -14,17 +14,21 @@ import android.support.v4.app.NavUtils;
 import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.facebook.widget.ProfilePictureView;
 
@@ -76,24 +80,17 @@ public class ProfileActivity extends MainActivity {
 		
 		((ProfilePictureView)findViewById(R.id.profile_pic)).setProfileId(fbUserId);
 		
-		ListView lv = (ListView) findViewById(R.id.my_books);
+		ArrayList<SearchListItem> myArrayOfBooks = new ArrayList<SearchListItem>();
 		
-		ArrayList<String> myArrayOfBooks = new ArrayList<String>();
-		myArrayOfBooks.add("Introduction to Android");
-		myArrayOfBooks.add("Linear Algebra I");
-		myArrayOfBooks.add("Intermediate C++");
-		myArrayOfBooks.add("Java: The good parts");
-		myArrayOfBooks.add("C# in a nutshell");
-		myArrayOfBooks.add("Introduction to Macroeconomics 4th Canadian Edition "
-				+ "Revision 2 UWaterloo Edition Golden Hardcover Limited Print "
-				+ "Foreward by Larry Smith");
-		
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-			this,
-			android.R.layout.simple_list_item_1,
-			myArrayOfBooks );
-		
-		lv.setAdapter(arrayAdapter);
+		for (int i = 0; i < 10; i++) {
+			String xt = "LOL " + i;
+			SearchListItem item = new SearchListItem(
+					xt,
+					"author here",
+					"12.98",
+					"1");
+			myArrayOfBooks.add(item);
+		}
 		
 		editPhoneNumber.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -265,6 +262,35 @@ public class ProfileActivity extends MainActivity {
 		//install drawer
 		//this.setupDrawer(savedInstanceState);
 		Log.i("profileActivity", "Drawer setup worked");
+		
+		final ListView lv1 = (ListView) findViewById(R.id.my_books);
+		if(lv1 != null){
+			lv1.setAdapter(new CustomPeronalListingAdapter(this, myArrayOfBooks));
+			lv1.setItemsCanFocus(true);
+			lv1.setFocusable(false);
+			lv1.setFocusableInTouchMode(false);
+			lv1.setClickable(true);
+			lv1.setOnItemClickListener(new OnItemClickListener() {
+		    /*
+		     * Click listener for each item view
+		     * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
+		     */
+		    @Override
+		    public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+		    	Object o = lv1.getItemAtPosition(position);
+		        SearchListItem newsData = (SearchListItem) o;
+		        Toast nre = Toast.makeText(
+		        	getApplicationContext(), 
+		            "selected :" + " " + newsData.getTitle(), 
+		            Toast.LENGTH_SHORT);
+		        nre.show();
+		    }
+
+		});
+		   }
+		   else{
+			   Log.d(tag,"searchresultfragment, adapter null");
+		   }	       
 	} // onCreate end
 	
 	/**

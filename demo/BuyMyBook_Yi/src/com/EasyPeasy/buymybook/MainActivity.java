@@ -58,12 +58,14 @@ public class MainActivity extends Activity implements OnClickListener{
 	private DBHelper dbHelper;
 	
 	private String fbUserId;
+	private String fbUserName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		fbUserId = getIntent().getStringExtra("userId");
+		fbUserName = getIntent().getStringExtra("userName");
 	
 		setContentView(R.layout.activity_main);
 		
@@ -287,6 +289,7 @@ public class MainActivity extends Activity implements OnClickListener{
         case 2: //MY PROFILE
         	intent = new Intent(this, ProfileActivity.class);
     		intent.putExtra("userId", fbUserId);
+    		intent.putExtra("userName", fbUserName);
         	startActivity(intent);
         	overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
         	

@@ -33,6 +33,7 @@ public class LoginFragment extends Fragment {
     boolean newUser = false;
     View view = null;
     String fbUserId = null;
+    String fbUserName = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,7 @@ public class LoginFragment extends Fragment {
 				
 				Intent intent = new Intent(getActivity(), MainActivity.class);
 				intent.putExtra("userId", fbUserId);
+				intent.putExtra("userName", fbUserName);
 				getActivity().startActivity(intent);
 			}
 		});
@@ -147,6 +149,7 @@ public class LoginFragment extends Fragment {
       		    	fbURL.setText("Your Facebook URL is: " + user.getLink());
       		    	
       		    	fbUserId = user.getId();
+      		    	fbUserName = user.getLink();
       		    	
       		    	// Facebook Profile Picture -- http://graph.facebook.com/id/picture
       		    	// For Booker Book, it is http://graph.facebook.com/100008045347915/picture
