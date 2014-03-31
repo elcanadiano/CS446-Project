@@ -1,7 +1,20 @@
 package com.EasyPeasy.buymybook;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +30,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.EasyPeasy.buymybook.CommunicationClass.FacebookStuff;
 import com.facebook.*;
 import com.facebook.model.*;
 import com.facebook.widget.LoginButton;
@@ -32,6 +46,10 @@ public class LoginFragment extends Fragment {
     boolean newEmailCorrect = false;
     boolean newUser = false;
     View view = null;
+    
+    String fbFirstName = null;
+    String fbLastName = null;
+    String fbEmail = null;
     String fbUserId = null;
     String fbUserName = null;
 	
@@ -95,16 +113,12 @@ public class LoginFragment extends Fragment {
 	private void onSessionStateChange(Session session, SessionState state, Exception exception) {
 		
 		Log.i("onSessionStateChange:91", "Accessing this function");
-        final TextView accessToken = (TextView) view.findViewById(R.id.accessToken);
-        final TextView userId = (TextView) view.findViewById(R.id.userId);
         final TextView welcome = (TextView) view.findViewById(R.id.welcome);
         final TextView name = (TextView) view.findViewById(R.id.name);
         final TextView informUser = (TextView) view.findViewById(R.id.informUserForMoreInfo);
         final EditText phoneNum = (EditText) view.findViewById(R.id.phoneNum);
         final EditText textNum = (EditText) view.findViewById(R.id.textNum);
         final EditText newEmail = (EditText) view.findViewById(R.id.newEmail);
-        final TextView email = (TextView) view.findViewById(R.id.email);
-        final TextView fbURL = (TextView) view.findViewById(R.id.fbURL);
         final Button goToMain = (Button) view.findViewById(R.id.goToMain);
         final ProfilePictureView profilePic = (ProfilePictureView) view.findViewById(R.id.profilePicture);
         
@@ -119,15 +133,8 @@ public class LoginFragment extends Fragment {
             ")+"
         );
         
-        if (state == null) {
-        	Log.i("onSessionStateChange:121", "why is my state null?");
-        }
-        
 	    if (state.isOpened()) {
 	        Log.i(TAG, "Logged in...");
-	        
-	        accessToken.setText("The session's access token is: " + session.getAccessToken()
-	        	+ "\nThe access token will expire on: " + session.getExpirationDate());
 	        
 	        Request.newMeRequest(session, new Request.GraphUserCallback() {
         		
@@ -139,46 +146,68 @@ public class LoginFragment extends Fragment {
       		    	 * user ID: user.getId()
       		    	 * First Name: user.getFirstName()
       		    	 * Last Name: user.getLastName()
-      		    	 * Email: user.asMap().get("email")
+      		    	 * Email: user.asMap().get("email").toString()
       		    	 * FB URL: user.getLink();
+      		    	 * Access Token: session.getAccessToken()
       		    	 */
       		    	//welcome.setText(getResources().getString(R.string.welcome_back));
-      		    	userId.setText("Your userId is: " + user.getId());
-      		    	name.setText(user.getFirstName() + " " + user.getLastName());
-      		    	email.setText("Your email address is: " + user.asMap().get("email"));
-      		    	fbURL.setText("Your Facebook URL is: " + user.getLink());
       		    	
       		    	fbUserId = user.getId();
       		    	fbUserName = user.getLink();
+      		    	fbFirstName = user.getFirstName();
+      		    	fbLastName = user.getLastName();
+      		    	fbEmail = user.asMap().get("email").toString();
       		    	
+      		    	name.setText(fbFirstName + " " + fbLastName);
       		    	// Facebook Profile Picture -- http://graph.facebook.com/id/picture
       		    	// For Booker Book, it is http://graph.facebook.com/100008045347915/picture
-      		    	profilePic.setProfileId(user.getId());
+      		    	profilePic.setProfileId(fbUserId);
       		    } else {
-      		    	userId.setText("Sorry, something went wrong and we were not able to get your Facebook information.");
       		    	return;
       		    }
       		  }
       		}).executeAsync();
-	        accessToken.setVisibility(View.VISIBLE);
-	        userId.setVisibility(View.VISIBLE);
 	        name.setVisibility(View.VISIBLE);
-	        email.setVisibility(View.VISIBLE);
-	        fbURL.setVisibility(View.VISIBLE);
 	        profilePic.setVisibility(View.VISIBLE);
 	        
 	        // Check if user exists in the database
+        	// Create a POST and pass user ID and access token
+	        HttpResponse response = null;
+	        try {
+	        	// Add data
+	        	HttpPost httppost = new HttpPost("http://www.buymybook.com/api/login/fb_login");
+	        	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+	        	nameValuePairs.add(new BasicNameValuePair("user_id", fbUserId));
+	        	nameValuePairs.add(new BasicNameValuePair("access_token", session.getAccessToken()));
+				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+				
+				// Execute HTTP Post Request
+				CommunicationClass x = null;
+				FacebookStuff a = x.new FacebookStuff(httppost);
+				response = a.Login();
+				//response = new FacebookStuff(httppost).Login();
+	        } catch (Exception e) {
+	        	// TODO: Catch exception...
+	        }
+				
+			Toast toast = Toast.makeText(
+				getActivity().getApplicationContext(),
+		    	"Response was: " + response,
+			    Toast.LENGTH_SHORT);   
+			toast.show();
+			
 	        if (true) { // Doesn't exist in database
 	        	newUser = false;
 		        welcome.setText(getResources().getString(R.string.welcome_new_user));
 	        	informUser.setText(getResources().getString(R.string.inform_user));
 	        	informUser.setVisibility(View.VISIBLE);
 	        	phoneNum.setVisibility(View.VISIBLE);
-	        	phoneNum.setText("8888888888");				// TESTING PURPOSES
+	        	//phoneNum.setText("8888888888");				// TESTING PURPOSES
 	        	textNum.setVisibility(View.VISIBLE);
-	        	textNum.setText("8888888888");				// TESTING PURPOSES
+	        	//textNum.setText("8888888888");				// TESTING PURPOSES
 	        	newEmail.setVisibility(View.VISIBLE); 
-	        	newEmail.setText("booker@buymybook.com"); 	// TESTING PURPOSES
+	        	//newEmail.setText("booker@buymybook.com"); 	// TESTING PURPOSES
+	        	newEmail.setText(fbEmail);
 	        	goToMain.setVisibility(View.VISIBLE);		// TESTING PURPOSES
 	        } else { // Exists in database -- DEAD CODE
 	        	newUser = true;
@@ -192,15 +221,11 @@ public class LoginFragment extends Fragment {
 	    } else if (state.isClosed()) {
 	        Log.i(TAG, "Logged out...");
 	        welcome.setText(getResources().getString(R.string.welcome));
-	        accessToken.setVisibility(View.INVISIBLE);
-	        userId.setVisibility(View.INVISIBLE);
 	        name.setVisibility(View.INVISIBLE);
 	        informUser.setVisibility(View.INVISIBLE);
 	        phoneNum.setVisibility(View.INVISIBLE);
         	textNum.setVisibility(View.INVISIBLE);
         	newEmail.setVisibility(View.INVISIBLE);
-	        email.setVisibility(View.INVISIBLE);
-	        fbURL.setVisibility(View.INVISIBLE);
 	        goToMain.setVisibility(View.INVISIBLE);
 	        profilePic.setVisibility(View.INVISIBLE);
 	    }
@@ -311,7 +336,7 @@ public class LoginFragment extends Fragment {
 			    	} else {
 			    		Toast toast = Toast.makeText(
 			    			getActivity().getApplicationContext(),
-			    			"Thanks for providing a valid email addressz",
+			    			"Thanks for providing a valid email address",
 				    		Toast.LENGTH_SHORT);
 				    	toast.show();
 				    	newEmail.clearFocus();

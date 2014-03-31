@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
@@ -45,7 +46,52 @@ public class CommunicationClass{
 		
         new DownloadJSON().execute(uri , null, null);
 	}
-
+	
+	public class FacebookStuff extends AsyncTask<String, Void, String> {
+		HttpClient client;
+		HttpPost post;
+		HttpResponse response;
+		
+		FacebookStuff(HttpPost post) {
+			this.client = null;
+			this.post = post;
+			this.response = null;
+		}
+		
+		// Not sure what this does exactly...
+		protected String doInBackground(String... urls) {
+            HttpClient client = new DefaultHttpClient();
+            String json = "";
+            try {
+                String line = "";
+                HttpGet request = new HttpGet(urls[0]);
+                HttpResponse response = client.execute(request);
+                BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+                while ((line = rd.readLine()) != null) {
+                    json += line + System.getProperty("line.separator");
+                }
+            } catch (IllegalArgumentException e1) {
+                e1.printStackTrace();
+            } catch (IOException e2) {
+                e2.printStackTrace();
+            }
+            return json;
+        }
+		
+		public HttpResponse Login() {
+			try {
+				HttpClient httpclient = new DefaultHttpClient();
+				this.response = httpclient.execute(this.post);
+			} catch (ClientProtocolException e) {
+				// TODO: catch
+		    } catch (IOException e) {
+		    	// TODO: catch
+		    } catch (Exception e) {
+		    	// TODO: another exception that I missed
+		    }
+				return this.response;
+		}
+	}
 	
 	public class DownloadJSON extends AsyncTask<String, Void, String> {
 		JSONObject jsonObj;
@@ -119,6 +165,5 @@ public class CommunicationClass{
         	}
         }
     }
-	
 	
 }//CommunicationClass

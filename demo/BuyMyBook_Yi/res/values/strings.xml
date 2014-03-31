@@ -11,8 +11,8 @@
 	<!-- Login screen -->
 	<string name="go_to_main">Go to main screen</string>
     <string name="welcome">Welcome! Please login</string>
-    <string name="welcome_new_user">Thanks for signing up,</string>
-    <string name="welcome_back">Welcome back,</string>
+    <string name="welcome_new_user">Thanks for signing up</string>
+    <string name="welcome_back">Welcome back</string>
     <string name="phone_num">Enter your phone #:</string>
     <string name="text_num">Enter your texting #:</string>
     <string name="email">Enter your email address</string>
