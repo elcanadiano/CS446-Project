@@ -50,7 +50,7 @@ public class MainActivity extends Activity implements OnClickListener{
     private NavDrawerListAdapter adapter;
     
     	//UI instance variables
-	private ImageButton scanBtn;
+	//private ImageButton scanBtn;
 	private TextView greeting, instruction;
     protected boolean dieAfterFinish = false;
     
@@ -73,12 +73,12 @@ public class MainActivity extends Activity implements OnClickListener{
 		this.setupDrawer(savedInstanceState);
 		
 		//instantiate UI items
-		scanBtn = (ImageButton)findViewById(R.id.scan_button);
+		//scanBtn = (ImageButton)findViewById(R.id.scan_button);
 		greeting=(TextView)findViewById(R.id.greeting);
 		instruction=(TextView)findViewById(R.id.instruction);
 		
-		scanBtn.setOnClickListener(this);
-		scanBtn.setBackgroundResource(R.drawable.scan_button);
+		//scanBtn.setOnClickListener(this);
+		//scanBtn.setBackgroundResource(R.drawable.scan_button);
 		//set up greeting message (static right now)
 		this.setupGreeting();
 		//set up instructions
@@ -150,7 +150,9 @@ public class MainActivity extends Activity implements OnClickListener{
     
 	@Override
 	public void onClick(View v) { // DON'T CHANGE THIS -YI
+		/*
 		switch (v.getId()) {
+		
 		case R.id.scan_button:
 			System.out.println("i should scan something....");
 			scanBtn.setBackgroundResource(R.drawable.scan_button_contact);
@@ -159,18 +161,14 @@ public class MainActivity extends Activity implements OnClickListener{
 			startActivity(intent);
 			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 
-/*//- CARL, Switch the commenting on these two if you want a quick access to Search. -Yi
-			Intent intent = new Intent(this,ManualSearchActivity.class);
-			startActivity(intent);
-			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
-*/	
 			break;
 		}
+		*/
 	}
 	@Override
 	public void onResume() {
 		super.onResume();
-		scanBtn.setBackgroundResource(R.drawable.scan_button);
+		//scanBtn.setBackgroundResource(R.drawable.scan_button);
 	}
 	@Override
 	public void onBackPressed() {

@@ -36,12 +36,12 @@ public class PostActivity extends MainActivity implements OnClickListener{
 		//System.out.println("started onCreate for PostActivity");
 		
 		
-		
+		/*
 		//call scanner here
 		Intent intent = new Intent(this, ScannerManager.class);
 		//startActivity(intent);
 		startActivityForResult(intent, 1);
-		
+		*/
 		//set up UI
 		setContentView(R.layout.activity_post);
 		this.setupDrawer(savedInstanceState);
