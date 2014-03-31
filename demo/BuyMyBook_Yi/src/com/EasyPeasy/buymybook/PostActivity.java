@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 
 /*
  * flow of this activity:
@@ -24,8 +25,23 @@ import android.view.View.OnClickListener;
  */
 public class PostActivity extends MainActivity implements OnClickListener{
 	final Context context = this;
-
-    //UI elements
+	
+ //UI elements
+	//landing page
+	private ImageButton scanBtn;
+	
+	//enter info page
+	
+	//result page
+	
+	//data elements for posting
+	String isbn_13;
+	String price;
+	int condition;
+	int isActive;
+	String subject;
+	String catalog_number;
+	String comments;
 	
 	@SuppressLint("NewApi")
 	
@@ -35,15 +51,10 @@ public class PostActivity extends MainActivity implements OnClickListener{
 		this.dieAfterFinish=true;
 		//System.out.println("started onCreate for PostActivity");
 		
-		
-		/*
-		//call scanner here
-		Intent intent = new Intent(this, ScannerManager.class);
-		//startActivity(intent);
-		startActivityForResult(intent, 1);
-		*/
 		//set up UI
 		setContentView(R.layout.activity_post);
+		scanBtn = (ImageButton)findViewById(R.id.launch_scanner_button);
+		scanBtn.setOnClickListener(this);
 		this.setupDrawer(savedInstanceState);
 	}
 
@@ -82,11 +93,40 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	}
 
 	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
+	public void onClick(View v) { // DON'T CHANGE THIS -YI
+		
+		switch (v.getId()) {
+		
+		case R.id.launch_scanner_button:
+			System.out.println("i should scan something....");
+			scanBtn.setBackgroundResource(R.drawable.scan_button_contact);
+			
+			Intent intent = new Intent(this, ScannerManager.class);
+			startActivityForResult(intent, 1);
+			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+			
+			break;
+		}
 		
 	}
 	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if ( resultCode == RESULT_OK && requestCode == 1 )
+		{
+			isbn_13=data.getStringExtra("isbn");
+			System.out.println("scanner returned, isbn is "+isbn_13);
+			
+			//set layout screen for following page :
+			setContentView(R.layout.activity_post_enterinfo);
+			Bundle dummie = new Bundle();
+			this.setupDrawer(dummie);
+		} else if (resultCode == RESULT_OK && requestCode == 2) {
+			//die
+		}
+	}
 	/**
      * Diplaying fragment view for selected nav drawer list item
      * */

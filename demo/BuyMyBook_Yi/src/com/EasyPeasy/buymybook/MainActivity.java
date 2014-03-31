@@ -182,6 +182,8 @@ public class MainActivity extends Activity implements OnClickListener{
 	}
 	
 	
+	
+	
 	/// helpers for set up
 	
 	protected void setupDrawer(Bundle savedInstanceState) {
