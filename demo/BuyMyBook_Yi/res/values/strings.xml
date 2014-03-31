@@ -35,6 +35,9 @@
     <string name="errorMsg_activity_post">Sorry, something went wrong while you were posting your book. Please try again.</string>
     <string name="title_activity_scanner_manager">ScannerManager</string>
 	<string name="post_pre_instruction">Scan your book and load its information!</string>
+    <string name="post_enterinfo_header">Tell Us More...</string>
+    <string name="post_enterinfo_course_ask">Used in course:</string>
+    
     <!-- Strings for Searching -->
     <string name="search_manual">Search Manually</string>
     <string name="search_scan">Search by Scanning</string>

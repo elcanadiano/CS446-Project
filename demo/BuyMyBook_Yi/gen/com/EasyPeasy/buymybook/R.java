@@ -462,15 +462,15 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_log_in_button=0x7f080008;
         public static final int com_facebook_usersettingsfragment_logged_in=0x7f080009;
         public static final int com_facebook_usersettingsfragment_not_logged_in=0x7f08000a;
-        public static final int courseText=0x7f08003d;
-        public static final int default_search=0x7f080035;
+        public static final int courseText=0x7f08003f;
+        public static final int default_search=0x7f080037;
         /**  drawer menu Strings - the arrays are in array[dot]xml 
          */
         public static final int desc_list_item_icon=0x7f08002c;
         public static final int drawer_close=0x7f08002e;
         public static final int drawer_open=0x7f08002d;
         public static final int email=0x7f080025;
-        public static final int email_img_description=0x7f08004c;
+        public static final int email_img_description=0x7f08004e;
         public static final int errorMsg_activity_post=0x7f080030;
         /**  Login screen 
          */
@@ -485,41 +485,43 @@ containing a value of this type.
         public static final int main_inst_sell=0x7f080029;
         public static final int main_inst_swipe=0x7f08002a;
         public static final int main_instruction=0x7f080028;
-        public static final int message_img_description=0x7f08004b;
-        public static final int phone_img_description=0x7f08004a;
+        public static final int message_img_description=0x7f08004d;
+        public static final int phone_img_description=0x7f08004c;
         public static final int phone_num=0x7f080023;
-        public static final int post_manual_bookauthor_hint=0x7f080043;
-        public static final int post_manual_bookisbn_hint=0x7f080044;
-        public static final int post_manual_booktitle_hint=0x7f080042;
-        public static final int post_manual_deptspinner_prompt=0x7f080045;
-        public static final int post_manual_header_text=0x7f080041;
+        public static final int post_enterinfo_course_ask=0x7f080034;
+        public static final int post_enterinfo_header=0x7f080033;
+        public static final int post_manual_bookauthor_hint=0x7f080045;
+        public static final int post_manual_bookisbn_hint=0x7f080046;
+        public static final int post_manual_booktitle_hint=0x7f080044;
+        public static final int post_manual_deptspinner_prompt=0x7f080047;
+        public static final int post_manual_header_text=0x7f080043;
         public static final int post_pre_instruction=0x7f080032;
-        public static final int scanISBN=0x7f08003f;
+        public static final int scanISBN=0x7f080041;
         /**  Strings for Searching 
          */
-        public static final int search_manual=0x7f080033;
-        public static final int search_manual_title=0x7f080037;
-        public static final int search_scan=0x7f080034;
-        public static final int subject=0x7f080040;
+        public static final int search_manual=0x7f080035;
+        public static final int search_manual_title=0x7f080039;
+        public static final int search_scan=0x7f080036;
+        public static final int subject=0x7f080042;
         public static final int submit=0x7f080019;
-        public static final int term=0x7f08003e;
+        public static final int term=0x7f080040;
         public static final int text_num=0x7f080024;
-        public static final int title_activity_manual_search=0x7f080039;
-        public static final int title_activity_my_fragment=0x7f080048;
+        public static final int title_activity_manual_search=0x7f08003b;
+        public static final int title_activity_my_fragment=0x7f08004a;
         /**  strings for PostActivity 
          */
         public static final int title_activity_post=0x7f08002f;
-        public static final int title_activity_post_confirmation=0x7f08003b;
-        public static final int title_activity_post_scan_confirmation=0x7f08003c;
+        public static final int title_activity_post_confirmation=0x7f08003d;
+        public static final int title_activity_post_scan_confirmation=0x7f08003e;
         /**  Strings for ProfileActivity 
          */
-        public static final int title_activity_profile=0x7f080049;
+        public static final int title_activity_profile=0x7f08004b;
         public static final int title_activity_scanner_manager=0x7f080031;
-        public static final int title_activity_search=0x7f080047;
-        public static final int title_activity_search_manual=0x7f080036;
-        public static final int title_activity_search_results=0x7f080046;
-        public static final int title_activity_search_scan=0x7f080038;
-        public static final int title_manual_search=0x7f08003a;
+        public static final int title_activity_search=0x7f080049;
+        public static final int title_activity_search_manual=0x7f080038;
+        public static final int title_activity_search_results=0x7f080048;
+        public static final int title_activity_search_scan=0x7f08003a;
+        public static final int title_manual_search=0x7f08003c;
         public static final int welcome=0x7f080020;
         public static final int welcome_back=0x7f080022;
         public static final int welcome_new_user=0x7f080021;

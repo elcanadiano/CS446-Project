@@ -1,6 +1,8 @@
 package com.EasyPeasy.buymybook;
 
 
+import java.util.concurrent.ExecutionException;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -12,7 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 
 /*
  * flow of this activity:
@@ -31,7 +35,27 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	private ImageButton scanBtn;
 	
 	//enter info page
-	
+	String json;
+	/*
+	private TextView info;
+	private Button confirmBtn;
+	private EditText priceTag;
+	private Spinner spinner;
+	*/
+	Spinner courseCode,courseNum,term;
+	ArrayAdapter<String> spinnerCourseAdapter,termAdapter;
+	String[] subjects = new String[]{"ACC","ACTSC","AFM","AHS","AMATH","ANTH","APPLS","ARBUS",
+			"ARCH","ARTS","BE","BET","BIOL","BUS","CHE","CHEM","CHINA","CIVE","CLAS","CM",
+			"CMW","CO","COGSCI","COMM","CROAT","CS","CT","DAC","DEI","DRAMA","DUTCH",
+			"EARTH","EASIA","ECE","ECON","ENBUS","ENGL","ENVE","ENVS","ERS","ESL","FINE",
+			"FR","GBDA","GEMCC","GENE","GEOE","GEOG","GER","GERON","GGOV","GRK","HIST",
+			"HLTH","HRM","HSG","HUMSC","IAIN","INDEV","INTEG","INTST","ISS","ITAL",
+			"ITALST","JAPAN","JS","KIN","KOREA","LAT","LED","LS","MATBUS","MATH","MCT",
+			"ME","MEDVL","MNS","MSCI","MTE","MTHEL","MUSIC","NANO","NE","OPTOM","PACS",
+			"PHARM","PHIL","PHS","PHYS","PLAN","PMATH","PORT","PS","PSCI","PSYCH","REC",
+			"REES","RS","RUSS","SCBUS","SCI","SDS","SE","SI","SMF","SOC","SOCWK","SPAN",
+			"SPCOM","SPD","STAT","STV","SUSM","SWK","SWREN","SYDE","TOUR","TS","UNIV",
+			"VCULT","WS"};
 	//result page
 	
 	//data elements for posting
@@ -42,6 +66,8 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	String subject;
 	String catalog_number;
 	String comments;
+	
+	
 	
 	@SuppressLint("NewApi")
 	
@@ -106,6 +132,7 @@ public class PostActivity extends MainActivity implements OnClickListener{
 			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 			
 			break;
+		//case:
 		}
 		
 	}
@@ -116,10 +143,26 @@ public class PostActivity extends MainActivity implements OnClickListener{
 
 		if ( resultCode == RESULT_OK && requestCode == 1 )
 		{
+			//1. get isbn from scanner
 			isbn_13=data.getStringExtra("isbn");
 			System.out.println("scanner returned, isbn is "+isbn_13);
 			
-			//set layout screen for following page :
+			//2. talk to server to get book info
+			String url="http://isbndb.com/api/v2/json/2L1HKXO4/book/" + isbn_13;
+			CommunicationClass c = new CommunicationClass(url);
+			String return_json=null;
+			try {
+				return_json = c.new DownloadJSON(this,"post").execute(url).get();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+			
+			System.out.println("isbndb returned "+return_json);
+			//3. set layout screen for following page :
 			setContentView(R.layout.activity_post_enterinfo);
 			Bundle dummie = new Bundle();
 			this.setupDrawer(dummie);
