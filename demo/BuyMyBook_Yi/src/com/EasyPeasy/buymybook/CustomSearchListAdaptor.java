@@ -1,8 +1,16 @@
 package com.EasyPeasy.buymybook;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.EasyPeasy.buymybook.CommunicationClass.DownloadJSON;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +22,15 @@ public class CustomSearchListAdaptor extends BaseAdapter{
 
 	private ArrayList listData; //listData format:
 	private LayoutInflater layoutInflater;
-	
+	private String imgUrl;
 	public CustomSearchListAdaptor(Context context, ArrayList listData){
 		this.listData = listData;
 		layoutInflater = LayoutInflater.from(context);
+	}
+	public CustomSearchListAdaptor(Context context, ArrayList listData,String imgUrl){
+		this.listData = listData;
+		layoutInflater = LayoutInflater.from(context);
+		this.imgUrl = imgUrl;
 	}
 	public CustomSearchListAdaptor(LayoutInflater inflater,ArrayList listData){
 		layoutInflater = inflater;
@@ -62,6 +75,7 @@ public class CustomSearchListAdaptor extends BaseAdapter{
 	        holder.titleView.setText(item.getTitle());
 	        holder.authorView.setText("Author: "+item.getAuthor());
 	        holder.priceView.setText("Price: $"+item.getPrice());
+	        //imgUrl = item.getUrl();
 	        String condition;
 	        switch(Integer.parseInt(item.getCondition())){
 	        	case 0:
@@ -88,7 +102,13 @@ public class CustomSearchListAdaptor extends BaseAdapter{
 	        		
 	        }//switch
 	        holder.condition.setText("Condition: "+ condition);
-	        holder.image.setImageResource(R.drawable.clearthinking);
+	      if(imgUrl != null){
+			CommunicationClass c = new CommunicationClass(imgUrl);
+			c.new DownloadImageTask(holder.image).execute(imgUrl);
+	      }
+	
+			
+	       // holder.image.setImageResource(R.drawable.clearthinking);
 	        return convertView;
 	}
 	static class ViewHolder {
