@@ -16,6 +16,26 @@
     	android:text="Contact Info of Seller"
     	android:background="@color/detailshighlight"    
     />
+    <TextView
+	    android:id="@+id/Name"
+	    android:text="Name: "
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/contactInfo"
+	    android:background="@color/detailshighlight"    
+	    
+	    
+	    />
+     <TextView
+	    android:id="@+id/nameText"
+	    android:text=""
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/contactInfo"
+	       
+	    android:layout_toRightOf="@id/Name"
+	    
+	    />
     
     <ImageView
 		    android:id="@+id/message_img"
@@ -24,7 +44,7 @@
 		    android:layout_marginTop="7dp"
 		    android:layout_width="40dp"
 		    android:layout_height="40dp"
-		    android:layout_below="@id/contactInfo"
+		    android:layout_below="@id/Name"
 		    android:layout_toRightOf="@id/profile_pic"
 		    android:adjustViewBounds="true" />
 		
@@ -32,7 +52,7 @@
 	        android:id="@+id/message"
 	        style="@style/profilePageInfo"
 	        android:layout_toRightOf="@id/message_img"
-	        android:layout_below="@id/contactInfo"
+	        android:layout_below="@id/Name"
 	        android:inputType="phone"
 	        android:singleLine="true"
 	        android:imeOptions="actionDone" />

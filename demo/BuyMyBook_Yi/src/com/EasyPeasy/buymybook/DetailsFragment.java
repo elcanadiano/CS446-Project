@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.text.method.KeyListener;
+import android.util.Log;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.content.Context;
  * xml file: fragment_results_search.xml
  */
 public class DetailsFragment extends Fragment {
+	private final String tag = "DetailsFragment";
 	//private OnItemSelectedListener listener;
 	private EditText editPhoneNumber;
 	private EditText editTextNumber;
@@ -39,6 +41,7 @@ public class DetailsFragment extends Fragment {
 	private TextView priceText;
 	private TextView conditionText;
 	private TextView commentsText;
+	private TextView nameText;
 	
 	public DetailsFragment(){
 		;
@@ -107,13 +110,15 @@ public class DetailsFragment extends Fragment {
 		priceText = (TextView) view.findViewById(R.id.price);
 		conditionText = (TextView) view.findViewById(R.id.condition);
 		commentsText = (TextView) view.findViewById(R.id.commentsText);
-		
+		nameText = (TextView) view.findViewById(R.id.nameText);
 	
 		TextView txt = (TextView) view.findViewById(R.id.search_manual_title);
 		//String result = getArguments() != null ? getArguments().getString("json") : null;
 		/*if(result != null){
 			txt.setText(result);
 		}*/
+		String firstname = getArguments().getString("firstname");
+		String lastname = getArguments().getString("lastname");
 		String title = getArguments().getString("title");
 		String author = getArguments().getString("author");
 		String price = getArguments().getString("price");
@@ -122,6 +127,7 @@ public class DetailsFragment extends Fragment {
 		String contactNum = getArguments().getString("contactNum");
 		String contactEmail = getArguments().getString("contactEmail");
 		condition = getCondition(Integer.parseInt(condition)).toString();
+		Log.d(tag,"in detailsfrag: email: "+ contactEmail + " : " + contactNum);
 		titleText.setText(title);
 		authorText.setText(author);
 		priceText.setText(price);
@@ -131,10 +137,17 @@ public class DetailsFragment extends Fragment {
 		} else{
 			editTextNumber.setText("5195460284");
 		}
-		if(contactEmail != null){
+		if(contactEmail != null && !contactEmail.equals("null")){
 			editEmailAddress.setText(contactEmail);
 		} else {
 			editEmailAddress.setText("cecabusa@uwaterloo.ca");
+		}
+		if(firstname != null && !firstname.equals("null") && lastname != null && !lastname.equals("null")){
+			String name = firstname + " " + lastname;
+			nameText.setText(name);
+		}
+		else{
+			nameText.setText("CoolGuy Greg");
 		}
 		
 		if(comments != null){
