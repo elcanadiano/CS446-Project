@@ -171,7 +171,7 @@ public class LoginFragment extends Fragment {
       		    }
       		  }
       		}).executeAsync();
-	        
+	        loadLoginInfo();
 	        Log.i(TAG, "Still logged in...");
 	        name.setVisibility(View.VISIBLE);
 	        profilePic.setVisibility(View.VISIBLE);
@@ -191,7 +191,6 @@ public class LoginFragment extends Fragment {
 		        		fbEmail == null) {
 		        	informUser.setText(getResources().getString(R.string.inform_user));
 		        	informUser.setVisibility(View.VISIBLE);
-		        	goToMain.setVisibility(View.VISIBLE);
 		        	
 	        		Log.i("phoneNum", "fbPhoneNum: " + fbPhoneNum );
 	        		Log.i("textNum", "fbTextNum: " + fbTextNum );
@@ -208,8 +207,14 @@ public class LoginFragment extends Fragment {
 		        		Log.i("THE CHECKER", "fbEmail not null");
 		        		newEmailCorrect = true;
 		        	}
-		        } else {
-		        	informUser.setVisibility(View.INVISIBLE);
+		        } else { // user has everything we need
+		        	//informUser.setVisibility(View.INVISIBLE);
+		        	//goToMain.setVisibility(View.VISIBLE);
+		        	
+		        	Intent intent = new Intent(getActivity(), MainActivity.class);
+					intent.putExtra("userId", fbUserId);
+					intent.putExtra("userName", fbUserName);
+					getActivity().startActivity(intent);
 		        }
 		        
 	        	phoneNum.setVisibility(View.VISIBLE);
@@ -398,6 +403,9 @@ public class LoginFragment extends Fragment {
 	
 	public void loadLoginInfo() {
 		SharedPreferences settings = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
+		
+		//this.getActivity().getApplicationContext().getSharedPreferences(PREFS_NAME, 0).edit().clear().commit();
+				
 		fbUserId = settings.getString("fbUserId", null);
 		Log.i("loadLoginInfo", "fbUserId: " + fbUserId);
 		fbUserName = settings.getString("fbUserName", null);
@@ -414,6 +422,7 @@ public class LoginFragment extends Fragment {
 		Log.i("loadLoginInfo", "fbTextNum: " + fbTextNum);
 		fbAccessToken = settings.getString("fbAccessToken", null);
 		Log.i("loadLoginInfo", "fbAccessToken: " + fbAccessToken);
+		
 	}
 	
 	public void saveLoginInfo() {

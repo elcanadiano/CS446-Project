@@ -302,20 +302,11 @@ containing a value of this type.
     public static final class id {
         public static final int Name=0x7f05004b;
         public static final int accessToken=0x7f05000d;
-<<<<<<< HEAD
-        public static final int action_settings=0x7f050061;
+        public static final int action_settings=0x7f050060;
         public static final int authButton=0x7f050005;
         public static final int author=0x7f05004f;
         public static final int authorTitle=0x7f05004e;
         public static final int bookTitle=0x7f05004d;
-        public static final int book_img=0x7f05005e;
-=======
-        public static final int action_settings=0x7f05005e;
-        public static final int authButton=0x7f050005;
-        public static final int author=0x7f05004d;
-        public static final int authorTitle=0x7f05004c;
-        public static final int bookTitle=0x7f05004b;
->>>>>>> 3e9fc283d0e095d9a6842bdf37f9c5b8363cc199
         public static final int books_selling_text=0x7f05002d;
         public static final int com_facebook_login_activity_progress_bar=0x7f050034;
         public static final int com_facebook_picker_activity_circle=0x7f050033;
@@ -343,13 +334,8 @@ containing a value of this type.
         public static final int conditionTitle=0x7f050052;
         public static final int contactInfo=0x7f05004a;
         public static final int counter=0x7f050049;
-<<<<<<< HEAD
         public static final int delete_button=0x7f050058;
-        public static final int delete_img=0x7f05005f;
-=======
-        public static final int delete_button=0x7f050056;
-        public static final int delete_img=0x7f05005c;
->>>>>>> 3e9fc283d0e095d9a6842bdf37f9c5b8363cc199
+        public static final int delete_img=0x7f05005e;
         public static final int drawer_layout=0x7f050011;
         public static final int dummyText=0x7f050057;
         public static final int email=0x7f05000f;
@@ -360,11 +346,7 @@ containing a value of this type.
         public static final int goToMain=0x7f050006;
         public static final int greeting=0x7f050012;
         public static final int icon=0x7f050047;
-<<<<<<< HEAD
-        public static final int image=0x7f050060;
-=======
-        public static final int image=0x7f05005d;
->>>>>>> 3e9fc283d0e095d9a6842bdf37f9c5b8363cc199
+        public static final int image=0x7f05005f;
         public static final int imageView1=0x7f05001f;
         public static final int informUserForMoreInfo=0x7f05000c;
         public static final int instruction=0x7f050013;

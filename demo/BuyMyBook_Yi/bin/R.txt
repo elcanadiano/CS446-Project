@@ -144,33 +144,11 @@ int drawable scan_button 0x7f02003f
 int drawable scan_button_contact 0x7f020040
 int id Name 0x7f05004b
 int id accessToken 0x7f05000d
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-int id action_settings 0x7f050061
+int id action_settings 0x7f050060
 int id authButton 0x7f050005
 int id author 0x7f05004f
 int id authorTitle 0x7f05004e
 int id bookTitle 0x7f05004d
-int id book_img 0x7f05005e
-=======
-<<<<<<< HEAD
-int id action_settings 0x7f05005c
-=======
->>>>>>> c6fe6dc7f5c8fc2dbecdee25d5ba2681a87d9812
-int id action_settings 0x7f05005e
-int id authButton 0x7f050005
-int id author 0x7f05004d
-int id authorTitle 0x7f05004c
-int id bookTitle 0x7f05004b
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-int id book_img 0x7f050059
-=======
->>>>>>> 528a91d7749f4bd3abec464e7d0aea7b44400c5b
->>>>>>> 3e9fc283d0e095d9a6842bdf37f9c5b8363cc199
->>>>>>> c6fe6dc7f5c8fc2dbecdee25d5ba2681a87d9812
 int id books_selling_text 0x7f05002d
 int id com_facebook_login_activity_progress_bar 0x7f050034
 int id com_facebook_picker_activity_circle 0x7f050033
@@ -192,9 +170,6 @@ int id com_facebook_search_bar_view 0x7f050042
 int id com_facebook_usersettingsfragment_login_button 0x7f050046
 int id com_facebook_usersettingsfragment_logo_image 0x7f050044
 int id com_facebook_usersettingsfragment_profile_name 0x7f050045
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 int id comments 0x7f050054
 int id commentsText 0x7f050056
 int id condition 0x7f050053
@@ -202,28 +177,9 @@ int id conditionTitle 0x7f050052
 int id contactInfo 0x7f05004a
 int id counter 0x7f050049
 int id delete_button 0x7f050058
-int id delete_img 0x7f05005f
+int id delete_img 0x7f05005e
 int id drawer_layout 0x7f050011
 int id dummyText 0x7f050057
-=======
-<<<<<<< HEAD
-=======
->>>>>>> c6fe6dc7f5c8fc2dbecdee25d5ba2681a87d9812
-int id comments 0x7f050052
-int id commentsText 0x7f050054
-int id condition 0x7f050051
-int id conditionTitle 0x7f050050
-int id contactInfo 0x7f05004a
-int id counter 0x7f050049
-int id delete_button 0x7f050056
-int id delete_img 0x7f05005c
-int id drawer_layout 0x7f050011
-int id dummyText 0x7f050055
-<<<<<<< HEAD
-=======
->>>>>>> 528a91d7749f4bd3abec464e7d0aea7b44400c5b
->>>>>>> 3e9fc283d0e095d9a6842bdf37f9c5b8363cc199
->>>>>>> c6fe6dc7f5c8fc2dbecdee25d5ba2681a87d9812
 int id email 0x7f05000f
 int id email_img 0x7f05002c
 int id fbURL 0x7f050010
@@ -232,19 +188,7 @@ int id frame_container 0x7f050031
 int id goToMain 0x7f050006
 int id greeting 0x7f050012
 int id icon 0x7f050047
-<<<<<<< HEAD
-int id image 0x7f05005d
-=======
-<<<<<<< HEAD
-int id image 0x7f050060
-=======
-<<<<<<< HEAD
-int id image 0x7f05005b
-=======
-int id image 0x7f05005d
->>>>>>> 528a91d7749f4bd3abec464e7d0aea7b44400c5b
->>>>>>> 3e9fc283d0e095d9a6842bdf37f9c5b8363cc199
->>>>>>> c6fe6dc7f5c8fc2dbecdee25d5ba2681a87d9812
+int id image 0x7f05005f
 int id imageView1 0x7f05001f
 int id informUserForMoreInfo 0x7f05000c
 int id instruction 0x7f050013
@@ -273,27 +217,8 @@ int id profile 0x7f050024
 int id profilePicture 0x7f050003
 int id profile_pic 0x7f050025
 int id scanISBNButton 0x7f05001d
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 int id scrollView1 0x7f050055
 int id search_manual_author 0x7f05005b
-=======
-<<<<<<< HEAD
-int id search_manual_author 0x7f050056
-int id search_manual_bookauthor 0x7f05001b
-int id search_manual_bookisbn 0x7f05001c
-int id search_manual_booktitle 0x7f05001a
-int id search_manual_btitle 0x7f050055
-int id search_manual_condition 0x7f050058
-int id search_manual_header 0x7f050015
-int id search_manual_listview 0x7f050030
-int id search_manual_price 0x7f050057
-=======
->>>>>>> c6fe6dc7f5c8fc2dbecdee25d5ba2681a87d9812
-int id scrollView1 0x7f050053
-int id search_manual_author 0x7f050059
->>>>>>> 3e9fc283d0e095d9a6842bdf37f9c5b8363cc199
 int id search_manual_bookauthor 0x7f05001b
 int id search_manual_bookisbn 0x7f05001c
 int id search_manual_booktitle 0x7f05001a
@@ -301,15 +226,7 @@ int id search_manual_btitle 0x7f05005a
 int id search_manual_condition 0x7f05005d
 int id search_manual_header 0x7f050015
 int id search_manual_listview 0x7f050030
-<<<<<<< HEAD
 int id search_manual_price 0x7f05005c
-=======
-int id search_manual_price 0x7f05005a
-<<<<<<< HEAD
-=======
->>>>>>> 528a91d7749f4bd3abec464e7d0aea7b44400c5b
->>>>>>> 3e9fc283d0e095d9a6842bdf37f9c5b8363cc199
->>>>>>> c6fe6dc7f5c8fc2dbecdee25d5ba2681a87d9812
 int id search_manual_title 0x7f05002f
 int id small 0x7f050000
 int id spinnerCourse 0x7f050017
@@ -317,19 +234,7 @@ int id spinnerTerm 0x7f050019
 int id subject 0x7f050016
 int id tableRow 0x7f050004
 int id textCourseNum 0x7f050018
-<<<<<<< HEAD
-int id textLayout 0x7f050057
-=======
-<<<<<<< HEAD
 int id textLayout 0x7f050059
-=======
-<<<<<<< HEAD
-int id textLayout 0x7f050054
-=======
-int id textLayout 0x7f050057
->>>>>>> 528a91d7749f4bd3abec464e7d0aea7b44400c5b
->>>>>>> 3e9fc283d0e095d9a6842bdf37f9c5b8363cc199
->>>>>>> c6fe6dc7f5c8fc2dbecdee25d5ba2681a87d9812
 int id textNum 0x7f05000a
 int id title 0x7f050048
 int id userId 0x7f05000e
