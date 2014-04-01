@@ -38,6 +38,15 @@
     <string name="post_enterinfo_header">Tell Us More...</string>
     <string name="post_enterinfo_course_ask">Used in course:</string>
     
+     <string-array name="condition_scroller">
+        <item>As New</item>
+        <item>Very Good</item>
+        <item>Good</item>
+        <item>Fair</item>
+        <item>Poor</item>
+        <item>Decomposed</item>
+     </string-array>
+    
     <!-- Strings for Searching -->
     <string name="search_manual">Search Manually</string>
     <string name="search_scan">Search by Scanning</string>
