@@ -1,5 +1,7 @@
 package com.EasyPeasy.buymybook;
 
+import java.util.concurrent.ExecutionException;
+
 import com.EasyPeasy.buymybook.CommunicationClass.DownloadJSON;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -87,19 +89,31 @@ public class ManualSearchActivity extends MainActivity {
 		String isbn = textISBN.getText().toString().replace("-","");
 		
 		String chosenSubject = courseCode.getSelectedItem().toString();
-		Log.d(TAG,"chosenSUbject:" +chosenSubject);
+		
+		/*Log.d(TAG,"chosenSUbject:" +chosenSubject);
 		Intent intent = new Intent(this,SearchManualActivity.class);
 		intent.putExtra("SUBMITVAL_TITLE", title);
 		intent.putExtra("SUBMITVAL_AUTHOR", author);
-		intent.putExtra("SUBMITVAL_ISBN", isbn);
-		Intent resultsIntent = new Intent(this,SearchResultsActivity.class);
+		intent.putExtra("SUBMITVAL_ISBN", isbn);*/
+		//Intent resultsIntent = new Intent(this,SearchResultsActivity.class);
 		//String scanContent = new String("9787887031990"); //fake it
-		String scanContent = new String("9780176251949");
-		String url="http://buymybookapp.com/api/search/get_book/"+scanContent;
+		//String scanContent = new String("9780176251949");
+		//String url="http://buymybookapp.com/api/search/get_book/"+scanContent;
+		//String scanContent = new String("9780176251949");
+		String url="http://buymybookapp.com/api/search/get_listings_by_book/"+isbn;
 		//communication class does all the work in getting results
-//		/CommunicationClass c = new CommunicationClass(url);
-		//c.new DownloadJSON(this,"search").execute(url);	
-		startActivity(resultsIntent);
+		CommunicationClass c = new CommunicationClass(url);
+		String results = null;
+	
+		c.new DownloadJSON(this,"search").execute(url);
+	/*
+		if(results != null){
+			Log.d(TAG,"results null");
+			intent.putExtra("json", results);
+		}
+		
+		
+		startActivity(intent);*/
 		//This activity should die now -Yi
 		if(dieAfterFinish) {
 			finish();

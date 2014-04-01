@@ -18,10 +18,11 @@
           android:layout_height="wrap_content"
           android:layout_below="@id/search_manual_title"
           android:layout_marginTop="20dp"
-          android:background="@color/silver"
+          android:background="#B8D1CC"
           android:cacheColorHint="@android:color/transparent"
-       	  android:divider="@android:color/transparent"
-          android:dividerHeight="10sp"
-          android:paddingLeft="10sp" />
+       	  android:divider="@color/list_divider"
+          android:dividerHeight="20dp"
+          
+          android:paddingLeft="0dp" />
 
 </LinearLayout>

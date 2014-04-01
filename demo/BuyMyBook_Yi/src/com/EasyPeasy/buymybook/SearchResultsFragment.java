@@ -1,9 +1,11 @@
 package com.EasyPeasy.buymybook;
 import com.EasyPeasy.buymybook.CustomSearchListAdaptor;
+import com.EasyPeasy.buymybook.CommunicationClass.DownloadJSON;
 
 
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,16 +59,47 @@ public class SearchResultsFragment extends Fragment{
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		Log.d(tag,"onCreate");
+		//Log.d(tag,"onCreate");
 		//setContentView(R.layout.activity_search_manual);
 		result = getArguments() != null ? getArguments().getString("json") : null;
-		Log.d(tag,"results: "+ result);
+		//Log.d(tag,"results: "+ result);
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
 		Log.d(tag,"onCreateView");
-		View view = inflater.inflate(R.layout.fragment_results_search,container,false);
 		
+		
+		
+		View view = inflater.inflate(R.layout.fragment_results_search,container,false);
+		/*String scanContent = new String("9780176251949");
+	   String url="http://buymybookapp.com/api/search/get_book/"+scanContent;
+		//CommunicationClass c = new CommunicationClass(url);
+		String getUrl = new String();
+		/*try {
+			getUrl = c.new DownloadJSON(view.getContext(),"image_get").execute(url).get();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Log.d(tag,"geturl: " + getUrl.toString());
+		String imageUrl = null;
+		if(getUrl != null){
+			try {
+				JSONObject jsonString = new JSONObject(getUrl);
+				jsonString = jsonString.getJSONObject("data");
+				jsonString = jsonString.getJSONObject("book");
+				imageUrl= jsonString.getString("amazon_small_image");
+
+				//Log.d(tag,"imageurl: " + imageUrl.toString());
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}*/
+		//String imageUrl = null;
 		JSONArray endResult = new JSONArray();
 		/*
 		 * Problem: listings vs single item
@@ -78,13 +111,13 @@ public class SearchResultsFragment extends Fragment{
 			try{
 				JSONObject jsonString = new JSONObject(result);
 				data = jsonString.getJSONObject("data");
-				Log.d(tag,"got data");
-				endResult = data.getJSONArray("book");
+				//Log.d(tag,"got data");
+				//endResult = data.getJSONArray("book");
 				//endResult.put(data);
-				Log.d(tag,"got book");
-				//endResult = book.getJSONArray("listings");
-				Log.d(tag,"got end result");
-				Log.d(tag,"endResult size: "+endResult.length());
+				//Log.d(tag,"got book");
+				endResult = data.getJSONArray("listings");
+				//Log.d(tag,"got end result");
+				//Log.d(tag,"endResult size: "+endResult.length());
 				
 			}
 			catch(JSONException e){
@@ -92,22 +125,53 @@ public class SearchResultsFragment extends Fragment{
 			}
 		}//if
 		//endResult.put(book);
-		Log.d(tag,"endResult size: "+endResult.length());
-		Log.d(tag,"endResult: "+endResult.toString());
+		//Log.d(tag,"endResult size: "+endResult.length());
+	//	Log.d(tag,"endResult: "+endResult.toString());
 	
+		//String imageURL = endResult.getJSONObject(0).getString();
 		ArrayList image_details;
 		image_details = parseJSONResult(endResult);
+		//grab url from listings
+		String isbn = null;
+		try {
+			isbn = endResult.getJSONObject(0).getString("isbn_13");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String url="http://buymybookapp.com/api/search/get_book/"+isbn;
+		CommunicationClass c = new CommunicationClass();
+		String imgUrl = null;
+		try {
+			//grabs imgUrl
+			imgUrl = c.new DownloadJSON(view.getContext(),"image_get").execute(url).get();
+			JSONObject json = new JSONObject(imgUrl);
+			imgUrl = json.getJSONObject("data").getJSONObject("book").getString("amazon_small_image");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Log.d(tag,"IMGURL: "+ imgUrl);
 		if(image_details == null){
-			Log.d(tag,"image_details null");
+			image_details = populateBooks();
+			Log.d(tag,"image_details null: ");
 		}
 		else{
 			Log.d(tag,"imagedetails not null");
 		}
 			//fake input
-			image_details = populateBooks();
+			//image_details = populateBooks();
 		   final ListView lv1 = (ListView) view.findViewById(R.id.search_manual_listview);
 		   if(lv1 != null){
-			   lv1.setAdapter(new CustomSearchListAdaptor(getActivity(), image_details));
+			   lv1.setAdapter(new CustomSearchListAdaptor(getActivity(), image_details,imgUrl));
 			   lv1.setOnItemClickListener(new OnItemClickListener() {
 		        	/*
 		        	 * Click listener for each item view
@@ -148,21 +212,24 @@ public class SearchResultsFragment extends Fragment{
 		
 	private ArrayList parseJSONResult(JSONArray jsonArray){
 			
+		
+		
+		
 			ArrayList results = new ArrayList();
 			
 			try{
 				for(int i = 0 ; i < jsonArray.length();i++){
 					JSONObject childObject = jsonArray.getJSONObject(i);
-					String title = childObject.getString("title");
+					String title = childObject.getString("book_title");
 				String author = childObject.getString("authors");
-				String price = "1";
-				String condition = "1";
+				//String price = "1";
+				//String condition = "1";
 				
-				//String price = childObject.getString("listing_price");
-				//String condition = childObject.getString("condition");
-			
+				String price = childObject.getString("listing_price");
+				String condition = childObject.getString("condition");
+				//Log.d(tag,"parseJsonResult: "+title+author);
 				SearchListItem item = new SearchListItem(title,author,price,condition);
-				
+				//item.setUrl(url);
 				results.add(item);
 			}//for
 		}//try

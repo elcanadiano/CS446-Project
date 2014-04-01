@@ -9,7 +9,7 @@
     <color name="list_item_title">#d1f1eb</color>
     <color name="list_background">#2c3e50</color>
     <color name="list_background_pressed">#d35400</color>
-    <color name="list_divider">#34495e</color>
+    <color name="list_divider">#ecf0f1</color>
     <color name="counter_text_bg">#626262</color>
     <color name="counter_text_color">#c5c4c4</color>
     

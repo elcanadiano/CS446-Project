@@ -20,9 +20,12 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -42,10 +45,18 @@ public class CommunicationClass{
         new DownloadJSON().execute(uri , null, null);
 	}
 	*/
+	public CommunicationClass(){
+		
+	}
 	public CommunicationClass(String url){
 		String uri = new String(url);
 		
-        new DownloadJSON().execute(uri , null, null);
+       // new DownloadJSON().execute(uri , null, null);
+	}
+	public CommunicationClass(String url, int code){
+		String uri = new String(url);
+		
+        //new DownloadJSON().execute(uri , null, null);
 	}
 	
 	public class FacebookStuff extends AsyncTask<String, Void, String> {
@@ -144,15 +155,17 @@ public class CommunicationClass{
 					intent.putExtra("json", result.toString());
 					
 					context.startActivity(intent);*/
+				} else if(typeDownload.equals("image_get")){
+						//Log.d(tag,"image_Get: "+result.toString());
 				} else {
-					Log.d(tag,"else case");
+					//Log.d(tag,"else case");
 					// carl, but your result code here!
 					
 					Intent intent = new Intent(this.context, SearchResultsActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					
 					intent.putExtra("json", result.toString());
-					Log.d(tag,"Passing json to SearchResults: "+result.toString());
+					//Log.d(tag,"Passing json to SearchResults: "+result.toString());
 					context.startActivity(intent);
 					
 				}
@@ -164,7 +177,33 @@ public class CommunicationClass{
         	catch(Exception e){
         		Log.d(tag,"Exception: "+e.toString());
         	}
-        }
-    }
+        }//onPostExecute
+    }//Download JSON
+	
+	
+	public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+	    ImageView bmImage;
+
+	    public DownloadImageTask(ImageView bmImage) {
+	        this.bmImage = bmImage;
+	    }
+
+	    protected Bitmap doInBackground(String... urls) {
+	        String urldisplay = urls[0];
+	        Bitmap mIcon11 = null;
+	        try {
+	            InputStream in = new java.net.URL(urldisplay).openStream();
+	            mIcon11 = BitmapFactory.decodeStream(in);
+	        } catch (Exception e) {
+	            Log.e("Error", e.getMessage());
+	            e.printStackTrace();
+	        }
+	        return mIcon11;
+	    }
+
+	    protected void onPostExecute(Bitmap result) {
+	        bmImage.setImageBitmap(result);
+	    }
+	}
 	
 }//CommunicationClass
