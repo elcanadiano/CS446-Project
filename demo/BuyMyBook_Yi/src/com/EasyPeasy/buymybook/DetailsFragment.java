@@ -1,9 +1,14 @@
 package com.EasyPeasy.buymybook;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.text.method.KeyListener;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +16,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.content.Context;
 /*
  * xml file: fragment_results_search.xml
  */
@@ -32,6 +38,7 @@ public class DetailsFragment extends Fragment {
 	private TextView authorText;
 	private TextView priceText;
 	private TextView conditionText;
+	private TextView commentsText;
 	
 	public DetailsFragment(){
 		;
@@ -92,13 +99,14 @@ public class DetailsFragment extends Fragment {
 		//Put name, join date, phone, text, and email
 	
 	
-		editTextNumber.setText("5195460284");
-		editEmailAddress.setText("cecabusa@uwaterloo.ca");
+		
+		
+		
 		titleText = (TextView) view.findViewById(R.id.title);
 		authorText = (TextView) view.findViewById(R.id.author);
 		priceText = (TextView) view.findViewById(R.id.price);
 		conditionText = (TextView) view.findViewById(R.id.condition);
-		
+		commentsText = (TextView) view.findViewById(R.id.commentsText);
 		
 	
 		TextView txt = (TextView) view.findViewById(R.id.search_manual_title);
@@ -110,14 +118,86 @@ public class DetailsFragment extends Fragment {
 		String author = getArguments().getString("author");
 		String price = getArguments().getString("price");
 		String condition = getArguments().getString("condition");
+		String comments = getArguments().getString("comments");
+		String contactNum = getArguments().getString("contactNum");
+		String contactEmail = getArguments().getString("contactEmail");
 		condition = getCondition(Integer.parseInt(condition)).toString();
 		titleText.setText(title);
 		authorText.setText(author);
 		priceText.setText(price);
 		conditionText.setText(condition);
+		if(contactNum != null){
+			editTextNumber.setText(contactNum);
+		} else{
+			editTextNumber.setText("5195460284");
+		}
+		if(contactEmail != null){
+			editEmailAddress.setText(contactEmail);
+		} else {
+			editEmailAddress.setText("cecabusa@uwaterloo.ca");
+		}
+		
+		if(comments != null){
+			commentsText.setText(comments);
+		}
+		
 		/*String result = new String(title.toString()+author.toString()+price.toString()+condition.toString());
 		txt.setText(result);
 		*/
+		
+		
+
+		
+		// Allows the ability to send a text message
+		textme.setOnClickListener(new View.OnClickListener() {
+			// Need because Build.VERSION if statement uses KitKat specific stuff
+			@SuppressLint("NewApi")
+			@Override
+			public void onClick(View v) {
+				String smsText = "HELLO WORLD";
+				String smsNumber = editTextNumber.getText().toString();
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { //At least KitKat
+					String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(v.getContext().getApplicationContext());
+					Intent sendIntent = new Intent(
+						Intent.ACTION_SENDTO, 
+						Uri.parse("smsto:" + Uri.encode(smsNumber))
+					);
+					sendIntent.putExtra("sms_body", smsText);
+
+					// If the user doesn't have a default app that supports SMS
+					if (defaultSmsPackageName != null) {
+						sendIntent.setPackage(defaultSmsPackageName);
+					}
+					startActivity(sendIntent);
+				} else { // Stuff for pre-KitKat
+					Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+					sendIntent.setData(Uri.parse("sms:"));
+					sendIntent.putExtra("sms_body", smsText);
+					sendIntent.putExtra("address", smsNumber);
+					startActivity(sendIntent);
+				}
+			}
+		});
+		
+		// Allows the ability to send an email
+		emailme.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String aEmailList[] = { editEmailAddress.getText().toString()};
+						
+				final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+			    intent.setType("plain/text");
+			    intent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
+			    intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Reply to your <BOOK TITLE> ad on Buy My Book!");
+			    intent.putExtra(android.content.Intent.EXTRA_TEXT, "<EMAIL BODY TEXT HERE>");
+			    startActivity(intent);
+			}
+		});
+		
+		
+		
+		
+		
 		return view;
 		
 	}
