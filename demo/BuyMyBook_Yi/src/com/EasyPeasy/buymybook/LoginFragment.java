@@ -17,6 +17,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -50,8 +51,13 @@ public class LoginFragment extends Fragment {
     String fbFirstName = null;
     String fbLastName = null;
     String fbEmail = null;
+    String fbPhoneNum = null;
+    String fbTextNum = null;
     String fbUserId = null;
     String fbUserName = null;
+    String fbAccessToken = null;
+    
+    final String PREFS_NAME = "MyLoginInfo";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -85,8 +91,10 @@ public class LoginFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				if (newUser) {
-					// Do stuff if you are a new user?
+					// Do stuff if you are a new user
 				}
+				saveLoginInfo();
+				
 				Intent intent = new Intent(getActivity(), MainActivity.class);
 				intent.putExtra("userId", fbUserId);
 				intent.putExtra("userName", fbUserName);
@@ -126,9 +134,8 @@ public class LoginFragment extends Fragment {
         
 	    if (state.isOpened()) {
 	        Log.i(TAG, "Logged in...");
-	        
+	        fbAccessToken = session.getAccessToken().toString();
 	        Request.newMeRequest(session, new Request.GraphUserCallback() {
-        		
       		  // callback after Graph API response with user object
       		  @Override
       		  public void onCompleted(GraphUser user, Response response) {
@@ -142,14 +149,20 @@ public class LoginFragment extends Fragment {
       		    	 * Access Token: session.getAccessToken()
       		    	 */
       		    	//welcome.setText(getResources().getString(R.string.welcome_back));
-      		    	
+      			    loadLoginInfo();
+      			    Log.i("onCompleted", "user not null");
       		    	fbUserId = user.getId();
       		    	fbUserName = user.getLink();
       		    	fbFirstName = user.getFirstName();
       		    	fbLastName = user.getLastName();
-      		    	fbEmail = user.asMap().get("email").toString();
-      		    	
+      		    	if (fbEmail == null) {
+      		    		fbEmail = user.asMap().get("email").toString();
+      		    	}
       		    	name.setText(fbFirstName + " " + fbLastName);
+      		    	
+      		    	phoneNum.setText(fbPhoneNum);
+      		    	textNum.setText(fbTextNum);
+      		    	newEmail.setText(fbEmail);
       		    	// Facebook Profile Picture -- http://graph.facebook.com/id/picture
       		    	// For Booker Book, it is http://graph.facebook.com/100008045347915/picture
       		    	profilePic.setProfileId(fbUserId);
@@ -158,56 +171,51 @@ public class LoginFragment extends Fragment {
       		    }
       		  }
       		}).executeAsync();
+	        
+	        Log.i(TAG, "Still logged in...");
 	        name.setVisibility(View.VISIBLE);
 	        profilePic.setVisibility(View.VISIBLE);
-	        
-	        // Check if user exists in the database
-        	// Create a POST and pass user ID and access token
-	        HttpResponse response = null;
-	        try {
-	        	// Add data
-	        	HttpPost httppost = new HttpPost("http://www.buymybook.com/api/login/fb_login");
-	        	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-	        	nameValuePairs.add(new BasicNameValuePair("user_id", fbUserId));
-	        	nameValuePairs.add(new BasicNameValuePair("access_token", session.getAccessToken()));
-				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-				
-				// Execute HTTP Post Request
-				CommunicationClass x = null;
-				FacebookStuff a = x.new FacebookStuff(httppost);
-				response = a.Login();
-	        } catch (Exception e) {
-	        	// TODO: Catch exception...
-	        }
-				
-			Toast toast = Toast.makeText(
-				getActivity().getApplicationContext(),
-		    	"Response was: " + response,
-			    Toast.LENGTH_SHORT);   
-			toast.show();
-			
-	        if (true) { // Doesn't exist in database
 	        	newUser = false;
 		        welcome.setText(getResources().getString(R.string.welcome_new_user));
-	        	informUser.setText(getResources().getString(R.string.inform_user));
-	        	informUser.setVisibility(View.VISIBLE);
-	        	phoneNum.setVisibility(View.VISIBLE);
-	        	//phoneNum.setText("8888888888");				// TESTING PURPOSES
-	        	textNum.setVisibility(View.VISIBLE);
-	        	//textNum.setText("8888888888");				// TESTING PURPOSES
-	        	newEmail.setVisibility(View.VISIBLE); 
-	        	//newEmail.setText("booker@buymybook.com"); 	// TESTING PURPOSES
+		        
+		        Log.i("PRECHECK", "fbPhoneNum: " + fbPhoneNum );
+        		Log.i("PRECHECK", "fbTextNum: " + fbTextNum );
+        		Log.i("PRECHECK", "fbEmail: " + fbEmail );
+
+        		phoneNum.setText(fbPhoneNum);
+	        	textNum.setText(fbTextNum);
 	        	newEmail.setText(fbEmail);
-	        	goToMain.setVisibility(View.VISIBLE);		// TESTING PURPOSES
-	        } else { // Exists in database -- DEAD CODE
-	        	newUser = true;
-	        	welcome.setText(getResources().getString(R.string.welcome_back));
-	        	informUser.setVisibility(View.INVISIBLE);
-	        	phoneNum.setVisibility(View.INVISIBLE);
-	        	textNum.setVisibility(View.INVISIBLE);
-	        	newEmail.setVisibility(View.INVISIBLE);
-	        	goToMain.setVisibility(View.VISIBLE);
-	        }
+	        	
+		        if (fbPhoneNum == null ||
+		        		fbTextNum == null ||
+		        		fbEmail == null) {
+		        	informUser.setText(getResources().getString(R.string.inform_user));
+		        	informUser.setVisibility(View.VISIBLE);
+		        	goToMain.setVisibility(View.VISIBLE);
+		        	
+	        		Log.i("phoneNum", "fbPhoneNum: " + fbPhoneNum );
+	        		Log.i("textNum", "fbTextNum: " + fbTextNum );
+	        		Log.i("email", "fbEmail: " + fbEmail );
+		        	if (fbPhoneNum != null) {
+		        		Log.i("THE CHECKER", "fbPhoneNum not null");
+		        		phoneNumCorrect = true;
+		        	}
+		        	if (fbTextNum != null) {
+		        		Log.i("THE CHECKER", "fbTextNum not null");
+		        		textNumCorrect = true;
+		        	}
+		        	if (fbEmail != null) {
+		        		Log.i("THE CHECKER", "fbEmail not null");
+		        		newEmailCorrect = true;
+		        	}
+		        } else {
+		        	informUser.setVisibility(View.INVISIBLE);
+		        }
+		        
+	        	phoneNum.setVisibility(View.VISIBLE);
+	        	textNum.setVisibility(View.VISIBLE);
+	        	newEmail.setVisibility(View.VISIBLE); 
+	        	//goToMain.setVisibility(View.VISIBLE);		// TESTING PURPOSES
 	    } else if (state.isClosed()) {
 	        Log.i(TAG, "Logged out...");
 	        welcome.setText(getResources().getString(R.string.welcome));
@@ -238,7 +246,7 @@ public class LoginFragment extends Fragment {
 				    	toast.show();
 				    	phoneNumCorrect = false;
 				    	goToMain.setVisibility(View.INVISIBLE);
-				    	informUser.setVisibility(View.VISIBLE);
+				    	//informUser.setVisibility(View.VISIBLE);
 				    	return false;
 			    	} else {
 			    		Toast toast = Toast.makeText(
@@ -248,6 +256,8 @@ public class LoginFragment extends Fragment {
 				    	toast.show();
 				    	phoneNum.clearFocus();
 				    	phoneNumCorrect = true;
+				    	fbPhoneNum = phoneNum.getText().toString();
+				    	
 				    	if (phoneNumCorrect && textNumCorrect && newEmailCorrect) {
 				    		informUser.setVisibility(View.INVISIBLE);
 				    		goToMain.setVisibility(View.VISIBLE);
@@ -279,7 +289,7 @@ public class LoginFragment extends Fragment {
 				    	toast.show();
 				    	textNumCorrect = false;
 				    	goToMain.setVisibility(View.INVISIBLE);
-				    	informUser.setVisibility(View.VISIBLE);
+				    	//informUser.setVisibility(View.VISIBLE);
 				    	return false;
 			    	} else {
 			    		Toast toast = Toast.makeText(
@@ -290,6 +300,7 @@ public class LoginFragment extends Fragment {
 				    	textNum.clearFocus();
 				    	textNumCorrect = true;
 				    	
+				    	fbTextNum = textNum.getText().toString();
 				    	if (phoneNumCorrect && textNumCorrect && newEmailCorrect) {
 				    		informUser.setVisibility(View.INVISIBLE);
 				    		goToMain.setVisibility(View.VISIBLE);
@@ -321,7 +332,7 @@ public class LoginFragment extends Fragment {
 				    	toast.show();
 				    	newEmailCorrect = false;
 				    	goToMain.setVisibility(View.INVISIBLE);
-				    	informUser.setVisibility(View.VISIBLE);
+				    	//informUser.setVisibility(View.VISIBLE);
 				    	return false;
 			    	} else {
 			    		Toast toast = Toast.makeText(
@@ -331,7 +342,7 @@ public class LoginFragment extends Fragment {
 				    	toast.show();
 				    	newEmail.clearFocus();
 				    	newEmailCorrect = true;
-				    	
+				    	fbEmail = newEmail.getText().toString();
 				    	if (phoneNumCorrect && textNumCorrect && newEmailCorrect) {
 				    		informUser.setVisibility(View.INVISIBLE);
 				    		goToMain.setVisibility(View.VISIBLE);
@@ -383,5 +394,41 @@ public class LoginFragment extends Fragment {
 	public void onSaveInstanceState(Bundle outState) {
 	    super.onSaveInstanceState(outState);
 	    uiHelper.onSaveInstanceState(outState);
+	}
+	
+	public void loadLoginInfo() {
+		SharedPreferences settings = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
+		fbUserId = settings.getString("fbUserId", null);
+		Log.i("loadLoginInfo", "fbUserId: " + fbUserId);
+		fbUserName = settings.getString("fbUserName", null);
+		Log.i("loadLoginInfo", "fbUserName: " + fbUserName);
+		fbFirstName = settings.getString("fbFirstName", null);
+		Log.i("loadLoginInfo", "fbFirstName: " + fbFirstName);
+		fbLastName = settings.getString("fbLastName", null);
+		Log.i("loadLoginInfo", "fbLastName: " + fbLastName);
+		fbEmail = settings.getString("fbEmail", null);
+		Log.i("loadLoginInfo", "fbEmail: " + fbEmail);
+		fbPhoneNum = settings.getString("fbPhoneNum", null);
+		Log.i("loadLoginInfo", "fbPhoneNum: " + fbPhoneNum);
+		fbTextNum = settings.getString("fbTextNum", null);
+		Log.i("loadLoginInfo", "fbTextNum: " + fbTextNum);
+		fbAccessToken = settings.getString("fbAccessToken", null);
+		Log.i("loadLoginInfo", "fbAccessToken: " + fbAccessToken);
+	}
+	
+	public void saveLoginInfo() {
+		SharedPreferences settings = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putString("fbUserId", fbUserId);
+		editor.putString("fbUserName", fbUserName);
+		editor.putString("fbFirstName", fbFirstName);
+		editor.putString("fbLastName", fbLastName);
+		editor.putString("fbEmail", fbEmail);
+		editor.putString("fbPhoneNum", fbPhoneNum);
+		editor.putString("fbTextNum", fbTextNum);
+		editor.putString("fbAccessToken", fbAccessToken);
+		
+		// Commit the edits
+		editor.commit();
 	}
 }
