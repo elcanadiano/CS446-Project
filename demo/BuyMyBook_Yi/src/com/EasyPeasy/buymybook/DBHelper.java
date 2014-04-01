@@ -43,6 +43,9 @@ public class DBHelper extends SQLiteOpenHelper{
 				author + "', '"+
 				price + "', '"+
 				condition + "')");
+		
+		System.out.println(" local db now has:");
+		this.cursorSelectAll();
 	}
 	
 	public void clearAll() {
@@ -62,7 +65,7 @@ public class DBHelper extends SQLiteOpenHelper{
 		//delete this while section later!
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
-			System.out.println(cursor.getString(0));
+			System.out.println(cursor.getString(1));
 			cursor.moveToNext();
 		}
 		cursor.moveToFirst();
