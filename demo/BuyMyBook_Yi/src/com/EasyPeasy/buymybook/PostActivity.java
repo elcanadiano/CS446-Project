@@ -1,6 +1,11 @@
 package com.EasyPeasy.buymybook;
 
 
+import java.util.concurrent.ExecutionException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -12,6 +17,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 /*
  * flow of this activity:
@@ -24,8 +34,50 @@ import android.view.View.OnClickListener;
  */
 public class PostActivity extends MainActivity implements OnClickListener{
 	final Context context = this;
-
-    //UI elements
+	
+ //UI elements
+	//landing page
+	private ImageButton scanBtn;
+	
+	//enter info page
+	String json;
+	String title;
+	String author;
+	private TextView title_info;
+	private TextView author_info;
+	private Button confirmBtn;
+	/*
+	private TextView info;
+	private Button confirmBtn;
+	private EditText priceTag;
+	private Spinner spinner;
+	*/
+	Spinner courseCode,courseNum,term;
+	ArrayAdapter<String> spinnerCourseAdapter,termAdapter;
+	String[] subjects = new String[]{"ACC","ACTSC","AFM","AHS","AMATH","ANTH","APPLS","ARBUS",
+			"ARCH","ARTS","BE","BET","BIOL","BUS","CHE","CHEM","CHINA","CIVE","CLAS","CM",
+			"CMW","CO","COGSCI","COMM","CROAT","CS","CT","DAC","DEI","DRAMA","DUTCH",
+			"EARTH","EASIA","ECE","ECON","ENBUS","ENGL","ENVE","ENVS","ERS","ESL","FINE",
+			"FR","GBDA","GEMCC","GENE","GEOE","GEOG","GER","GERON","GGOV","GRK","HIST",
+			"HLTH","HRM","HSG","HUMSC","IAIN","INDEV","INTEG","INTST","ISS","ITAL",
+			"ITALST","JAPAN","JS","KIN","KOREA","LAT","LED","LS","MATBUS","MATH","MCT",
+			"ME","MEDVL","MNS","MSCI","MTE","MTHEL","MUSIC","NANO","NE","OPTOM","PACS",
+			"PHARM","PHIL","PHS","PHYS","PLAN","PMATH","PORT","PS","PSCI","PSYCH","REC",
+			"REES","RS","RUSS","SCBUS","SCI","SDS","SE","SI","SMF","SOC","SOCWK","SPAN",
+			"SPCOM","SPD","STAT","STV","SUSM","SWK","SWREN","SYDE","TOUR","TS","UNIV",
+			"VCULT","WS"};
+	//result page
+	
+	//data elements for posting
+	String isbn_13;
+	String price;
+	int condition;
+	int isActive;
+	String subject;
+	String catalog_number;
+	String comments;
+	
+	
 	
 	@SuppressLint("NewApi")
 	
@@ -35,16 +87,14 @@ public class PostActivity extends MainActivity implements OnClickListener{
 		this.dieAfterFinish=true;
 		//System.out.println("started onCreate for PostActivity");
 		
-		
-		
-		//call scanner here
-		Intent intent = new Intent(this, ScannerManager.class);
-		//startActivity(intent);
-		startActivityForResult(intent, 1);
-		
 		//set up UI
 		setContentView(R.layout.activity_post);
+		scanBtn = (ImageButton)findViewById(R.id.launch_scanner_button);
+		scanBtn.setOnClickListener(this);
 		this.setupDrawer(savedInstanceState);
+		
+		
+        
 	}
 
 	/**
@@ -82,11 +132,93 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	}
 
 	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
+	public void onClick(View v) { // DON'T CHANGE THIS -YI
+		
+		switch (v.getId()) {
+		
+		case R.id.launch_scanner_button:
+			System.out.println("i should scan something....");
+			scanBtn.setBackgroundResource(R.drawable.scan_button_contact);
+			
+			Intent intent = new Intent(this, ScannerManager.class);
+			startActivityForResult(intent, 1);
+			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+			
+			break;
+		case R.id.post_enterinfo_confirm:
+			System.out.println(" I'm going to fake a post!");
+			
+			//1. fake a post to the server
+			
+			//2. post to local db
+			
+			//3. toast
+			
+		}
 		
 	}
 	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if ( resultCode == RESULT_OK && requestCode == 1 )
+		{
+			//1. get isbn from scanner
+			isbn_13=data.getStringExtra("isbn");
+			System.out.println("scanner returned, isbn is "+isbn_13);
+			
+			//2. talk to server to get book info
+				//9780201314526=cs246
+			String url="http://buymybookapp.com/api/search/get_book/" + isbn_13;
+			CommunicationClass c = new CommunicationClass(url);
+			String return_json=null;
+			
+			try {
+				return_json = c.new DownloadJSON(this,"post").execute(url).get();
+				
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			JSONObject jsonObj=null;
+			try {
+				jsonObj = new JSONObject(return_json);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				title = jsonObj.getJSONObject("data").getJSONObject("book").getString("title");
+				author = jsonObj.getJSONObject("data").getJSONObject("book").getString("authors");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			System.out.println("SERVER RETURNED returned "+title);
+			
+			//3. set layout screen for following page : crappy onCreate
+			setContentView(R.layout.activity_post_enterinfo);
+			//enterinfo UI
+			title_info = (TextView)findViewById(R.id.post_enterinfo_title);
+			author_info = (TextView)findViewById(R.id.post_enterinfo_author);
+			confirmBtn = (Button)findViewById(R.id.post_enterinfo_confirm);	
+	        confirmBtn.setOnClickListener(this);
+	        
+			title_info.setText(title+"\n");
+			author_info.setText("By: "+ author+"\n");
+			
+			Bundle dummie = new Bundle();
+			this.setupDrawer(dummie);
+		} else if (resultCode == RESULT_OK && requestCode == 2) {
+			//die
+		}
+	}
 	/**
      * Diplaying fragment view for selected nav drawer list item
      * */

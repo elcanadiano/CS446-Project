@@ -1,5 +1,10 @@
 # cache for current jar dependency. DO NOT EDIT.
 # format is <lastModified> <length> <SHA-1> <path>
 # Encoding is UTF-8
+<<<<<<< HEAD
+1396036053000 621451 5896b0a4e377ac4242eb2bc785220c1c4fc052f4 /home/carledren/UW/cs446/demo/BuyMyBook_Yi/libs/android-support-v4.jar
+1396036054000 621451 5896b0a4e377ac4242eb2bc785220c1c4fc052f4 /home/carledren/UW/cs446/demo/facebook-android-sdk-3.7/facebook/libs/android-support-v4.jar
+=======
 1396295980000 621451 5896b0a4e377ac4242eb2bc785220c1c4fc052f4 /Users/Punny/Documents/WATERLOO/WINTER 2014 3B/bmb2/demo/facebook-android-sdk-3.7/facebook/libs/android-support-v4.jar
 1396295978000 621451 5896b0a4e377ac4242eb2bc785220c1c4fc052f4 /Users/Punny/Documents/WATERLOO/WINTER 2014 3B/bmb2/demo/BuyMyBook_Yi/libs/android-support-v4.jar
+>>>>>>> b4f7b20674e015ca24313375b4e5e58ed393315d
