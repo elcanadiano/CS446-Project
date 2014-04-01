@@ -146,10 +146,51 @@ public class PostActivity extends MainActivity implements OnClickListener{
 			
 			break;
 		case R.id.post_enterinfo_confirm:
-			System.out.println(" I'm going to fake a post!");
+			
 			
 			//1. fake a post to the server
+			String url = "http://buymybookapp.com/api/listings/post?";
+			price="14.21";
+			condition=4;
+			catalog_number="136";
+			subject="CS";
+			url = url +
+					"isbn_13="+isbn_13 +
+					"&listing_price="+price+
+					"&condition="+condition+
+					"&catalog_number="+catalog_number+
+					"&subject="+subject;
+			System.out.println(" I'm going to fake a post! "+url);
 			
+			CommunicationClass c = new CommunicationClass(url);
+			String return_json=null;
+			
+			try {
+				return_json = c.new DownloadJSON(this,"post").execute(url).get();
+				
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			JSONObject jsonObj=null;
+			try {
+				jsonObj = new JSONObject(return_json);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				String listing_id ="some fake listing id";
+				String status=jsonObj.getJSONObject("status").getString("status");
+				System.out.println("posted to server! status was:"+status);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			//2. post to local db
 			
 			//3. toast
@@ -200,8 +241,7 @@ public class PostActivity extends MainActivity implements OnClickListener{
 				e.printStackTrace();
 			}
 			
-			System.out.println("SERVER RETURNED returned "+title);
-			
+		
 			//3. set layout screen for following page : crappy onCreate
 			setContentView(R.layout.activity_post_enterinfo);
 			//enterinfo UI
@@ -212,6 +252,8 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	        
 			title_info.setText(title+"\n");
 			author_info.setText("By: "+ author+"\n");
+			
+			//PUT MORE STUFF HERE!!!
 			
 			Bundle dummie = new Bundle();
 			this.setupDrawer(dummie);
