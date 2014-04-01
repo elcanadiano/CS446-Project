@@ -208,6 +208,9 @@ public class SearchResultsFragment extends Fragment{
 				args.putString("comments", newsData.getComments());
 				args.putString("contactNum", newsData.getNum());
 				args.putString("contactEmail", newsData.getEmail());
+				args.putString("firstname", newsData.firstname);
+				args.putString("lastname", newsData.lastname);
+				Log.d(tag, "detailfragmet(): " + newsData.firstname + newsData.lastname + " : " + newsData.getEmail()+" : "+ newsData.getNum());
 				fragment.setArguments(args);
 				f.getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null).commit();
 			}
@@ -215,9 +218,6 @@ public class SearchResultsFragment extends Fragment{
 		
 	private ArrayList parseJSONResult(JSONArray jsonArray){
 			
-		
-		
-		
 			ArrayList results = new ArrayList();
 			
 			try{
@@ -232,9 +232,17 @@ public class SearchResultsFragment extends Fragment{
 				
 				String price = childObject.getString("listing_price");
 				String condition = childObject.getString("condition");
+				String phone = childObject.getString("phone_number");
+				String email = childObject.getString("email");
 				//Log.d(tag,"parseJsonResult: "+title+author);
 				SearchListItem item = new SearchListItem(title,author,price,condition);
 				if(comments != null && !comments.equals("null")) item.setComments(comments);
+				if(phone != null && !phone.equals("null")) item.setNum(phone);
+				if(email != null && !email.equals("null")) item.setEmail(email);
+				item.firstname = childObject.getString("first_name");
+				item.lastname = childObject.getString("last_name");
+				Log.d(tag," parsejson: name: " +item.firstname + item.lastname + " email: " +phone + ":"+email);
+				//if(comments != null && !comments.equals("null")) item.setComments(comments);
 				//item.setUrl(url);
 				results.add(item);
 			}//for

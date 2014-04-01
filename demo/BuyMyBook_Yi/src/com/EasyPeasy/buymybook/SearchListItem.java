@@ -16,6 +16,8 @@ public class SearchListItem {
 	private String comments;
 	private String contactNum;
 	private String contactEmail;
+	public String firstname;
+	public String lastname;
 	
 	public String getTitle(){
 		return this.title;
@@ -67,6 +69,8 @@ public class SearchListItem {
 		comments = null;
 		contactNum = null;
 		contactEmail = null;
+		firstname = null;
+		lastname = null;
 	}
 	
 	
