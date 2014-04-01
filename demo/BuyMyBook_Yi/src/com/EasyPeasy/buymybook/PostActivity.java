@@ -18,8 +18,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 /*
  * flow of this activity:
@@ -41,6 +43,9 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	String json;
 	String title;
 	String author;
+	private TextView title_info;
+	private TextView author_info;
+	private Button confirmBtn;
 	/*
 	private TextView info;
 	private Button confirmBtn;
@@ -87,6 +92,9 @@ public class PostActivity extends MainActivity implements OnClickListener{
 		scanBtn = (ImageButton)findViewById(R.id.launch_scanner_button);
 		scanBtn.setOnClickListener(this);
 		this.setupDrawer(savedInstanceState);
+		
+		
+        
 	}
 
 	/**
@@ -137,7 +145,15 @@ public class PostActivity extends MainActivity implements OnClickListener{
 			overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
 			
 			break;
-		//case:
+		case R.id.post_enterinfo_confirm:
+			System.out.println(" I'm going to fake a post!");
+			
+			//1. fake a post to the server
+			
+			//2. post to local db
+			
+			//3. toast
+			
 		}
 		
 	}
@@ -178,14 +194,25 @@ public class PostActivity extends MainActivity implements OnClickListener{
 			}
 			try {
 				title = jsonObj.getJSONObject("data").getJSONObject("book").getString("title");
-				author = jsonObj.getJSONObject("data").getJSONObject("book").getString("author");
+				author = jsonObj.getJSONObject("data").getJSONObject("book").getString("authors");
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			System.out.println("SERVER RETURNED returned "+title);
-			//3. set layout screen for following page :
+			
+			//3. set layout screen for following page : crappy onCreate
 			setContentView(R.layout.activity_post_enterinfo);
+			//enterinfo UI
+			title_info = (TextView)findViewById(R.id.post_enterinfo_title);
+			author_info = (TextView)findViewById(R.id.post_enterinfo_author);
+			confirmBtn = (Button)findViewById(R.id.post_enterinfo_confirm);	
+	        confirmBtn.setOnClickListener(this);
+	        
+			title_info.setText(title+"\n");
+			author_info.setText("By: "+ author+"\n");
+			
 			Bundle dummie = new Bundle();
 			this.setupDrawer(dummie);
 		} else if (resultCode == RESULT_OK && requestCode == 2) {

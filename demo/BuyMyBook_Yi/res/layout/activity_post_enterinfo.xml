@@ -17,11 +17,26 @@
     tools:context=".PostActivity" >
 
 	<TextView
-        android:id="@+id/post_scan_text"
+        android:id="@+id/post_enterinfo_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="28sp"
-        android:text="@string/hello_world" />
+        android:text="title" />
+	
+	<TextView
+        android:id="@+id/post_enterinfo_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:layout_below="@id/post_enterinfo_title"
+        android:text="author" />
+	<Button
+        android:id="@+id/post_enterinfo_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Sell My Book!" 
+        android:layout_below="@id/post_enterinfo_author"/>
    
     
     
