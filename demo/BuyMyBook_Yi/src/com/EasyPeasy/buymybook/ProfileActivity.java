@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -38,6 +39,9 @@ public class ProfileActivity extends MainActivity {
 	private EditText editTextNumber;
 	private EditText editEmailAddress;
 	
+	private TextView firstName;
+	private TextView lastName;
+	
 	private KeyListener originalPhoneKeyListener;
 	private KeyListener originalTextKeyListener;
 	private KeyListener originalEmailKeyListener;
@@ -46,7 +50,13 @@ public class ProfileActivity extends MainActivity {
 	private ImageView textme;
 	private ImageView emailme;
 	
+	private String userFirstName;
+	private String userLastName;
+	private String userEmail;
+	private String userPhoneNum;
+	private String userTextNum;
 	private String fbUserId;
+	private String fbUserName;
 	
 	//db stuff
 	private DBHelper dbHelper;
@@ -57,11 +67,14 @@ public class ProfileActivity extends MainActivity {
 		setContentView(R.layout.activity_profile);
 		this.dieAfterFinish=true;
 		
-		fbUserId = getIntent().getStringExtra("userId");
+		loadUserInfo();
 		
 		editPhoneNumber = (EditText)findViewById(R.id.phone);
 		editTextNumber = (EditText)findViewById(R.id.message);
 		editEmailAddress = (EditText)findViewById(R.id.email);
+		
+		firstName = (TextView)findViewById(R.id.first_name);
+		lastName = (TextView)findViewById(R.id.last_name);
 		
 		callme = (ImageView)findViewById(R.id.phone_img);
 		emailme = (ImageView)findViewById(R.id.email_img);
@@ -72,11 +85,11 @@ public class ProfileActivity extends MainActivity {
 		originalEmailKeyListener = editEmailAddress.getKeyListener();
 		
 		//Put name, join date, phone, text, and email
-		((TextView)findViewById(R.id.first_name)).setText("Your first name here");
-		((TextView)findViewById(R.id.last_name)).setText("Your last name here");
-		editPhoneNumber.setText("5198888888");
-		editTextNumber.setText("2268888888");
-		editEmailAddress.setText("khusain@uwaterloo.ca");
+		((TextView)findViewById(R.id.first_name)).setText(userFirstName);
+		((TextView)findViewById(R.id.last_name)).setText(userLastName);
+		editPhoneNumber.setText(userPhoneNum);
+		editTextNumber.setText(userTextNum);
+		editEmailAddress.setText(userEmail);
 		((TextView)findViewById(R.id.books_selling_text)).setText("Books that you are selling");
 		
 		((ProfilePictureView)findViewById(R.id.profile_pic)).setProfileId(fbUserId);
@@ -86,23 +99,33 @@ public class ProfileActivity extends MainActivity {
 		ArrayList<SearchListItem> myArrayOfBooks = new ArrayList<SearchListItem>();
 		
 		//gets data from local db
-		Cursor c = dbHelper.cursorSelectAll();
-		c.moveToFirst();
-		while (!c.isAfterLast()) {
-			String listing_id=c.getString(0); //listing ID
-			String title=c.getString(1); //title
-			String author=c.getString(2);
-			String price=c.getString(3);
-			String condition=c.getString(4);
+		Cursor c = null;
+		
+		try {
+			c = dbHelper.cursorSelectAll();
+		} catch (Exception e) {
+			// Exception
+		}
+		
+		if (c != null && c.getCount() > 0) {
+			c.moveToFirst();
 			
-			SearchListItem item = new SearchListItem(
-					title,
-					author,
-					price,
-					condition);
-			System.out.println("in ProfileActiving loading book "+title);
-			myArrayOfBooks.add(item);
-			c.moveToNext();
+			while (!c.isAfterLast()) {
+				String listing_id=c.getString(0); //listing ID
+				String title=c.getString(1); //title
+				String author=c.getString(2);
+				String price=c.getString(3);
+				String condition=c.getString(4);
+				
+				SearchListItem item = new SearchListItem(
+						title,
+						author,
+						price,
+						condition);
+				System.out.println("in ProfileActiving loading book "+title);
+				myArrayOfBooks.add(item);
+				c.moveToNext();
+			}
 		}
 		/*
 		for (int i = 0; i < 10; i++) {
@@ -358,8 +381,8 @@ public class ProfileActivity extends MainActivity {
     	    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(URI));
     	    startActivity(intent);
     	} catch (Exception e) { // Fallback to web browser if Facebook app doesn't exist or failed to launch
-    		//String URI2 = "https://www.facebook.com/" + 
-    		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/booker.book3"));
+    		String URI = "https://www.facebook.com/" + fbUserName;
+    		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(URI));
     	   	startActivity(intent);
     	}
     }
@@ -369,5 +392,23 @@ public class ProfileActivity extends MainActivity {
 	            .getSystemService(INPUT_METHOD_SERVICE);
 	    if (manager != null)
 	        manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+	}
+
+	public void loadUserInfo() {
+		SharedPreferences settings = getSharedPreferences("MyLoginInfo", 0);
+		fbUserId = settings.getString("fbUserId", null);
+		Log.i("loadLoginInfo", "fbUserId: " + fbUserId);
+		fbUserName = settings.getString("fbUserName", null);
+		Log.i("loadLoginInfo", "fbUserName: " + fbUserName);
+		userFirstName = settings.getString("fbFirstName", null);
+		Log.i("loadLoginInfo", "fbFirstName: " + firstName);
+		userLastName = settings.getString("fbLastName", null);
+		Log.i("loadLoginInfo", "fbLastName: " + lastName);
+		userEmail = settings.getString("fbEmail", null);
+		Log.i("loadLoginInfo", "fbEmail: " + userEmail);
+		userPhoneNum = settings.getString("fbPhoneNum", null);
+		Log.i("loadLoginInfo", "fbPhoneNum: " + userPhoneNum);
+		userTextNum = settings.getString("fbTextNum", null);
+		Log.i("loadLoginInfo", "fbTextNum: " + userTextNum);
 	}
 }
