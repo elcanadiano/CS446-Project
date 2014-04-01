@@ -17,11 +17,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /*
  * flow of this activity:
@@ -52,20 +51,7 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	private EditText priceTag;
 	private Spinner spinner;
 	*/
-	Spinner courseCode,courseNum,term;
-	ArrayAdapter<String> spinnerCourseAdapter,termAdapter;
-	String[] subjects = new String[]{"ACC","ACTSC","AFM","AHS","AMATH","ANTH","APPLS","ARBUS",
-			"ARCH","ARTS","BE","BET","BIOL","BUS","CHE","CHEM","CHINA","CIVE","CLAS","CM",
-			"CMW","CO","COGSCI","COMM","CROAT","CS","CT","DAC","DEI","DRAMA","DUTCH",
-			"EARTH","EASIA","ECE","ECON","ENBUS","ENGL","ENVE","ENVS","ERS","ESL","FINE",
-			"FR","GBDA","GEMCC","GENE","GEOE","GEOG","GER","GERON","GGOV","GRK","HIST",
-			"HLTH","HRM","HSG","HUMSC","IAIN","INDEV","INTEG","INTST","ISS","ITAL",
-			"ITALST","JAPAN","JS","KIN","KOREA","LAT","LED","LS","MATBUS","MATH","MCT",
-			"ME","MEDVL","MNS","MSCI","MTE","MTHEL","MUSIC","NANO","NE","OPTOM","PACS",
-			"PHARM","PHIL","PHS","PHYS","PLAN","PMATH","PORT","PS","PSCI","PSYCH","REC",
-			"REES","RS","RUSS","SCBUS","SCI","SDS","SE","SI","SMF","SOC","SOCWK","SPAN",
-			"SPCOM","SPD","STAT","STV","SUSM","SWK","SWREN","SYDE","TOUR","TS","UNIV",
-			"VCULT","WS"};
+	
 	//result page
 	
 	//data elements for posting
@@ -76,8 +62,12 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	String subject;
 	String catalog_number;
 	String comments;
-	
-	
+	/*if kahlim gets stuff done */
+	String first_name;
+	String last_name;
+	String phone;
+	String email;
+	private DBHelper dbHelper;
 	
 	@SuppressLint("NewApi")
 	
@@ -93,8 +83,8 @@ public class PostActivity extends MainActivity implements OnClickListener{
 		scanBtn.setOnClickListener(this);
 		this.setupDrawer(savedInstanceState);
 		
+		dbHelper = new DBHelper(this);
 		
-        
 	}
 
 	/**
@@ -146,14 +136,74 @@ public class PostActivity extends MainActivity implements OnClickListener{
 			
 			break;
 		case R.id.post_enterinfo_confirm:
-			System.out.println(" I'm going to fake a post!");
+			
 			
 			//1. fake a post to the server
+			String url = "http://buymybookapp.com/api/listings/post?";
+			price="14.21";
+			condition=4;
+			catalog_number="136";
+			subject="CS";
 			
+			first_name="Yi";
+			last_name="Yi-n";
+			phone="519-732-1234";
+			email="cheese@pirate.com";
+			
+			String comment ="I swim in a sea of cheddddddar Cheese Pirate.";
+			comment = comment.replace(" ", "%20");
+			url = url +
+					"isbn_13="+isbn_13 +
+					"&listing_price="+price+
+					"&condition="+condition+
+					"&catalog_number="+catalog_number+
+					"&subject="+subject+
+					"&comments="+comment+
+					"&first_name="+first_name+
+					"&last_name="+last_name+
+					"&phone_number="+phone+
+					"&email="+email;
+			System.out.println(" I'm going to fake a post! "+url);
+			
+			CommunicationClass c = new CommunicationClass(url);
+			String return_json=null;
+			
+			try {
+				return_json = c.new DownloadJSON(this,"post").execute(url).get();
+				
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			JSONObject jsonObj=null;
+			try {
+				jsonObj = new JSONObject(return_json);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String listing_id=null;
+			try {
+				listing_id =jsonObj.getJSONObject("data").getJSONObject("insert_obj").getString("id");
+				String status=jsonObj.getJSONObject("status").getString("status");
+				System.out.println("posted to server! status was:"+status);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			//2. post to local db
-			
+			dbHelper.insert(listing_id, title, isbn_13, author, price, condition+"");
 			//3. toast
-			
+			Toast toast = Toast.makeText(
+					getApplicationContext(),
+					title+" has been posted!",
+					Toast.LENGTH_SHORT);
+			toast.show();
+			this.finish();
 		}
 		
 	}
@@ -200,8 +250,7 @@ public class PostActivity extends MainActivity implements OnClickListener{
 				e.printStackTrace();
 			}
 			
-			System.out.println("SERVER RETURNED returned "+title);
-			
+		
 			//3. set layout screen for following page : crappy onCreate
 			setContentView(R.layout.activity_post_enterinfo);
 			//enterinfo UI
@@ -212,6 +261,8 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	        
 			title_info.setText(title+"\n");
 			author_info.setText("By: "+ author+"\n");
+			
+			//PUT MORE STUFF HERE!!!
 			
 			Bundle dummie = new Bundle();
 			this.setupDrawer(dummie);

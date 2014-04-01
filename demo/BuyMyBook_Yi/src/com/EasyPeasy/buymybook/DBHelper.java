@@ -29,18 +29,23 @@ public class DBHelper extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db) { // the SQLite DB
 		
 		db.execSQL(
-				"CREATE TABLE listing (_id integer primary key autoincrement, book_title text, book_isbn integer, book_author text, book_price text, book_condition text);"
+				"CREATE TABLE listing (_id integer primary key autoincrement, listing_id text, book_title text, book_isbn integer, book_author text, book_price text, book_condition text);"
 				);
 		//create other stables too!
 	}
 	
-	public void insert(String title, String isbn, String author, String price, String condition) {
-		db.execSQL("INSERT INTO "+TABLE_NAME+"('book_title', 'book_isbn', 'book_author', 'book_price', 'book_condition') values ('"+
+	public void insert(String listing_id, String title, String isbn, String author, String price, String condition) {
+		System.out.println("just inserted "+title+ " into the local listings");
+		db.execSQL("INSERT INTO "+TABLE_NAME+"('listing_id', 'book_title', 'book_isbn', 'book_author', 'book_price', 'book_condition') values ('"+
+				listing_id + "', '"+
 				title + "', '"+
 				isbn + "', '"+
 				author + "', '"+
 				price + "', '"+
 				condition + "')");
+		
+		System.out.println(" local db now has:");
+		this.cursorSelectAll();
 	}
 	
 	public void clearAll() {
@@ -50,7 +55,7 @@ public class DBHelper extends SQLiteOpenHelper{
 	public Cursor cursorSelectAll() { // get all return results
 		Cursor cursor = this.db.query(
 				TABLE_NAME,
-				new String[] {"book_title", "book_author", "book_price", "book_condition"},
+				new String[] {"listing_id", "book_title", "book_author", "book_price", "book_condition"},
 				null, // WHERE
 				null, //selection args
 				null, // GROUP BY
@@ -60,7 +65,7 @@ public class DBHelper extends SQLiteOpenHelper{
 		//delete this while section later!
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
-			System.out.println(cursor.getString(0));
+			System.out.println(cursor.getString(1));
 			cursor.moveToNext();
 		}
 		cursor.moveToFirst();

@@ -2,33 +2,31 @@ package com.EasyPeasy.buymybook;
 
 import java.util.ArrayList;
 
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.provider.Telephony;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.Telephony;
 import android.support.v4.app.NavUtils;
 import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.facebook.widget.ProfilePictureView;
 
@@ -49,6 +47,9 @@ public class ProfileActivity extends MainActivity {
 	private ImageView emailme;
 	
 	private String fbUserId;
+	
+	//db stuff
+	private DBHelper dbHelper;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +81,30 @@ public class ProfileActivity extends MainActivity {
 		
 		((ProfilePictureView)findViewById(R.id.profile_pic)).setProfileId(fbUserId);
 		
+		dbHelper = new DBHelper(this);
+		
 		ArrayList<SearchListItem> myArrayOfBooks = new ArrayList<SearchListItem>();
 		
+		//gets data from local db
+		Cursor c = dbHelper.cursorSelectAll();
+		c.moveToFirst();
+		while (!c.isAfterLast()) {
+			String listing_id=c.getString(0); //listing ID
+			String title=c.getString(1); //title
+			String author=c.getString(2);
+			String price=c.getString(3);
+			String condition=c.getString(4);
+			
+			SearchListItem item = new SearchListItem(
+					title,
+					author,
+					price,
+					condition);
+			System.out.println("in ProfileActiving loading book "+title);
+			myArrayOfBooks.add(item);
+			c.moveToNext();
+		}
+		/*
 		for (int i = 0; i < 10; i++) {
 			String xt = "LOL " + i;
 			SearchListItem item = new SearchListItem(
@@ -90,7 +113,7 @@ public class ProfileActivity extends MainActivity {
 					"12.98",
 					"1");
 			myArrayOfBooks.add(item);
-		}
+		}*/
 		
 		editPhoneNumber.setOnClickListener(new View.OnClickListener() {
 			@Override
