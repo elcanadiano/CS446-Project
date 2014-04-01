@@ -61,6 +61,12 @@
 	    android:inputType="numberDecimal" 
 	    android:layout_below="@id/post_subject"/>
 	
+	<EditText
+	    android:id="@+id/post_comment"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="Additional Comment"
+	    android:layout_below="@id/post_number"/>
 	
 	<Button
         android:id="@+id/post_enterinfo_confirm"
@@ -68,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Sell My Book!" 
-        android:layout_below="@id/post_number"/>
+        android:layout_below="@id/post_comment"/>
    
     
     

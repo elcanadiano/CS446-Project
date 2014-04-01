@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -54,6 +55,7 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	private Spinner condition_spinner;
 	private EditText my_subject;
 	private EditText my_coursenum;
+	private EditText my_comment;
 	String[] conditions = new String[]{
 			"As New",
 	        "Very Good",
@@ -177,12 +179,14 @@ public class PostActivity extends MainActivity implements OnClickListener{
 			catalog_number=my_coursenum.getText().toString();
 			subject=my_subject.getText().toString();
 			
-			first_name="Yi";
-			last_name="Yi-n";
-			phone="519-732-1234";
-			email="cheese@pirate.com";
+			SharedPreferences settings = getSharedPreferences("MyLoginInfo", 0);
 			
-			String comment ="I swim in a sea of cheddddddar Cheese Pirate.";
+			first_name=settings.getString("fbFirstName", null);
+			last_name=settings.getString("fbLastName", null);
+			phone=settings.getString("fbTextNum", null);
+			email=settings.getString("fbEmail", null);
+			
+			String comment =my_comment.getText().toString();
 			comment = comment.replace(" ", "%20");
 			url = url +
 					"isbn_13="+isbn_13 +
@@ -297,6 +301,7 @@ public class PostActivity extends MainActivity implements OnClickListener{
 			my_price=(EditText)findViewById(R.id.post_scan_price);
 			my_subject=(EditText)findViewById(R.id.post_subject);
 			my_coursenum=(EditText)findViewById(R.id.post_number);
+			my_comment=(EditText)findViewById(R.id.post_comment);
 			condition_spinner=(Spinner)findViewById(R.id.post_scan_spinner);
 			condition_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, conditions);
 			condition_spinner.setAdapter(condition_adapter);
