@@ -46,10 +46,6 @@ public class ProfileActivity extends MainActivity {
 	private KeyListener originalTextKeyListener;
 	private KeyListener originalEmailKeyListener;
 	
-	private ImageView callme;
-	private ImageView textme;
-	private ImageView emailme;
-	
 	private String userFirstName;
 	private String userLastName;
 	private String userEmail;
@@ -75,10 +71,6 @@ public class ProfileActivity extends MainActivity {
 		
 		firstName = (TextView)findViewById(R.id.first_name);
 		lastName = (TextView)findViewById(R.id.last_name);
-		
-		callme = (ImageView)findViewById(R.id.phone_img);
-		emailme = (ImageView)findViewById(R.id.email_img);
-		textme = (ImageView)findViewById(R.id.message_img);
 		
 		originalPhoneKeyListener = editPhoneNumber.getKeyListener();
 		originalTextKeyListener = editTextNumber.getKeyListener();
@@ -127,16 +119,6 @@ public class ProfileActivity extends MainActivity {
 				c.moveToNext();
 			}
 		}
-		/*
-		for (int i = 0; i < 10; i++) {
-			String xt = "LOL " + i;
-			SearchListItem item = new SearchListItem(
-					xt,
-					"author here",
-					"12.98",
-					"1");
-			myArrayOfBooks.add(item);
-		}*/
 		
 		editPhoneNumber.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -244,63 +226,6 @@ public class ProfileActivity extends MainActivity {
 			    } else {
 			    	return false; // pass on to other listeners. 
 			    }
-			}
-		});
-		
-		callme.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent callIntent = new Intent(Intent.ACTION_DIAL);
-				callIntent.setData(Uri.parse("tel:"+ editPhoneNumber.getText().toString()));
-				callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
-				startActivity(callIntent);
-			}
-		});
-		
-		// Allows the ability to send a text message
-		textme.setOnClickListener(new View.OnClickListener() {
-			// Need because Build.VERSION if statement uses KitKat specific stuff
-			@SuppressLint("NewApi")
-			@Override
-			public void onClick(View v) {
-				String smsText = "HELLO WORLD";
-				String smsNumber = editTextNumber.getText().toString();
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { //At least KitKat
-					String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(getApplicationContext());
-					Intent sendIntent = new Intent(
-						Intent.ACTION_SENDTO, 
-						Uri.parse("smsto:" + Uri.encode(smsNumber))
-					);
-					sendIntent.putExtra("sms_body", smsText);
-
-					// If the user doesn't have a default app that supports SMS
-					if (defaultSmsPackageName != null) {
-						sendIntent.setPackage(defaultSmsPackageName);
-					}
-					startActivity(sendIntent);
-				} else { // Stuff for pre-KitKat
-					Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-					sendIntent.setData(Uri.parse("sms:"));
-					sendIntent.putExtra("sms_body", smsText);
-					sendIntent.putExtra("address", smsNumber);
-					startActivity(sendIntent);
-				}
-			}
-		});
-		
-		// Allows the ability to send an email
-		emailme.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				String aEmailList[] = { editEmailAddress.getText().toString()};
-						
-				final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-			    intent.setType("plain/text");
-			    intent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
-			    intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Reply to your <BOOK TITLE> ad on Buy My Book!");
-			    intent.putExtra(android.content.Intent.EXTRA_TEXT, "<EMAIL BODY TEXT HERE>");
-			    startActivity(intent);
 			}
 		});
 	

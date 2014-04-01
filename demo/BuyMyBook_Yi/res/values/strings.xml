@@ -67,7 +67,7 @@
     <string name="post_manual_bookauthor_hint">Author(s)</string>
     <string name="post_manual_bookisbn_hint">ISBN</string>
     <string name="post_manual_deptspinner_prompt">Dept</string>
-    <string name="title_activity_search_results">SearchResultsActivity</string>
+    <string name="title_activity_search_results">Search Results</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="title_activity_my_fragment">MyFragmentActivity</string>
     <string name="comment">Comments:</string>

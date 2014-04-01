@@ -100,11 +100,6 @@ public class DetailsFragment extends Fragment {
 		originalEmailKeyListener = editEmailAddress.getKeyListener();
 		
 		//Put name, join date, phone, text, and email
-	
-	
-		
-		
-		
 		titleText = (TextView) view.findViewById(R.id.title);
 		authorText = (TextView) view.findViewById(R.id.author);
 		priceText = (TextView) view.findViewById(R.id.price);
@@ -113,10 +108,6 @@ public class DetailsFragment extends Fragment {
 		nameText = (TextView) view.findViewById(R.id.nameText);
 	
 		TextView txt = (TextView) view.findViewById(R.id.search_manual_title);
-		//String result = getArguments() != null ? getArguments().getString("json") : null;
-		/*if(result != null){
-			txt.setText(result);
-		}*/
 		String firstname = getArguments().getString("firstname");
 		String lastname = getArguments().getString("lastname");
 		String title = getArguments().getString("title");
@@ -158,16 +149,17 @@ public class DetailsFragment extends Fragment {
 		txt.setText(result);
 		*/
 		
-		
-
-		
 		// Allows the ability to send a text message
 		textme.setOnClickListener(new View.OnClickListener() {
 			// Need because Build.VERSION if statement uses KitKat specific stuff
 			@SuppressLint("NewApi")
 			@Override
 			public void onClick(View v) {
-				String smsText = "HELLO WORLD";
+				String smsText = "Hi there, I saw your posting for " 
+						+ titleText.getText().toString() + " by "
+						+ authorText.getText().toString() + " that you are selling for $"
+						+ priceText.getText().toString() + " on Buy My Book!"
+						+ " I'm interested in it";
 				String smsNumber = editTextNumber.getText().toString();
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { //At least KitKat
 					String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(v.getContext().getApplicationContext());
@@ -201,8 +193,14 @@ public class DetailsFragment extends Fragment {
 				final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
 			    intent.setType("plain/text");
 			    intent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
-			    intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Reply to your <BOOK TITLE> ad on Buy My Book!");
-			    intent.putExtra(android.content.Intent.EXTRA_TEXT, "<EMAIL BODY TEXT HERE>");
+			    intent.putExtra(android.content.Intent.EXTRA_SUBJECT, 
+			    		"Reply to your " + titleText.getText().toString() + " ad on Buy My Book!");
+			    intent.putExtra(android.content.Intent.EXTRA_TEXT, 
+			    		"Hi there, I saw your posting for " 
+						+ titleText.getText().toString() + " by "
+						+ authorText.getText().toString() + " that you are selling for $"
+						+ priceText.getText().toString() + " on Buy My Book!"
+						+ " I'm interested in it");
 			    startActivity(intent);
 			}
 		});
