@@ -62,7 +62,11 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	String subject;
 	String catalog_number;
 	String comments;
-	
+	/*if kahlim gets stuff done */
+	String first_name;
+	String last_name;
+	String phone;
+	String email;
 	private DBHelper dbHelper;
 	
 	@SuppressLint("NewApi")
@@ -141,6 +145,11 @@ public class PostActivity extends MainActivity implements OnClickListener{
 			catalog_number="136";
 			subject="CS";
 			
+			first_name="Yi";
+			last_name="Yi-n";
+			phone="519-732-1234";
+			email="cheese@pirate.com";
+			
 			String comment ="I swim in a sea of cheddddddar Cheese Pirate.";
 			comment = comment.replace(" ", "%20");
 			url = url +
@@ -149,7 +158,11 @@ public class PostActivity extends MainActivity implements OnClickListener{
 					"&condition="+condition+
 					"&catalog_number="+catalog_number+
 					"&subject="+subject+
-					"&comments="+comment;
+					"&comments="+comment+
+					"&first_name="+first_name+
+					"&last_name="+last_name+
+					"&phone_number="+phone+
+					"&email="+email;
 			System.out.println(" I'm going to fake a post! "+url);
 			
 			CommunicationClass c = new CommunicationClass(url);

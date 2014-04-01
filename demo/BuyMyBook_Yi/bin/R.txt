@@ -143,12 +143,11 @@ int drawable phone 0x7f02003e
 int drawable scan_button 0x7f02003f
 int drawable scan_button_contact 0x7f020040
 int id accessToken 0x7f05000d
-int id action_settings 0x7f05005f
+int id action_settings 0x7f05005e
 int id authButton 0x7f050005
 int id author 0x7f05004d
 int id authorTitle 0x7f05004c
 int id bookTitle 0x7f05004b
-int id book_img 0x7f05005c
 int id books_selling_text 0x7f05002d
 int id com_facebook_login_activity_progress_bar 0x7f050034
 int id com_facebook_picker_activity_circle 0x7f050033
@@ -177,7 +176,7 @@ int id conditionTitle 0x7f050050
 int id contactInfo 0x7f05004a
 int id counter 0x7f050049
 int id delete_button 0x7f050056
-int id delete_img 0x7f05005d
+int id delete_img 0x7f05005c
 int id drawer_layout 0x7f050011
 int id dummyText 0x7f050055
 int id email 0x7f05000f
@@ -188,7 +187,7 @@ int id frame_container 0x7f050031
 int id goToMain 0x7f050006
 int id greeting 0x7f050012
 int id icon 0x7f050047
-int id image 0x7f05005e
+int id image 0x7f05005d
 int id imageView1 0x7f05001f
 int id informUserForMoreInfo 0x7f05000c
 int id instruction 0x7f050013
