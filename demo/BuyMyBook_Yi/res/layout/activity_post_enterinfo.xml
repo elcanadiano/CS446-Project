@@ -20,23 +20,55 @@
         android:id="@+id/post_enterinfo_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="28sp"
+        android:textSize="20sp"
         android:text="title" />
 	
 	<TextView
         android:id="@+id/post_enterinfo_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="28sp"
+        android:textSize="20sp"
         android:layout_below="@id/post_enterinfo_title"
         android:text="author" />
+	
+
+	<EditText
+	    android:id="@+id/post_scan_price"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="enter your price"
+	    android:inputType="numberDecimal" 
+	    android:layout_below="@id/post_enterinfo_author"/>
+    
+    <Spinner
+        android:id="@+id/post_scan_spinner"
+        android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:entries="@array/condition_scroller"
+	    android:layout_below="@id/post_scan_price"/>
+    
+	<EditText
+	    android:id="@+id/post_subject"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="Course Subject"
+	    android:layout_below="@id/post_scan_spinner"/>
+	<EditText
+	    android:id="@+id/post_number"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="Course Number"
+	    android:inputType="numberDecimal" 
+	    android:layout_below="@id/post_subject"/>
+	
+	
 	<Button
         android:id="@+id/post_enterinfo_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Sell My Book!" 
-        android:layout_below="@id/post_enterinfo_author"/>
+        android:layout_below="@id/post_number"/>
    
     
     

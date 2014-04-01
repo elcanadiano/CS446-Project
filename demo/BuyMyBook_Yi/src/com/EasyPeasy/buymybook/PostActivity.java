@@ -17,8 +17,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +48,20 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	private TextView title_info;
 	private TextView author_info;
 	private Button confirmBtn;
+	
+	ArrayAdapter<String> condition_adapter;
+	private EditText my_price;
+	private Spinner condition_spinner;
+	private EditText my_subject;
+	private EditText my_coursenum;
+	String[] conditions = new String[]{
+			"As New",
+	        "Very Good",
+	        "Good",
+	        "Fair",
+	        "Poor",
+	        "Decomposed"
+	};
 	/*
 	private TextView info;
 	private Button confirmBtn;
@@ -57,11 +74,13 @@ public class PostActivity extends MainActivity implements OnClickListener{
 	//data elements for posting
 	String isbn_13;
 	String price;
-	int condition;
+	String condition;
 	int isActive;
 	String subject;
 	String catalog_number;
 	String comments;
+	
+	
 	/*if kahlim gets stuff done */
 	String first_name;
 	String last_name;
@@ -140,10 +159,23 @@ public class PostActivity extends MainActivity implements OnClickListener{
 			
 			//1. fake a post to the server
 			String url = "http://buymybookapp.com/api/listings/post?";
-			price="14.21";
-			condition=4;
-			catalog_number="136";
-			subject="CS";
+			price=my_price.getText().toString();
+			condition=condition_spinner.getSelectedItem().toString();
+			if (condition.equals("As New")) {
+				condition="5";
+			} else if (condition.equals("Very Good")) {
+				condition="4";
+			} else if (condition.equals("Good")) {
+				condition="3";
+			} else if (condition.equals("Fair")) {
+				condition="2";
+			} else if (condition.equals("Poor")) {
+				condition="1";
+			} else {
+				condition="0";
+			}
+			catalog_number=my_coursenum.getText().toString();
+			subject=my_subject.getText().toString();
 			
 			first_name="Yi";
 			last_name="Yi-n";
@@ -259,10 +291,15 @@ public class PostActivity extends MainActivity implements OnClickListener{
 			confirmBtn = (Button)findViewById(R.id.post_enterinfo_confirm);	
 	        confirmBtn.setOnClickListener(this);
 	        
-			title_info.setText(title+"\n");
-			author_info.setText("By: "+ author+"\n");
-			
-			//PUT MORE STUFF HERE!!!
+			title_info.setText("Found Your Book:"+"\n"+title+"\n");
+			author_info.setText("By: "+ author+"\n\n"+"Tell Us More about your book:"+"\n");
+
+			my_price=(EditText)findViewById(R.id.post_scan_price);
+			my_subject=(EditText)findViewById(R.id.post_subject);
+			my_coursenum=(EditText)findViewById(R.id.post_number);
+			condition_spinner=(Spinner)findViewById(R.id.post_scan_spinner);
+			condition_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, conditions);
+			condition_spinner.setAdapter(condition_adapter);
 			
 			Bundle dummie = new Bundle();
 			this.setupDrawer(dummie);
