@@ -160,12 +160,12 @@ containing a value of this type.
     }
     public static final class color {
         public static final int actionbar_grey=0x7f070008;
-        public static final int alizarin=0x7f070022;
-        public static final int amethyst=0x7f07001b;
-        public static final int asbestos=0x7f070020;
-        public static final int belizehole=0x7f07001a;
-        public static final int carrot=0x7f070024;
-        public static final int clouds=0x7f070015;
+        public static final int alizarin=0x7f070023;
+        public static final int amethyst=0x7f07001c;
+        public static final int asbestos=0x7f070021;
+        public static final int belizehole=0x7f07001b;
+        public static final int carrot=0x7f070025;
+        public static final int clouds=0x7f070016;
         public static final int com_facebook_blue=0x7f070002;
         public static final int com_facebook_loginview_text_color=0x7f070006;
         public static final int com_facebook_picker_search_bar_background=0x7f070000;
@@ -173,7 +173,7 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_connected_shadow_color=0x7f070004;
         public static final int com_facebook_usersettingsfragment_connected_text_color=0x7f070003;
         public static final int com_facebook_usersettingsfragment_not_connected_text_color=0x7f070005;
-        public static final int concrete=0x7f07001f;
+        public static final int concrete=0x7f070020;
         public static final int counter_text_bg=0x7f07000d;
         public static final int counter_text_color=0x7f07000e;
         /**  general colours for views 
@@ -181,8 +181,9 @@ containing a value of this type.
         public static final int default_background_grey=0x7f07000f;
         public static final int default_text_colour=0x7f070010;
         public static final int default_text_hint_colour=0x7f070011;
-        public static final int emerald=0x7f070017;
-        public static final int greensea=0x7f070016;
+        public static final int detailshighlight=0x7f070013;
+        public static final int emerald=0x7f070018;
+        public static final int greensea=0x7f070017;
         public static final int list_background=0x7f07000a;
         public static final int list_background_pressed=0x7f07000b;
         public static final int list_divider=0x7f07000c;
@@ -190,22 +191,22 @@ containing a value of this type.
   slide menu colours 
          */
         public static final int list_item_title=0x7f070009;
-        public static final int midnightblue=0x7f07001e;
-        public static final int nephritis=0x7f070018;
-        public static final int orange=0x7f070027;
-        public static final int peterriver=0x7f070019;
-        public static final int pomegranate=0x7f070023;
-        public static final int pumpkin=0x7f070025;
-        public static final int silver=0x7f070021;
-        public static final int sunflower=0x7f070026;
+        public static final int midnightblue=0x7f07001f;
+        public static final int nephritis=0x7f070019;
+        public static final int orange=0x7f070028;
+        public static final int peterriver=0x7f07001a;
+        public static final int pomegranate=0x7f070024;
+        public static final int pumpkin=0x7f070026;
+        public static final int silver=0x7f070022;
+        public static final int sunflower=0x7f070027;
         public static final int testing_orange=0x7f070012;
         /**  action bar colours 
          */
         public static final int title_background=0x7f070007;
-        public static final int turqoise=0x7f070013;
-        public static final int wetasphalt=0x7f07001d;
-        public static final int white=0x7f070014;
-        public static final int wisteria=0x7f07001c;
+        public static final int turqoise=0x7f070014;
+        public static final int wetasphalt=0x7f07001e;
+        public static final int white=0x7f070015;
+        public static final int wisteria=0x7f07001d;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -300,12 +301,12 @@ containing a value of this type.
     }
     public static final class id {
         public static final int accessToken=0x7f05000d;
-        public static final int action_settings=0x7f05005c;
+        public static final int action_settings=0x7f05005f;
         public static final int authButton=0x7f050005;
         public static final int author=0x7f05004d;
         public static final int authorTitle=0x7f05004c;
         public static final int bookTitle=0x7f05004b;
-        public static final int book_img=0x7f050059;
+        public static final int book_img=0x7f05005c;
         public static final int books_selling_text=0x7f05002d;
         public static final int com_facebook_login_activity_progress_bar=0x7f050034;
         public static final int com_facebook_picker_activity_circle=0x7f050033;
@@ -327,14 +328,16 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_login_button=0x7f050046;
         public static final int com_facebook_usersettingsfragment_logo_image=0x7f050044;
         public static final int com_facebook_usersettingsfragment_profile_name=0x7f050045;
+        public static final int comments=0x7f050052;
+        public static final int commentsText=0x7f050054;
         public static final int condition=0x7f050051;
         public static final int conditionTitle=0x7f050050;
         public static final int contactInfo=0x7f05004a;
         public static final int counter=0x7f050049;
-        public static final int delete_button=0x7f050053;
-        public static final int delete_img=0x7f05005a;
+        public static final int delete_button=0x7f050056;
+        public static final int delete_img=0x7f05005d;
         public static final int drawer_layout=0x7f050011;
-        public static final int dummyText=0x7f050052;
+        public static final int dummyText=0x7f050055;
         public static final int email=0x7f05000f;
         public static final int email_img=0x7f05002c;
         public static final int fbURL=0x7f050010;
@@ -343,7 +346,7 @@ containing a value of this type.
         public static final int goToMain=0x7f050006;
         public static final int greeting=0x7f050012;
         public static final int icon=0x7f050047;
-        public static final int image=0x7f05005b;
+        public static final int image=0x7f05005e;
         public static final int imageView1=0x7f05001f;
         public static final int informUserForMoreInfo=0x7f05000c;
         public static final int instruction=0x7f050013;
@@ -371,15 +374,16 @@ containing a value of this type.
         public static final int profilePicture=0x7f050003;
         public static final int profile_pic=0x7f050025;
         public static final int scanISBNButton=0x7f05001d;
-        public static final int search_manual_author=0x7f050056;
+        public static final int scrollView1=0x7f050053;
+        public static final int search_manual_author=0x7f050059;
         public static final int search_manual_bookauthor=0x7f05001b;
         public static final int search_manual_bookisbn=0x7f05001c;
         public static final int search_manual_booktitle=0x7f05001a;
-        public static final int search_manual_btitle=0x7f050055;
-        public static final int search_manual_condition=0x7f050058;
+        public static final int search_manual_btitle=0x7f050058;
+        public static final int search_manual_condition=0x7f05005b;
         public static final int search_manual_header=0x7f050015;
         public static final int search_manual_listview=0x7f050030;
-        public static final int search_manual_price=0x7f050057;
+        public static final int search_manual_price=0x7f05005a;
         public static final int search_manual_title=0x7f05002f;
         public static final int small=0x7f050000;
         public static final int spinnerCourse=0x7f050017;
@@ -387,7 +391,7 @@ containing a value of this type.
         public static final int subject=0x7f050016;
         public static final int tableRow=0x7f050004;
         public static final int textCourseNum=0x7f050018;
-        public static final int textLayout=0x7f050054;
+        public static final int textLayout=0x7f050057;
         public static final int textNum=0x7f05000a;
         public static final int title=0x7f050048;
         public static final int userId=0x7f05000e;
@@ -465,6 +469,7 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_log_in_button=0x7f080008;
         public static final int com_facebook_usersettingsfragment_logged_in=0x7f080009;
         public static final int com_facebook_usersettingsfragment_not_logged_in=0x7f08000a;
+        public static final int comment=0x7f08004b;
         public static final int courseText=0x7f08003f;
         public static final int default_search=0x7f080037;
         /**  drawer menu Strings - the arrays are in array[dot]xml 
@@ -473,7 +478,7 @@ containing a value of this type.
         public static final int drawer_close=0x7f08002e;
         public static final int drawer_open=0x7f08002d;
         public static final int email=0x7f080025;
-        public static final int email_img_description=0x7f08004e;
+        public static final int email_img_description=0x7f08004f;
         public static final int errorMsg_activity_post=0x7f080030;
         /**  Login screen 
          */
@@ -488,8 +493,8 @@ containing a value of this type.
         public static final int main_inst_sell=0x7f080029;
         public static final int main_inst_swipe=0x7f08002a;
         public static final int main_instruction=0x7f080028;
-        public static final int message_img_description=0x7f08004d;
-        public static final int phone_img_description=0x7f08004c;
+        public static final int message_img_description=0x7f08004e;
+        public static final int phone_img_description=0x7f08004d;
         public static final int phone_num=0x7f080023;
         public static final int post_enterinfo_course_ask=0x7f080034;
         public static final int post_enterinfo_header=0x7f080033;
@@ -518,7 +523,7 @@ containing a value of this type.
         public static final int title_activity_post_scan_confirmation=0x7f08003e;
         /**  Strings for ProfileActivity 
          */
-        public static final int title_activity_profile=0x7f08004b;
+        public static final int title_activity_profile=0x7f08004c;
         public static final int title_activity_scanner_manager=0x7f080031;
         public static final int title_activity_search=0x7f080049;
         public static final int title_activity_search_manual=0x7f080038;

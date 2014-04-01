@@ -61,7 +61,7 @@
     <string name="title_activity_search_results">SearchResultsActivity</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="title_activity_my_fragment">MyFragmentActivity</string>
-    
+    <string name="comment">Comments:</string>
     <!-- Strings for ProfileActivity -->
     <string name="title_activity_profile">My Profile</string>
     <string name="phone_img_description">Image of a phone</string>
