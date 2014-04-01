@@ -19,6 +19,7 @@
 	        android:id="@+id/greeting"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:paddingTop="10sp"
 	        android:paddingLeft="15sp"
 	        android:paddingRight="15sp"
 	        android:textColor="@color/default_text_colour"
@@ -38,7 +39,7 @@
 		        android:textSize="40sp"
 		        android:layout_below="@+id/greeting"
 		        android:text="@string/main_instruction" />
-	    
+	    <!--  
 	    <ImageButton android:id="@+id/scan_button"
 		    android:background="@drawable/scan_button"
 		    android:layout_width="wrap_content"
@@ -49,6 +50,7 @@
 		    android:layout_centerHorizontal="true"
 		    android:layout_below="@+id/instruction"
 		     />
+	    -->
 
 	</RelativeLayout>
 
