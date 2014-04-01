@@ -13,7 +13,8 @@
     	android:id="@+id/contactInfo"        
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:text="Contact Info of Seller"    
+    	android:text="Contact Info of Seller"
+    	android:background="@color/detailshighlight"    
     />
     
     <ImageView
@@ -21,8 +22,8 @@
 		    android:src="@drawable/message"
 		    android:contentDescription="@string/message_img_description"
 		    android:layout_marginTop="7dp"
-		    android:layout_width="32dp"
-		    android:layout_height="32dp"
+		    android:layout_width="40dp"
+		    android:layout_height="40dp"
 		    android:layout_below="@id/contactInfo"
 		    android:layout_toRightOf="@id/profile_pic"
 		    android:adjustViewBounds="true" />
@@ -66,6 +67,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_below="@id/email"
+	    android:background="@color/detailshighlight"    
 	    
 	    
 	    />
@@ -76,6 +78,7 @@
         android:text=""
         android:layout_below="@id/email"
    		android:layout_toRightOf="@id/bookTitle"
+   	 
     />
      <TextView
 	    android:id="@+id/authorTitle"
@@ -83,6 +86,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_below="@id/bookTitle"
+	    android:background="@color/detailshighlight"    
 	    />
       <TextView
         android:id="@+id/author"
@@ -99,6 +103,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_below="@id/authorTitle"
+	    android:background="@color/detailshighlight"    
 	    />
        <TextView
         android:id="@+id/price"
@@ -115,6 +120,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_below="@id/priceTitle"
+	    android:background="@color/detailshighlight"    
 	    
 	    />
         <TextView
@@ -126,6 +132,33 @@
         android:layout_below="@id/price"
         android:layout_toRightOf="@id/conditionTitle"
     />
-    
+        <TextView
+            android:id="@+id/comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/comment"
+            android:layout_below="@id/condition"
+            />
+   <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:layout_below="@id/comments"
+        android:background="@color/detailshighlight"    
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/commentsText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="No Comments" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

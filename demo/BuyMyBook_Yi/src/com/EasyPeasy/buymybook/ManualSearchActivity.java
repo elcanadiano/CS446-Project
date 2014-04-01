@@ -89,7 +89,7 @@ public class ManualSearchActivity extends MainActivity {
 		String isbn = textISBN.getText().toString().replace("-","");
 		
 		String chosenSubject = courseCode.getSelectedItem().toString();
-		
+		String chosenSubjectNum = textCourseNum.getText().toString();
 		/*Log.d(TAG,"chosenSUbject:" +chosenSubject);
 		Intent intent = new Intent(this,SearchManualActivity.class);
 		intent.putExtra("SUBMITVAL_TITLE", title);
@@ -100,12 +100,30 @@ public class ManualSearchActivity extends MainActivity {
 		//String scanContent = new String("9780176251949");
 		//String url="http://buymybookapp.com/api/search/get_book/"+scanContent;
 		//String scanContent = new String("9780176251949");
-		String url="http://buymybookapp.com/api/search/get_listings_by_book/"+isbn;
+		String url = null;
+		if(chosenSubject != null && chosenSubjectNum != null && chosenSubjectNum.length() == 3 ){
+			Log.d(TAG,"chose subject: "+ chosenSubject +":"+chosenSubjectNum + " len: "+chosenSubjectNum.length());
+			url ="http://buymybookapp.com/api/search/get_listings_by_course/"+chosenSubject+"/"+chosenSubjectNum;
+		}
+		else if(isbn != null && isbn.length()>0){
+			Log.d(TAG,"chose isbn"+isbn);
+			url="http://buymybookapp.com/api/search/get_listings_by_book/"+isbn;
+		}
+		else{
+			Log.d(TAG,"chose else case");
+		}
+		//String url="http://buymybookapp.com/api/search/get_listings_by_book/"+isbn;
 		//communication class does all the work in getting results
-		CommunicationClass c = new CommunicationClass(url);
-		String results = null;
-	
-		c.new DownloadJSON(this,"search").execute(url);
+		if(url != null){
+			Log.d(TAG,"url to execute: "+ url);
+			CommunicationClass c = new CommunicationClass(url);
+			String results = null;
+		
+			c.new DownloadJSON(this,"search").execute(url);
+		}
+		else{
+			Toast.makeText(view.getContext(), "Invalid search params, try CS136", Toast.LENGTH_LONG).show();  
+		}
 	/*
 		if(results != null){
 			Log.d(TAG,"results null");

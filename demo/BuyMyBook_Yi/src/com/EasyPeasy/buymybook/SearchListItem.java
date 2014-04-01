@@ -13,6 +13,9 @@ public class SearchListItem {
 	private String price;
 	private String condition;
 	private String url;
+	private String comments;
+	private String contactNum;
+	private String contactEmail;
 	
 	public String getTitle(){
 		return this.title;
@@ -32,6 +35,25 @@ public class SearchListItem {
 	public String getUrl(){
 		return this.url;
 	}
+	public void setComments(String comments){
+		this.comments = comments;
+	}
+	public String getComments(){
+		return this.comments;
+	}
+	public void setNum(String contactNum){
+		this.contactNum = contactNum;
+	}
+	public String getNum(){
+		return this.contactNum;
+	}
+	public void setEmail(String contactEmail){
+		this.contactEmail = contactEmail;
+	}
+	public String getEmail(){
+		return this.contactEmail;
+	}
+	
 	
 	public SearchListItem(){
 		;//noop
@@ -41,6 +63,10 @@ public class SearchListItem {
 		this.author = author;
 		this.price = price;
 		this.condition = condition;
+		url = null;
+		comments = null;
+		contactNum = null;
+		contactEmail = null;
 	}
 	
 	

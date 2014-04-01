@@ -86,7 +86,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		//set up local db
 		dbHelper = new DBHelper(this);
 		
-		if(true){
+		if(false){
 			dbHelper.clearAll();
 		}
 	}

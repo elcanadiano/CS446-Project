@@ -55,7 +55,7 @@ public class CustomPeronalListingAdapter extends BaseAdapter{
 	            holder.authorView = (TextView) convertView.findViewById(R.id.search_manual_author);
 	            holder.priceView = (TextView) convertView.findViewById(R.id.search_manual_price);
 	            holder.condition = (TextView) convertView.findViewById(R.id.search_manual_condition);
-	            holder.book_img = (ImageView) convertView.findViewById(R.id.book_img);
+	            //holder.book_img = (ImageView) convertView.findViewById(R.id.book_img);
 	            holder.delete_img = (ImageView) convertView.findViewById(R.id.delete_img);
 	            
 	            deleteImg = (ImageView) convertView.findViewById(R.id.delete_img);
@@ -94,7 +94,7 @@ public class CustomPeronalListingAdapter extends BaseAdapter{
 	        		
 	        }//switch
 	        holder.condition.setText("Condition: "+ condition);
-	        holder.book_img.setImageResource(R.drawable.clearthinking);
+	        //holder.book_img.setImageResource(R.drawable.clearthinking);
 	        
 	        if (deleteImg != null) {
 		        holder.delete_img.setImageResource(R.drawable.ic_list_remove);

@@ -18,7 +18,8 @@
     <color name="default_text_colour">#34495e</color>
     <color name="default_text_hint_colour">#4f6f8f</color>
     <color name="testing_orange">#ffa200</color>
-
+	
+    <color name="detailshighlight">#BFE3CE</color>
     
     
     <color name="turqoise">#1ABC9C</color>

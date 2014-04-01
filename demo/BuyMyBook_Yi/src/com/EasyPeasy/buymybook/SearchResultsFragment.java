@@ -181,7 +181,7 @@ public class SearchResultsFragment extends Fragment{
 		            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
 		                Object o = lv1.getItemAtPosition(position);
 		                SearchListItem newsData = (SearchListItem) o;
-		                Toast.makeText(getActivity(), "Selected :" + " " + newsData, Toast.LENGTH_LONG).show();            
+		               // Toast.makeText(getActivity(), "Selected :" + " " + newsData, Toast.LENGTH_LONG).show();            
 		                detailsFragment(newsData);
 		            }
 		 
@@ -205,6 +205,9 @@ public class SearchResultsFragment extends Fragment{
 				args.putString("author", newsData.getAuthor());
 				args.putString("price", newsData.getPrice());
 				args.putString("condition", newsData.getCondition());
+				args.putString("comments", newsData.getComments());
+				args.putString("contactNum", newsData.getNum());
+				args.putString("contactEmail", newsData.getEmail());
 				fragment.setArguments(args);
 				f.getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).addToBackStack(null).commit();
 			}
@@ -222,6 +225,8 @@ public class SearchResultsFragment extends Fragment{
 					JSONObject childObject = jsonArray.getJSONObject(i);
 					String title = childObject.getString("book_title");
 				String author = childObject.getString("authors");
+				String comments = childObject.getString("comments");
+	
 				//String price = "1";
 				//String condition = "1";
 				
@@ -229,6 +234,7 @@ public class SearchResultsFragment extends Fragment{
 				String condition = childObject.getString("condition");
 				//Log.d(tag,"parseJsonResult: "+title+author);
 				SearchListItem item = new SearchListItem(title,author,price,condition);
+				if(comments != null && !comments.equals("null")) item.setComments(comments);
 				//item.setUrl(url);
 				results.add(item);
 			}//for
