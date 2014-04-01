@@ -107,7 +107,7 @@ public class CustomSearchListAdaptor extends BaseAdapter{
 			c.new DownloadImageTask(holder.image).execute(imgUrl);
 	      }
 	
-			
+	
 	       // holder.image.setImageResource(R.drawable.clearthinking);
 	        return convertView;
 	}

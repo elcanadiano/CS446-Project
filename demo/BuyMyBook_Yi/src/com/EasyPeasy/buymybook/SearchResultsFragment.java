@@ -181,7 +181,7 @@ public class SearchResultsFragment extends Fragment{
 		            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
 		                Object o = lv1.getItemAtPosition(position);
 		                SearchListItem newsData = (SearchListItem) o;
-		                Toast.makeText(getActivity(), "Selected :" + " " + newsData, Toast.LENGTH_LONG).show();            
+		               // Toast.makeText(getActivity(), "Selected :" + " " + newsData, Toast.LENGTH_LONG).show();            
 		                detailsFragment(newsData);
 		            }
 		 
