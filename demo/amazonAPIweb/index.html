@@ -1,0 +1,245 @@
+<html>
+<!--
+
+Copyright 2009 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file 
+except in compliance with the License. A copy of the License is located at
+
+http://aws.amazon.com/apache2.0/
+
+or in the "LICENSE.txt" file accompanying this file. This file is distributed on an "AS IS"
+BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations under the License. 
+
+- - -
+
+Amazon Product Advertising API
+Signed Requests Sample Code
+
+- - - 
+
+This tool utilizes jsSHA2: http://anmar.eu.org/projects/jssha2/
+
+-->
+<head>
+	<title>Signed Requests Helper Mod- Amazon Product Advertising API</title>
+	<link rel="stylesheet" type="text/css" href="css/scratchpad.css"/>
+	<style type="text/css">
+		.label {
+			padding-right:25px; 
+			padding-left:0px;
+		}
+		textarea.message {
+			font-size: 13px;
+        }
+		div.underline {
+			border-bottom: 1px dashed #aaaaaa;
+		}
+	</style>
+ 	<script type="text/javascript" src="jssha2/sha2.js"></script>
+	<script type="text/javascript" src="javascript/scratchpad.js"></script>
+</head>
+<body style="text-align: center;">
+	<table 	border="0" 
+			align="center" 
+			cellpadding="0" 
+			cellspacing="0" 
+			style="width: 100%">
+		<tr>
+			<td width="50%">
+				<img height="1" src="images/spacer.gif" width="100">
+			</td>
+			<td>
+				<img height="1" src="images/spacer.gif" width="700">
+				<table width="100%">
+					<tr>
+						<td nowrap>
+							<font class="logo">Signed Requests Helper Mod</font>
+						</td>
+						<td align="right">
+							<a href="http://associates.amazon.com/gp/advertising/api/detail/main.html" target="_parent" style="color: white;">
+								<img src="images/logo.gif" 
+									hspace="5" 
+									vspace="15" 
+									style="border-width: 0;">
+							</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td width="50%">
+				<img height="1" src="images/spacer.gif" width="100">
+			</td>
+		</tr>
+		<tr>
+			<td background="images/bg-nav.png" width="50%">
+				<img height="1" src="images/spacer.gif" width="100">
+			</td>
+			<td background="images/bg-nav.png" style="height: 74px">
+				<table width="100%">
+					<tr>
+						<td nowrap align="left">
+							<!-- Hardcoding the Key and Tags here isn't good form, but I don't think it matters too much -->
+							<input	onblur="if (this.value == '') this.value='AWS Access Key ID'" 
+									onclick="if (this.value == 'AWS Access Key ID') this.value='AKIAJOOEHP3JYETPUQDA'" 
+									style="border: 1px solid #6699cc; height: 20px; color:#006699; font-size: 11px; width: 170px" 
+									value="AWS Access Key ID" 
+									type="text"
+									id="AWSAccessKeyId"
+ 									name="AWSAccessKeyId" />
+							&nbsp;|&nbsp;
+							<input	onblur="if (this.value == '') this.value='AWS Secret Access Key'" 
+									onclick="if (this.value == 'AWS Secret Access Key') this.value='H1oSOgIweSWSc8HANqPp1iz7cVc2QCWJjmX5lq5r'" 
+									style="border: 1px solid #6699cc; height: 20px; color:#006699; font-size: 11px; width: 300px" 
+									value="AWS Secret Access Key" 
+									type="text"
+									id="AWSSecretAccessKey"
+									name="AWSSecretAccessKey" />
+							&nbsp;|&nbsp;
+							<input	onblur="if (this.value == '') this.value='Associate Tag'"
+									onclick="if (this.value == 'Associate Tag') this.value='bumybo06-20'"
+									style="border: 1px solid #6699cc; height: 20px; color:#006699; font-size: 11px; width: 110px"
+									value="Associate Tag"
+									value="text"
+									id="AssociateTag"
+									name="AssociateTag" />
+						</td>
+					</tr>
+					<tr>
+						<td nowrap align="center">
+							<select id="locale_selector" style="width:140px; height:20px; font-size: 11px">
+								<option value="">--SELECT LOCALE--</option>
+								<option value="CA">Canada</option>
+								<option value="CN">China</option>
+								<option value="DE">Germany</option>
+								<option value="ES">Spain</option>
+								<option value="FR">France</option>
+								<option value="IT">Italy</option>
+								<option value="JP">Japan</option>
+								<option value="UK">United Kingdom</option>
+								<option value="US">United States</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td background="images/bg-nav.png" width="50%">
+				<img height="1" src="images/spacer.gif" width="100">
+			</td>
+		</tr>
+	</table>
+	<form	name="myform" 
+			action=""
+			enctype="application/x-www-form-urlencoded" 
+			method="get" >
+ 		<div style="margin-left: auto; margin-right: auto; width: 700px; text-align: left;">
+
+			<p><b>Updated to satisfy requirement of Associate Tags in requests</b></p>
+			<div class="smallLabel" style="margin-bottom: 20px; margin-top: 20px;">
+				Fill in your <strong>AWS Access Key ID</strong>, <strong>AWS Secret Access Key</strong>, and <strong>Associate Tag</strong> above and choose what <strong>Locale</strong> you would like to use for this query. Then enter an <strong>ISBN</strong> in the box below and click the <strong>Display Signed URL</strong> button. The <strong>String-To-Sign</strong> and <strong>Signed URL</strong> will be displayed below. A <strong>Timestamp</strong> will be generated and added to the request.
+			</div>
+			<div class="smallLabel" style="margin-bottom: 20px; margin-top: 20px; background-color: #eeeeee; padding: 4px; border: 1px dashed #d5d5d5;">
+				Here is an sample ISBN you can use to get started with. It's the ISBN for the famous CLRS Introduction To Algorithms textbook:
+				<pre>0262033844</pre>
+			</div>
+			<div style="background-color: #eeeeee; padding: 10px;">
+				<div style="padding: 4px; margin: 0px; border: 6px solid #D5D5D5; ">
+					<table	cellpadding="0" 
+							cellspacing="3"
+							border="0"
+							bgcolor="#eeeeee"
+							width="100%"
+							class="DemoValues" >
+						<tr>
+							<td align="right" nowrap="" width="140px">
+								<span class="label">ISBN:</span>
+							</td>
+							<td>
+								<textarea	class="message" 
+											rows="6" 
+											name="ISBN" 
+											id="ISBN">
+								</textarea>
+							</td>
+						</tr>
+						<tr>
+							<td align="right" nowrap="">
+								<span class="label">Name-Value Pairs:</span></td>
+							<td>
+								<textarea	class="message readonly"
+											rows="8"
+											name="NameValuePairs"
+											id="NameValuePairs"
+											readonly="true">
+								</textarea>
+								<div class="smallLabel underline">
+									The query string has been split into it's constituent name-value pairs (one per line) and a timestamp has been added to the end.
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="right" nowrap="">
+								<span class="label">Sorted Pairs:</span>
+							</td>
+							<td>
+								<textarea	class="message readonly"
+											rows="8"
+											name="OrderedPairs"
+											id="OrderedPairs"
+											readonly="true">
+								</textarea>
+								<div class="smallLabel underline">
+									The name-value pairs have been sorted according to byte-order and URL-encoded according to RFC 3986 as required by the Product Advertising API.
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="right" nowrap="">
+								<span class="label">String-To-Sign:</span>
+							</td>
+							<td>
+								<textarea class="message readonly" rows="8" name="StringToSign" id="StringToSign" readonly="true"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td align="right" nowrap="">
+								<span class="label">Signed URL:</span>
+							</td>
+							<td>
+								<textarea	class="message readonly"
+											rows="6"
+											name="SignedURL"
+											id="SignedURL"
+											readonly="true">
+								</textarea>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<img	alt="" 
+				height="15"
+				src="images/spacer.gif" 
+				width="700" />
+			<table width="100%">
+				<tr>
+					<td align="right">
+						<a href="javascript:invokeRequest();">
+							<img alt="" border="0" src="images/button-displayurl.png">
+						</a>
+						<a href="javascript:document.forms[0].reset()">
+							<img alt="" border="0" src="images/button-resetform.png">
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<center>
+			<div style="padding: 15px" class="smallLabel">
+				Amazon Product Advertising API Scratchpad Mod; released 2009-06-15. Modified 2014-02-19. Copyright 2009 Amazon.com Inc.
+			</div>
+		</center>
+	</form>
+</body>
+</html>

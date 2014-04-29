@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Common -->
+    <string name="submit">Submit</string>
+
+    <!--  -->
+    <string name="app_name">Buy My Book!</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="scan">Scan</string>
+    <string name="post">Post</string>
+    <string name="search">Search</string>
+    <string name="title_activity_post">Post a book</string>
+
+    <!-- Strings for the Post Screen(s) -->
+    <string name="next">Next</string>
+    <string name="post_manual">Post Manually</string>
+    <string name="post_scan">Post Scan</string>
+
+    <!-- Strings for Posting - manual insert -->
+    <string name="post_manual_header_text">We\'ll find the best match</string>
+    <string name="post_manual_booktitle_hint">Book Title</string>
+    <string name="post_manual_bookauthor_hint">Author(s)</string>
+    <string name="post_manual_bookisbn_hint">ISBN</string>
+    <string name="post_manual_deptspinner_prompt">Dept</string>
+
+    <string-array name="post_manual_deptspinner_list">
+        <item>BUS</item>
+        <item>CS</item>
+        <item>MATH</item>
+    </string-array>
+
+    <string name="post_manual_coursenum_hint">###</string>
+    <string name="title_activity_search">Search for a book</string>
+
+    <string-array name="condition_scroller">
+        <item>As New</item>
+        <item>Very Good</item>
+        <item>Good</item>
+        <item>Fair</item>
+        <item>Poor</item>
+        <item>Decomposed</item>
+    </string-array>
+    <!-- Strings for Searching -->
+    <string name="search_manual">Search Manually</string>
+    <string name="search_scan">Search by Scanning</string>
+    <string name="default_search">DefaultText</string>
+    <string name="title_activity_search_manual">Search results</string>
+    <string name="search_manual_title">Search Results</string>
+    <string name="title_activity_search_scan">SearchScan</string>
+    <string name="title_activity_manual_search">Search for a book manually</string>
+    <string name="title_manual_search">We will find best match</string>
+    <string name="title_activity_post_confirmation">PostConfirmationActivity</string>
+    <string name="title_activity_post_scan_confirmation">Post a book - confirm scan information</string>
+    <string name="courseText">Course</string>
+    <string name="term">Term</string>
+    <string name="scanISBN">Scan ISBN</string>
+    <string name="subject">Subject</string>
+    <!--FLATUI Colour palette -->
+    <color name="turqoise">#1ABC9C</color>
+    <color name="white">#FFFFFF</color>
+    <color name="clouds">#ECF0F1</color>
+   	<color name="greensea">#16A085</color>
+	<color name="emerald">#2ECC71</color>
+	<color name="nephritis">#27AE60</color>
+	<color name="peterriver">#3498DB</color>
+	<color name="belizehole">#2980B9</color>
+	<color name="amethyst">#9B59B6</color>
+	<color name="wisteria">#8E44AD</color>
+	<color name="wetasphalt">#34495E</color>
+	<color name="midnightblue">#2C3E50</color>
+	<color name="concrete">#95A5A6</color>
+	<color name="asbestos">#7F8C8D</color>
+	<color name="silver">#BDC3C7</color>
+	<color name="alizarin">#E74C3C</color>
+	<color name="pomegranate">#C0392B</color>
+	<color name="carrot">#E67E22</color>
+	<color name="pumpkin">#D35400</color>
+	<color name="sunflower">#F1C40F</color>
+	<color name="orange">#F39C12</color>
+	
+	
+</resources>

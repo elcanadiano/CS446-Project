@@ -1,0 +1,5 @@
+Currently, this code grabs lists of courses offered per term per subject.
+
+The goal is to have an HTML scraper using PHP that retrieves book information for UWaterloo courses and saves them in a .csv file.
+
+openDataApi.php - Uses the UWaterloo Open Data API to return what courses are offered in specific terms for each subject 
